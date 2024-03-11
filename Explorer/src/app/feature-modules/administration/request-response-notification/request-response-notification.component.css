@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'Trip';
+  src: url(src\assets\Fonts\TripSans-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Trip';
+  src: url(src\assets\Fonts\TripSans-Medium.ttf) format('truetype');
+  font-weight: medium;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Trip';
+  src: url(src\assets\Fonts\TripSans-Bold.ttf) format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+h2.title {
+  color: #004093;
+  text-align: center; /* Centriranje teksta */
+  font-size: 24px; /* Promena veličine slova */
+  margin-bottom: 20px; /* Dodavanje razmaka ispod naslova */
+  margin-top: 20px;
+  font-family: 'Trip', sans-serif; /* Primenjivanje fonta 'Trip' na naslov h2 s klasom 'title' */
+}
+
+#notifications {
+  margin-top: 20px;
+  margin-left: 20px;
+
+  font-family: 'Trip-Sans-Regular', sans-serif;
+  max-width: 900px; /* Postavljanje maksimalne širine */
+  margin: 0 auto; /* Centriranje kartica */
+  font-family: 'Trip', sans-serif; /* Primenjivanje fonta 'Trip' na naslov h2 s klasom 'title' */
+}
+
+#notification-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+ 
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #221853; /* Promena boje konture */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.notification-content {
+  flex-grow: 1;
+}
+
+.notification-comment {
+  font-size: 18px;
+}
+
+.notification-time {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #707070;
+}
+
+.delete-button {
+  background-color: #e23a55;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c4001d;
+}

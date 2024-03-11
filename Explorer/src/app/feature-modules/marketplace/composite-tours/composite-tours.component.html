@@ -1,0 +1,62 @@
+<div class="wrapper">
+    <div class="card-wrapper">
+      <div class="card-wrapperB">
+        <h2>My composite tours</h2>
+      </div>
+      <div class="tours">
+        <div *ngFor="let t of extendedTours" class="card">
+          <mat-card>
+            <mat-card-header>
+              <div class="headerName">
+                <div class="title">
+                  <mat-card-title>{{ t.name }}</mat-card-title>
+                </div>
+              </div>
+            </mat-card-header>
+  
+            <div class="maindiv">
+              <mat-card-content>
+                <div class="other">
+                  <div>
+  
+                    <div class="difLevel">
+                      <mat-card-subtitle
+                        [ngClass]="{
+                          easy: t.difficultyLevel === 'Easy',
+                          medium: t.difficultyLevel === 'Moderate',
+                          hard: t.difficultyLevel === 'Difficult'
+                        }"
+                      >
+                        {{ t.difficultyLevel }}
+                      </mat-card-subtitle>
+                    </div>
+                  </div>
+  
+                  <button
+                    *ngIf="t.id !== undefined"
+                    mat-button
+                    (click)="viewMap(t.id)"
+                  >
+                    🗺️
+                  </button>
+                </div>
+              </mat-card-content>
+            </div>
+            <mat-card-actions>
+              <div class="buttons1">
+                <label class="equipment" mat-button>Equipments:</label>
+                <div *ngFor="let e of t.equipments" class="card1">
+                  <div class="inner-card">
+                    <div class="title1">
+                      {{ e.name }},
+                      {{ e.description }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card-actions>                       
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>

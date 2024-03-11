@@ -1,0 +1,24 @@
+<div class="tour-details-container">
+    <div class="tour-header">
+      <h2 class="tour-name">{{ tour.name }}</h2>
+      <button (click)="startTour()" class="buy-button">Start Tour</button>
+    </div>
+  
+    <div class="tour-info">
+      <div class="tour-image">
+        <img [src]="tour.tourPoints[0].imageUrl" alt="{{ tour.name }} Image">
+      </div>
+  
+      
+  
+      <div class="tour-details">
+        <p class="price">Price: ${{ tour.price }}</p>
+        <p class="difficulty">Difficulty: {{ tour.difficultyLevel }}</p>
+        <p class="distance">Distance: {{ tour.tourCharacteristics[0].distance }} km</p>
+        <p class="duration">Duration: {{ tour.tourCharacteristics[0].duration }} minutes</p>
+      </div>
+    </div>
+    <div class="tour-description">
+        <p class="description">{{ tour.description }}</p>
+      </div>
+  </div>

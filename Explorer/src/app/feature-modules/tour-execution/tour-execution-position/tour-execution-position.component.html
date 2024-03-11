@@ -1,0 +1,32 @@
+<div class="form-container">
+    <form [formGroup]="tourExecutionPositionForm">
+      <div>
+        <p>Select your location:</p>
+        
+        <div class="map-container">
+          <app-map></app-map>
+        </div>
+        <button
+          *ngIf="!shouldEdit"
+          mat-raised-button
+          type="submit"
+          color="primary"
+          (click)="addTourExecutionPosition()"
+        >
+          Done
+        </button>
+        
+        <button
+          *ngIf="shouldEdit"
+          mat-raised-button
+          type="submit"
+          color="primary"
+          (click)="updateTourExecutionPosition()"
+        >
+          Done
+        </button>
+        
+      </div>
+    </form>
+  </div>
+  

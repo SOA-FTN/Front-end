@@ -1,0 +1,89 @@
+.blog-post-creation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px; /* Add margin for spacing */
+    margin-top: 40px;
+    border: 3px solid black;
+    border-radius: 8px;
+    padding-bottom: 40px;
+    padding-top: 30px;
+    margin-left: 300px;
+    margin-right: 300px;
+    box-shadow: 0 0 20px rgba(34, 24, 83, 0.7);
+
+}
+
+.title {
+    font-family: 'Trip'; /* Use your custom font */
+    font-size: 42px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 40px; /* Adjust space below the title */
+}
+
+
+.drafts-button {
+    font-family: 'Trip'; /* Use your custom font */
+    font-size: 20px;
+    margin-bottom: 15px;
+    margin-left: 400px; /* Adjust space below the button */
+}
+
+.drafts-button:hover {
+    background-color: #221853;
+    box-shadow: 0 2px 5px 1px #333333;
+}
+
+.line-container {
+    display: flex;
+    align-items: center;
+}
+
+.blog-post-form {
+    width: 70%;
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+.blog-post-form button {
+    margin-top: 20px; /* Increase the spacing between buttons */
+    font-family: 'Trip'; /* Use your custom font */
+}
+
+.popup-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: #fff; /* Set background color for the popup */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); /* Set the background color and transparency */
+    z-index: 1; /* Place the overlay behind the popup */
+}

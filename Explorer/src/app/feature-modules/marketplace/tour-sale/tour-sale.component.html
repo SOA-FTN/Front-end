@@ -1,0 +1,200 @@
+<div id="gr">
+  <p class="title">My Tour Sales</p>
+  <div id="gr-details">
+
+    <div class="card-container">
+      <div class="card-row">
+        <div *ngFor="let ts of tourSales" class="card">
+          <div class="card-content">
+            <div class="info-item">
+              <span class="header">Discount:</span>
+              <span class="value">{{ ts.salePercentage }}%</span>
+            </div>
+            <div class="info-item">
+              <span class="header">Start Date:</span>
+              <span class="value">{{ ts.startDate | date:'dd.MM.yyyy.' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="header">End Date:</span>
+              <span class="value">{{ ts.endDate | date:'dd.MM.yyyy.' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="header">Tours:</span>
+              <span class="value">{{ ts.tourIds }}</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <button color="accent" (click)="onDeleteClicked(ts)" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button color="primary" (click)="onEditClicked(ts)" mat-icon-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-row">
+        <div class="card add-card" (click)="onAddClicked()">
+          <mat-icon>add</mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="new-sale" *ngIf="shouldRenderTourSaleForm && !shouldEdit">
+
+      <p class="subtitle">Add new sale</p>
+
+      <form [formGroup]="tourSaleForm1">
+        <div class="form-field-add">
+
+          <mat-form-field>
+            <mat-label>Start Date</mat-label>
+            <input matInput type="date" formControlName="date1" placeholder="Start Date">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>End Date</mat-label>
+            <input matInput type="date" formControlName="date2" placeholder="End Date">
+          </mat-form-field>
+
+          <button class="button-availability" type="submit" (click)="searchTourSale()">Search Available</button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="srcd && shouldRenderTourSaleForm && !shouldEdit">
+
+      <div class="tours-lists">
+
+        <div class="available">
+          <p class="type-of-tour">Available tours:</p>
+          <div class="card-container-available-tours">
+            <ng-container *ngIf="tours.length; else emptyMessage1">
+              <div *ngFor="let tt of tours" class="card-tours" (click)="onPlusTour(tt)">
+                <div class="card-content-tours">
+                  <p><strong>Tour name:</strong> {{ tt.name }}</p>
+                  <p><strong>Tour id:</strong> {{ tt.id }}</p>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #emptyMessage1>
+              <p class="empty-message flex-center">No available tours</p>
+            </ng-template>
+          </div>
+        </div>
+
+        <div class="for-sale">
+          <p class="type-of-tour">Tours for Sale:</p>
+          <div class="card-container-available-tours">
+            <ng-container *ngIf="toursSelected.length; else emptyMessage2">
+              <div *ngFor="let tt of toursSelected" class="card-tours" (click)="onMinusTour(tt)">
+                <div class="card-content-tours">
+                  <p><strong>Tour name:</strong> {{ tt.name }}</p>
+                  <p><strong>Tour id:</strong> {{ tt.id }}</p>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #emptyMessage2>
+              <p class="empty-message flex-center">No tours for sale</p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+      <div class="discount-form">
+
+        <p class="discount-heading">Discount percentage</p>
+
+        <form [formGroup]="tourSaleForm2">
+          <div class="discount-form-field">
+
+            <mat-form-field>
+              <mat-label>Discount (%)</mat-label>
+              <input matInput min="1" max="100" type="number" formControlName="salePerc" placeholder="%">
+            </mat-form-field>
+
+            <button class="button-availability" type="submit" (click)="addTourSale()">Create Sale</button>
+            <button class="button-discard" (click)="discard()">Discard</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="edit-sale" *ngIf="shouldRenderTourSaleForm && shouldEdit">
+
+      <p class="subtitle">Update sale</p>
+
+      <form [formGroup]="tourSaleForm3">
+
+        <div class="form-field-add">
+
+          <mat-form-field>
+            <mat-label>Start Date</mat-label>
+            <input matInput type="date" formControlName="date1" placeholder="Start Date" (change)="onDateChange()">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>End Date</mat-label>
+            <input matInput type="date" formControlName="date2" placeholder="End Date" (change)="onDateChange()">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Discount (%)</mat-label>
+            <input matInput min="1" max="100" type="number" formControlName="salePerc" placeholder="%">
+          </mat-form-field>
+
+          <button class="button-availability" type="submit" (click)="updateTourSale1()">Check Availability</button>
+        </div>
+      </form>
+
+
+      <div *ngIf="showupdt">
+
+        <div class="tours-lists">
+
+          <div class="available">
+            <p class="type-of-tour">Available tours:</p>
+            <div class="card-container-available-tours">
+              <ng-container *ngIf="tours1.length; else emptyMessage1">
+                <div *ngFor="let tt of tours1" class="card-tours" (click)="onPlusTour1(tt)">
+                  <div class="card-content-tours">
+                    <p><strong>Tour name:</strong> {{ tt.name }}</p>
+                    <p><strong>Tour id:</strong> {{ tt.id }}</p>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #emptyMessage1>
+                <p class="empty-message flex-center">No available tours</p>
+              </ng-template>
+            </div>
+          </div>
+
+          <div class="for-sale">
+            <p class="type-of-tour">Tours for Sale:</p>
+            <div class="card-container-available-tours">
+              <ng-container *ngIf="toursSelected1.length; else emptyMessage2">
+                <div *ngFor="let tt of toursSelected1" class="card-tours" (click)="onMinusTour1(tt)">
+                  <div class="card-content-tours">
+                    <p><strong>Tour name:</strong> {{ tt.name }}</p>
+                    <p><strong>Tour id:</strong> {{ tt.id }}</p>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #emptyMessage2>
+                <p class="empty-message flex-center">No tours for sale</p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="discount-form-field update-submit">
+
+        <button class="button-availability" *ngIf="showupdt" type="submit" (click)="updateTourSale()">Update Sale</button>
+        <button class="button-discard" *ngIf="showupdt" (click)="discard()">Discard changes</button>
+      </div>
+    </div>
+  </div>
+</div>

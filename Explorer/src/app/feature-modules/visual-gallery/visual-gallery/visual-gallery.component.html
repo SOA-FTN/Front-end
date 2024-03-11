@@ -1,0 +1,41 @@
+<div class="background">
+  <div>
+    <h1 class="title">Travel Gallery</h1>
+  </div>
+  <div class="top-container">
+    <div class="search-container">
+      <input class="search-input" placeholder="Search for inspiration" [(ngModel)]="query" (keyup.enter)="searchImages()"/>
+      <span class="cancel-icon" (click)="clearSearchBar()"> <!-- Assuming you have a method to clear the search -->
+        <i class="fas fa-times"></i>
+      </span>
+    </div>
+  </div>
+  <div class="more-images-container">
+    <div class="more-image" (click)="showNewYork()">
+      <span class="small-text">More images for</span>
+      <span class="city-name">New York</span>
+    </div>
+    <div class="more-image" (click)="showLondon()">
+      <span class="small-text">More images for</span>
+      <span class="city-name">London</span>
+    </div>
+    <div class="more-image" (click)="showTokyo()">
+      <span class="small-text">More images for</span>
+      <span class="city-name">Tokyo</span>
+    </div>
+  </div>
+
+  <div class="image-container">
+    <div class="image-card" *ngFor="let image of images">
+      <img [src]="image.urls.small" alt="{{ image.alt_description }}" (click)="openImagePopup(image)"/>
+    </div>
+  </div>
+  <div class="popup-container" *ngIf="showPopup">
+    <div class="popup" >
+      <img [src]="selectedImage.urls.small" alt="{{ selectedImage.alt_description }}"/>
+      <button (click)="closePopup()" class="button">
+        Close
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+/* styles.css */
+
+/* Apply a border to the table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  /* Style table headers */
+  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    background-color: #f2f2f2;
+  }
+  
+  /* Style table cells */
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* Make specific columns wider or narrower */
+  td:nth-child(1), th:nth-child(1) { /* Title */
+    width: 20%;
+  }
+  
+  td:nth-child(2), th:nth-child(2) { /* Description */
+    width: 30%;
+  }
+  
+  td:nth-child(3), th:nth-child(3) { /* XP */
+    width: 5%;
+  }
+  
+  td:nth-child(4), th:nth-child(4) { /* Status */
+    width: 10%;
+  }
+  
+  td:nth-child(5), th:nth-child(5) { /* Type */
+    width: 10%;
+  }
+  
+  td:nth-child(6), th:nth-child(6) { /* Latitude */
+    width: 10%;
+  }
+  
+  td:nth-child(7), th:nth-child(7) { /* Longitude */
+    width: 10%;
+  }
+  
+  /* Apply some spacing to the table */
+  div {
+    margin: 20px;
+  }

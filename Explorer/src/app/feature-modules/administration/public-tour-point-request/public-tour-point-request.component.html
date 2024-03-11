@@ -1,0 +1,21 @@
+<div class="schedule">
+<h1 class="title">All requests for creating public tour points</h1>
+<div class="notifications-wrapper" >
+    <div class="notification" *ngFor="let r of bindingList">
+        <div class="notification-details">
+            <p class="notification-info"><strong>Tour point name:</strong> {{r.name}}</p>
+            <p class="notification-info"><strong>Tour point description:</strong> {{r.description}}</p>
+            <p class="notification-info"><strong>Author username:</strong> {{r.username}}</p>
+            <input type="text" [(ngModel)]="r.comment" placeholder="Enter comment">
+        </div>
+        <div class="notification-actions">
+            <button (click)="AcceptRequest(r.request,r.comment)" class="accept-button">
+                Accept
+            </button>
+            <button (click)="RejectRequest(r.request,r.comment)" class="reject-button">
+                Reject
+            </button>
+        </div>
+    </div>
+</div>
+</div>

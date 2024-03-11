@@ -1,0 +1,173 @@
+<div class="form-container">
+  <form [formGroup]="tourPointForm">
+    <div class="container">
+      <div class="inner-container">
+        <div>
+          <p class="label">Create check point for this tour</p>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" type="text" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+              formControlName="description"
+              cdkAutosizeMaxRows="5"
+            ></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Image url</mat-label>
+            <input matInput formControlName="imageUrl" type="text" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Secret</mat-label>
+            <input matInput type="text" formControlName="secret" />
+          </mat-form-field>
+
+        </div>
+        <div>
+          <div [formGroup]="yourFormGroup">
+            <label for="transport" class="label">Choose transport type</label>
+            <select
+              id="transport"
+              formControlName="selectedTransport"
+              (change)="onTransportChange()"
+              class="select"
+            >
+              <option value="walking">🚶Walking</option>
+              <option value="cycling">🚲 Cycling</option>
+              <option value="driving">🚗 Driving</option>
+            </select>
+          </div>
+          <button
+            class="button"
+            *ngIf="!shouldEdit"
+            mat-raised-button
+            type="submit"
+            color="primary"
+            (click)="addTourPoint()"
+          >
+            Save tour point
+          </button>
+<!--          <button-->
+<!--            class="button"-->
+<!--            *ngIf="!shouldEdit"-->
+<!--            mat-raised-button-->
+<!--            type="submit"-->
+<!--            color="primary"-->
+<!--            (click)="openAddEncounterPopup()"-->
+<!--          >-->
+<!--            Save tour point and add encounter-->
+<!--          </button>-->
+          <button
+            class="button"
+            *ngIf="!shouldEdit"
+            mat-raised-button
+            type="submit"
+            color="primary"
+            (click)="getTourCharacteristic()"
+          >
+            Finish and set characteristics
+          </button>
+          <p class="notification">
+             ! Before pressing the finish button,please select appropriate
+            transport type
+          </p>
+        </div>
+      </div>
+
+      <div class="map-container">
+        <app-map></app-map>
+      </div>
+    </div>
+
+    <button
+      *ngIf="shouldEdit"
+      mat-raised-button
+      type="submit"
+      color="primary"
+      (click)="updateTourPoint()"
+    >
+      Done
+    </button>
+    <button
+      *ngIf="shouldAddPoint"
+      mat-raised-button
+      type="submit"
+      color="primary"
+      (click)="addTourPoint()"
+    >
+      Finish
+    </button>
+  </form>
+  <div *ngIf="showPopup" class="popup-container">
+    <div class="popup">
+      <form [formGroup]="encounterForm" >
+        <div>
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text"/>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea matInput
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    formControlName="description"
+                    cdkAutosizeMaxRows="15">
+                </textarea>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="form-group">
+                <mat-label>Experience points</mat-label>
+                <input matInput type="number" formControlName="xpPoints" placeholder="Experience points" required>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="form-group">
+                <mat-label>Type:</mat-label>
+                <mat-select formControlName="type" required>
+                <mat-option value="MISC" (click)="onTypeClick('MISC')" >Misc</mat-option>
+                <mat-option value="LOCATION"  (click)="onTypeClick('LOCATION')" >Location</mat-option>
+                <mat-option value="SOCIAL" (click)="onTypeClick('SOCIAL')" >Social</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="form-group" *ngIf="isLocation || isSocial">
+                <mat-label>Distance threshold</mat-label>
+                <input matInput type="number" formControlName="distanceTreshold" placeholder="Distance Threshold">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="form-group" *ngIf="isSocial">
+                <mat-label>Number of tourists</mat-label>
+                <input matInput type="number" formControlName="touristsRequiredForCompletion" placeholder="Tourists Required">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="form-group" *ngIf="isLocation" >
+                <mat-label>Hidden location image</mat-label>
+                <input matInput type="text" formControlName="imageURL" placeholder="Image">
+            </mat-form-field>
+        </div>
+        <div>
+          <mat-checkbox formControlName="includeCheckbox">Include Checkbox</mat-checkbox>
+        </div>
+        <div>
+            <span >
+                <button mat-raised-button type="submit" color="primary" class="button" (click)="addEncounter()" >Post</button>
+                <button mat-raised-button type="submit" color="primary" class="button" (click)="closePopup()">Cancel</button>
+            </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

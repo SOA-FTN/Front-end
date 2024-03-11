@@ -1,0 +1,38 @@
+.window{
+    display: flex;
+    flex-direction: column;
+    width: 1400px;
+    margin: 60px auto;
+    font-family: "Trip", sans-serif;
+    justify-content: space-evenly;
+}
+
+.map-container{
+    margin: 20px;
+}
+
+.encounter-details{
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 50px;
+    box-shadow: 0 2px 16px 3px #dddddd;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    gap: 10px;
+}
+
+.encounter-details:hover {
+    box-shadow: 0 4px 16px 3px #707070;
+  }
+
+.encounter-details h1{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+}
+
+.encounter-details p{
+    font-size: 16px;
+}
+

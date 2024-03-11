@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Trip';
+  src: url(src\assets\Fonts\TripSans-Medium.ttf) format('truetype');
+  font-weight: medium;
+  font-style: normal;
+  font-display: swap;
+}
+
+.response {
+  margin: 16px;
+}
+
+.message {
+  font-size: 22px;
+  font-family: 'Trip';
+  font-weight: medium;
+}

@@ -1,0 +1,58 @@
+<form [formGroup]="objectForm">
+  <div class="container">
+    <div clas="inner-container">
+      <p class="label">Create object for this tour:</p>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" type="text" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          formControlName="description"
+          cdkAutosizeMaxRows="5"
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <select matNativeControl formControlName="category">
+          <option value="Toilet">Toilet</option>
+          <option value="Restaurant">Restaurant</option>
+          <option value="Parking">Parking</option>
+          <option value="Other">Other</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Image url</mat-label>
+        <textarea matInput formControlName="imageUrl" type="text"></textarea>
+      </mat-form-field>
+      <button
+        *ngIf="!shouldEdit"
+        color="primary"
+        type="submit"
+        (click)="addObject()"
+        mat-raised-button
+        class="button"
+      >
+        Save object
+      </button>
+    </div>
+
+    <div class="map-container">
+      <app-map></app-map>
+    </div>
+
+    <button
+      *ngIf="shouldEdit"
+      color="primary"
+      type="submit"
+      (click)="updateObject()"
+      mat-raised-button
+    >
+      Done
+    </button>
+  </div>
+</form>

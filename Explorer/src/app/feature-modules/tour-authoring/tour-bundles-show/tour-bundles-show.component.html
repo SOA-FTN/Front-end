@@ -1,0 +1,49 @@
+<div class="slide-content">
+    <div class="card-wrapper">
+        <div class="card" *ngFor="let bundle of _observableList| async">
+
+
+            <div class="card-content">
+                <h2 class="name">{{bundle.name}} </h2>
+
+                <div class="desc-container">
+                    <p class="price-text">Status:{{bundle.status}} </p>
+                    
+                    <p *ngIf="bundle.status=='Draft'">
+                        <button mat-raised-button type="submit" color="primary"
+                            (click)="publish(bundle)">Publish</button>
+                    </p>
+                    <p *ngIf="bundle.status=='Published'">
+                        <button mat-raised-button type="submit" color="primary"
+                            (click)="archive(bundle)">Archive</button>
+                    </p>
+
+                    <button mat-raised-button type="submit" color="primary" *ngIf="bundle.status!='Published'" (click)="delete(bundle)">Delete</button>
+                    
+                    <p class="price-text">$ {{bundle.price}} </p>
+                </div>
+
+
+                <h2>Tours</h2>
+                <div class="card-footer">
+                    <div *ngFor="let tour of bundle.tours">
+                        <p class="price-text">{{tour.name}}</p>
+
+
+                        <p class="price-text">{{tour.status}}</p>
+                        <p class="price-text">$ {{tour.price}}</p>
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

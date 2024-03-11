@@ -1,0 +1,28 @@
+<div id="chat">
+    <div class="user">
+        <img class="img" src="../../../../assets/images/icon2.png" alt="slika" width="30">
+        <p>{{otherName}}</p>
+    </div>
+    
+    <div id="problem-details">
+        <div>
+            <ng-container *ngIf="user">
+                <div *ngFor="let m of messages" class="chat-bubble-container"
+                    [ngClass]="{ 'sender': m.idSender === user.id }">
+                    <div class="chat-bubble">
+                        {{m.content}}
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div id="chat-input-container">
+        <mat-form-field appearance="outline">
+            <input [formControl]="messageControl" matInput placeholder="Enter your message..." />
+        </mat-form-field>
+        <button mat-icon-button (click)="sendMessage()">
+            <mat-icon>send</mat-icon>
+        </button>
+    </div>
+   
+    </div>

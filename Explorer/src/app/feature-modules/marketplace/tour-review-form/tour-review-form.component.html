@@ -1,0 +1,88 @@
+<div class="wrap">
+  <div class="helper">
+    <form [formGroup]="TourReviewForm" class="form-wrap">
+      <div class="rating-section">
+        <div class="stars">
+          <mat-label class="labels"
+            >How satisfied are you with the experience using Google Maps during
+            tour?</mat-label
+          >
+        </div>
+        <div class="stars2">
+          <mat-icon
+            class="star-icon"
+            *ngFor="let star of [1, 2, 3, 4, 5]"
+            (click)="setRateForMaps(star)"
+            [ngClass]="{ 'star-filled': star <= selectedMapsRating }"
+            >star</mat-icon
+          >
+        </div>
+      </div>
+      <div>
+        <div class="stars">
+          <mat-label class="labels"
+            >How would you rate the variety of content provided in the
+            tour?</mat-label
+          >
+        </div>
+        <div class="stars2">
+          <mat-icon
+            class="star-icon"
+            *ngFor="let star of [1, 2, 3, 4, 5]"
+            (click)="setRateForContent(star)"
+            [ngClass]="{ 'star-filled': star <= selectedContentRating }"
+            >star</mat-icon
+          >
+        </div>
+      </div>
+
+      <div>
+        <div class="stars">
+          <mat-label class="labels"
+            >How would you rate the tour price in terms of value for
+            money?</mat-label
+          >
+        </div>
+        <div class="stars2">
+          <mat-icon
+            class="star-icon"
+            *ngFor="let star of [1, 2, 3, 4, 5]"
+            (click)="setRateForPrice(star)"
+            [ngClass]="{ 'star-filled': star <= selectedPriceRating }"
+            >star</mat-icon
+          >
+        </div>
+      </div>
+
+      <div>
+        <div class="recommendation">
+          <mat-label class="labels">
+            Would you recommend this tour to a friend?
+          </mat-label>
+        </div>
+
+        <div class="experience-radio-buttons">
+          <mat-radio-group formControlName="experience" class="radio-buttons">
+            <mat-radio-button value="positive">Yes</mat-radio-button>
+            <mat-radio-button value="negative">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <mat-form-field class="input">
+        <mat-label>Leave your comment</mat-label>
+
+        <input matInput formControlName="comment" type="text" />
+      </mat-form-field>
+
+      <button
+        class="button"
+        type="submit"
+        color="primary"
+        (click)="addReview()"
+      >
+        Send your feedback
+      </button>
+    </form>
+  </div>
+</div>

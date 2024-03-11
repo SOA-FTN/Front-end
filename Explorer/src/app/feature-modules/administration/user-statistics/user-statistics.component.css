@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'Trip';
+    src: url(src\assets\Fonts\TripSans-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  .statistics-window{
+    display: flex;
+    flex-direction: column;
+    width: 1400px;
+    margin: 60px auto;
+    font-family: "Trip", sans-serif;
+  
+  }
+
+  .user-details{
+    border-radius: 8px;
+    padding: 50px;
+    box-shadow: 0 2px 16px 3px #dddddd;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .user-details h2{
+    font-size: 30px;
+  }
+
+  .user-details p{
+    font-size: 25px;
+  }
+
+  .user-stats{
+    margin-top: 20px;
+  }
+
+  .picture{
+    margin-right: 100px;
+  }
+
+  img{
+    height: 180px;
+    width: 180px;
+  }
+
+  .all-mileages{
+    display: flex;
+    margin: 60px auto;
+    width: 1400px;
+    flex-direction: column;
+    justify-content: space-around;
+    vertical-align: center;
+    align-items: center;
+     gap: 40px;
+  }
+
+  .mileage-table{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .table-header{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 16px 3px #dddddd;
+    transition: background-color 0.3s ease-in-out; 
+    padding-top: 23px;
+    width: 1400px;
+    font-weight: bold;
+    justify-content: space-around;
+  }
+
+  .mileage{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 16px 3px #dddddd;
+    transition: background-color 0.3s ease-in-out; 
+    padding-top: 23px;
+    width: 1400px;
+    justify-content: space-around;
+  }
+
+  .table-header p{
+    width: 200px;
+  }  
+
+  .mileage p{
+    width: 200px;
+  }
+
+  .mileage:hover {
+    background-color: #f0f0f0; /* Change the background color on hover as a visual cue */
+  }
+  .table-header:hover {
+    background-color: #f0f0f0; /* Change the background color on hover as a visual cue */
+  }
+
+  .sort{
+    font-size: 20px;
+  }
+
+  .sort label{
+    margin: 20px;
+  }
+
+  .sort select{
+    height: 35px;
+    width: 100px;
+    font-size: 15px;
+  }

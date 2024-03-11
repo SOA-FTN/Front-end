@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'Trip';
+    src: url(src\assets\Fonts\TripSans-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Trip';
+    src: url(src\assets\Fonts\TripSans-Medium.ttf) format('truetype');
+    font-weight: medium;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Trip';
+    src: url(src\assets\Fonts\TripSans-Bold.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
+
+#ba {
+    display: flex;
+    gap: 1px;
+}
+
+#buttons {
+	width: auto;
+    display: flex;
+
+    height: 100%;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.inner {
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.custom-toolbar {
+    position: sticky;
+    z-index: 9999;
+    top:0;
+    width: 76%;
+    padding-left: 12%;
+    padding-right: 12%;
+    display: flex;
+    background-color: #221853;
+    color: white;
+    height: 60px;
+}
+
+.custom-toolbar button {
+    margin-left: 10px;
+}
+
+p {
+    padding-left: 10px;
+    margin: 0;
+    font-family: 'Trip';
+    font-weight: bold;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.nbutton {
+    margin: 0;
+    height: 100%;
+    font-family: 'Trip';
+    font-weight: medium;
+    font-size: 18px;
+    background-color: inherit;
+    color: #fff;
+    border: none;
+    border-bottom: 5px solid #221853;
+    border-top: 5px solid #221853;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s, border-color 0.2s;
+}
+
+.nbutton:hover {
+    background-color: #221853;
+    color: #fff;
+    border-bottom: 5px solid white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nbutton:focus {
+    outline: none;
+}
+
+.nbutton:active {
+    color: #0a83cb;
+}
+
+.dd {
+  float: left;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ddc {
+  font-family: 'Trip';
+  font-weight: medium;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.ddc a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.ddc a:hover {
+  background-color: #ddd;
+}
+
+.dd:hover .ddc {
+  display: block;
+}

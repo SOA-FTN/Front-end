@@ -1,0 +1,15 @@
+<div class="container">
+    <img [src]="club.image" alt="Club Image">
+    <div class="content">
+        <h2 class="title">{{club.name}}</h2>
+        <p class="description">{{club.description}}</p>
+        <div class="buttons">
+            <button (click)="onEditClicked(club)" color="primary" mat-icon-button>
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="onDeleteClicked(club)"  color="accent" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

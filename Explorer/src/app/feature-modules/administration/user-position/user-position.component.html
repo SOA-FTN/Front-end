@@ -1,0 +1,33 @@
+<div class="form-container">
+    <form [formGroup]="userPositionForm">
+      <div>
+        <p>Select your location:</p>
+        
+        <div class="map-container">
+          <app-map></app-map>
+        </div>
+        <button
+          *ngIf="!shouldEdit"
+          mat-raised-button
+          type="submit"
+          color="primary"
+          (click)="addUserPosition()"
+        >
+          Done
+        </button>
+        
+        <button
+          *ngIf="shouldEdit"
+          mat-raised-button
+          type="submit"
+          color="primary"
+          (click)="updateUserPosition()"
+        >
+          Done
+        </button>
+        
+      </div>
+    </form>
+  </div>
+  
+

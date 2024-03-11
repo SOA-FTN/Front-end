@@ -1,0 +1,32 @@
+.blog-post-creation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px; /* Add margin for spacing */
+    box-shadow: 0 0 20px rgba(34, 24, 83, 0.7);
+    border: 3px solid black;
+    border-radius: 8px;
+    padding-bottom: 40px;
+    padding-top: 10px;
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+  
+  .title {
+    font-family: 'Trip'; /* Use your custom font */
+    font-size: 42px; /* Adjust the font size to match the home screen */
+    font-weight: bold;
+    margin-top: 20px; /* Add top margin to the title */
+    margin-bottom: 40px; /* Add space below the title */
+  }
+  
+  .blog-post-form {
+    width: 70%;
+    margin: 0 auto; /* Center the form horizontally */
+  }
+  
+  .blog-post-form button {
+    margin-top: 20px; /* Increase the spacing between buttons */
+    font-family: 'Trip'; /* Use your custom font */
+  }
+  

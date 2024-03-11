@@ -1,0 +1,47 @@
+<div class="body">
+
+    <div class="slide-container">
+
+      <div class="title">All applies</div>
+
+      <div class="slide-content">
+        <div class="card-wrapper">
+          <div *ngFor="let apply of competitionApplies">
+            <div class="card" [ngClass]="{ 'card-selected': apply.selected == true }">
+
+            <div class="image-content">
+              <div class="card-image">
+                <img [src]="apply.imageUrl" alt="" class="card-img">
+              </div>
+            </div>
+
+            <div class="card-content">
+              <h2 class="name">{{ apply.userName }} {{ apply.userLastName }}</h2>
+
+
+              <div class="desc-container">
+<!--                <p>Num of likes:</p>-->
+                <p class="description">Num of likes: {{ apply.numLikes }}</p>
+              </div>
+              <div class="like-div">
+                <button *ngIf="apply.notHis" class="like-button" (click)="selectApply(apply)">
+                  <img src="assets/images/like.png">
+                </button>
+              </div>
+            </div>
+
+
+          </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="column">
+        <button class="button" (click)="apply()" *ngIf="isTourist">APPLY</button>
+        <xp-apply-form *ngIf="shouldRenderForm" (objectUpdated)="getApplies()" (closeForm)="closeForm()" [competitionId]="competitionId"></xp-apply-form>
+    </div>
+
+  </div>

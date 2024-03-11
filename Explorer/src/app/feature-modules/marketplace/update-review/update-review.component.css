@@ -1,0 +1,16 @@
+.grade {
+  margin-bottom: 25px;
+}
+
+.images {
+  margin-top: 25px;
+}
+
+.buttonClass {
+  margin-top: 25px;
+}
+.container {
+  display: flex;
+  margin-top: 25px;
+  margin-left: 400px;
+}

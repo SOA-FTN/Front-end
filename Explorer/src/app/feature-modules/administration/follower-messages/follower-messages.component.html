@@ -1,0 +1,19 @@
+<h2 class="title">
+    Messages
+</h2>
+<div id="messages">
+    <div id="message-details">
+        <div *ngFor="let m of messages" class="message-item" [class.unread]="!m.isRead">
+            <div class="message-content">
+                <div class="username">{{m.followerUsername}}</div>
+                <div class="message">{{m.message}}</div>
+            </div>
+            <button *ngIf="!m.isRead" (click)="markAsRead(m)" color="accent" mat-icon-button class="read-button" matTooltip="Mark as Read">
+                <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <button (click)="deleteMessage(m.id)" color="accent" mat-icon-button class="delete-button" matTooltip="Delete Message">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

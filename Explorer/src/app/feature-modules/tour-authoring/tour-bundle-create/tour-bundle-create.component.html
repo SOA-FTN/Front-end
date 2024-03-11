@@ -1,0 +1,60 @@
+
+
+
+<div class="hint">
+
+<h1>Select tours to add in bundle</h1>
+</div>
+
+<div class="slide-content">
+    <div class="card-wrapper">
+        <div class="card" *ngFor="let tour of tours"  [style.background-color]="selectedTourNames.includes(tour.name) ? 'lightblue' : 'transparent'"
+        (click)="selectTour(tour)">
+            <div class="image-content">
+                
+
+                <div class="card-image">
+                    <img src="assets/images/slika3.jpg"
+                        alt="" class="card-img">
+                </div>
+            </div>
+
+            <div class="card-content">
+                <h2 class="name">{{tour.name}} </h2>
+                <div class="eq-app">
+                    <div class="desc-container">
+
+                        <p class="description"><i class="material-icons">&#xe873;</i>{{tour.description}} </p>
+                        <p class="description">Difficulty level: {{tour.difficultyLevel}} </p>
+                        <p class="description">$ {{tour.price}} </p>
+                       
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="bundleDetails" >
+    <form [formGroup]="inputForm">
+    <mat-form-field>
+        <input matInput type="text" placeholder="Bundle Name " formControlName="name"  >
+    </mat-form-field>
+    <div>
+    <mat-form-field>
+        <input matInput type="number" placeholder="Bundle Price " formControlName="price" >
+        <mat-label >*Total Price{{sumPrice}}</mat-label>
+    </mat-form-field>
+</div>
+
+</form>
+</div>
+
+    <button mat-raised-button type="submit" color="primary" style="margin-left:10%" (click)="createBundle()">Create</button>

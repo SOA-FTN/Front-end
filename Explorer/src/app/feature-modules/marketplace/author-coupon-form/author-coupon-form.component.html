@@ -1,0 +1,24 @@
+<form [formGroup]="couponForm" (ngSubmit)="submitForm()">
+
+    <div class="header-container">
+      <p class="hdr">Create Author coupon</p>
+      <!--<mat-icon class="icon" matTooltip="Author coupon applies for all author's tours. You can have only one Author coupon">help_outline</mat-icon>
+        <!-->
+      </div>
+  
+    <div class="form-row">
+      <mat-form-field>
+        <input matInput formControlName="discount" placeholder="Discount (%)" type="number" min="1" max="100">
+      </mat-form-field>
+    </div>
+    
+    <div class="form-row">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" formControlName="expirationDate" placeholder="Expiration Date" [min]="minDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  
+    <button mat-raised-button color="primary" type="submit">Create</button>
+  </form>

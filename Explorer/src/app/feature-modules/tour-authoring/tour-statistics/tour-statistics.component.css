@@ -1,0 +1,329 @@
+/* Postavite minimalne margine i poboljšajte vidljivost naslova */
+h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 30px; /* Promijenite veličinu slova prema potrebi */
+    text-align: center; /* Centrirajte naslov */
+    font-weight: bold;
+  }
+.canvas {
+    margin: 50px; /* Prilagodite margine prema potrebi */
+    
+}
+
+
+
+p{
+  font-size: 20px;  
+}
+/* Tamno plavi okvir */
+.custom-combobox {
+    border: 1px solid #001f3f; /* Promijenite boju okvira prema potrebi */
+    background-color: white; /* Promijenite boju pozadine prema potrebi */
+    color: black; /* Bijeli tekst */
+    border-radius: 4px; /* Promijenite radijus zaobljenosti okvira prema potrebi */
+    padding: 5px; /* Promijenite odstupanje unutar okvira prema potrebi */
+    width: 300px;
+    margin-bottom: 100px;
+    height: 30px;
+  }
+  
+  /* Bijeli tekst */
+  .custom-combobox select {
+    color: black;
+  }
+  
+  /* Stiliziranje strelice za dolje (dropdown) */
+  .custom-combobox select::-ms-expand {
+    display: none;
+  }
+  
+  .custom-combobox select:focus {
+    outline: #124174; /* Možete prilagoditi stil fokusa prema potrebi */
+  }
+  
+:host ::ng-deep .canvasjs-chart-title {
+    font-size: 4.5em; /* Veličina naslova */
+    font-weight: bold; /* Debljina fonta */
+    margin-bottom: 10px; /* Margina ispod naslova */
+  }
+  
+  :host ::ng-deep .canvasjs-chart-toolbar {
+    display: none; /* Uklanjanje linija iz pozadine */
+  }
+
+
+  #equipment {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  .table-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    align-items: flex-start;
+    padding-left: 2rem;
+  }
+  .card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding-left: 20px;
+  }
+  
+  
+  mat-card-header{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .card-wrapperB {
+    width: 20%;
+    height: 5%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .card-wrapperB button {
+    height: 80%;
+    width: 40%;
+    border-radius: 8px;
+    background-color: #124174;
+    color: #ffffff;
+    padding: 5px 10px;
+    width: 100px;
+  }
+  
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    text-align: center;
+    background-image: url("/assets/images/main.jpg");
+    background-size: cover;
+    background-repeat: repeat;
+    min-height: 150vh;
+    height: 100%;
+  }
+  
+  .tours {
+    display: flex;
+  flex-direction: column;
+    gap: 16px;
+    width: 1500px;
+    height: 400px;
+  }
+  .dijagrami{
+    display: flex;
+  flex-direction: column;
+    gap: 16px;
+    width: 1500px;
+  }
+  .container {
+    display: flex;
+    justify-content: flex-start; /* Poravnanje po desnoj strani */
+  }
+  .card {
+    flex: 1 0 calc(50% - 16px);
+    max-width: calc(50% - 16px);
+    height: 400px;
+    margin-bottom: 16px;
+    /* color: #ffffff; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-card {
+    background-color: rgba(240, 246, 246, 0.7);
+    height: 100%;
+  }
+  
+  .definition {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .definition .buttons {
+    margin-right: 10px;
+  }
+  
+  .definition .isPublished {
+    margin-left: 10px;
+    border-radius: 8px;
+    background-color: #124174;
+    color: #ffffff;
+    padding: 5px 10px;
+    width: 100px;
+  }
+  
+  /* .card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  } */
+  
+  .content {
+    width: 60%;
+    height: 150px;
+    overflow-y: scroll;
+  }
+  
+  .details {
+    text-decoration: solid;
+    font-weight: bold;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 20px;
+  }
+  
+  .maindiv {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-top: 10px;
+  }
+  
+  .title {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px 10px 20px;
+    gap: 10px;
+    color: #161414;
+  }
+  
+  .headerName {
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  mat-card-content {
+    color: #333;
+    font-size: 1em;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    text-align: justify;
+    font-family: "Lucida Console", "Courier New", monospace;
+  }
+  .desc {
+    color: #a19b9b;
+    text: caption;
+  }
+  
+  mat-card-actions equipment {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #78a3d0;
+  }
+  
+  mat-card-content {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  mat-card-subtitle {
+    font-size: 1.7em;
+    text-transform: uppercase;
+    color: #4e79a7;
+    font-family: Georgia, serif;
+    border-bottom: 1px solid #ccc;
+    margin-top: 10px;
+    padding-top: 5px;
+  }
+  
+  .other {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .other button {
+    width: 50%;
+    height: 50%;
+    font-size: 50px;
+  }
+  
+  .other .price-value {
+    background-color: rgba(246, 245, 245, 0.8);
+    color: #333;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+  }
+  
+  .other:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  .content:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .difLevel .easy {
+    background-color: rgba(246, 245, 245, 0.8);
+    border-radius: 10px;
+    border-color: green 1rem;
+    padding: 5px 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    color: green;
+  }
+  
+  .difLevel .medium {
+    background-color: rgba(246, 245, 245, 0.8);
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    color: orange;
+    border-color: orange;
+    border-style: double;
+  }
+  
+  .difLevel .hard {
+    background-color: rgba(246, 245, 245, 0.8);
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    color: red;
+    border-color: red;
+    border-style: double;
+  }
+  
+  mat-card-title {
+    font-size: 30px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #4409e8, rgb(147, 161, 211));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+  
+  .mat-card {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mat-card-title,
+  .mat-card-subtitle {
+    color: #89295c;
+  }
+  
+  
+  

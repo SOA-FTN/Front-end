@@ -1,0 +1,58 @@
+<div class="body">
+ 
+  
+  <div class="slide-container">
+
+    <div class="title">Purchased tours</div>
+  <div class="flexCol">
+      
+
+    <button class="startTour" [disabled]="selectedTours.length < 2" (click)="createComposite()">Connect these tours</button>
+    
+    <div class="slide-content">
+
+      <div class="card-wrapper">
+        <button *ngFor="let tour of tours" (click)="selectTour(tour)">
+        <div class="card" [ngClass]="{ 'card-selected': tour.selected == true }">
+
+          <div class="image-content">
+              <span class="overlay" *ngIf="tour.tags && tour.tags.length > 0">
+                  <p *ngFor="let tag of tour.tags" class="tag">{{ tag }}</p>
+              </span>
+
+            <div class="card-image">
+              <img [src]="tour.tourPoints[0].imageUrl" alt="" class="card-img">
+            </div>
+          </div>
+
+          <div class="card-content">
+            <h2 class="name">{{ tour.name }}</h2>
+
+            <div class="desc-container">
+              <p class="description">{{ tour.description }}</p>
+            </div>
+
+            <div class="card-footer">
+              <div class="price">
+                <p class="price-text">Price</p>
+                <p class="price-number">{{ tour.price }}$</p>
+              </div>
+
+              <p *ngIf="tour.difficultyLevel==='Easy'" class="difficulty easy">{{ tour.difficultyLevel }}</p>
+              <p *ngIf="tour.difficultyLevel==='Moderate'" class="difficulty moderate">{{ tour.difficultyLevel }}</p>
+              <p *ngIf="tour.difficultyLevel==='Difficult'" class="difficulty difficult">{{ tour.difficultyLevel }}</p>
+            </div>
+            <button class="startTour" (click)="startTour(tour.id)">
+              Start tour
+            </button>
+          </div>
+
+        </div>
+        </button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+</div>

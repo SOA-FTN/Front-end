@@ -1,0 +1,154 @@
+@font-face {
+  font-family: 'Trip-Regular';
+  src: url('src/assets/Fonts/TripSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Trip-Medium';
+  src: url('src/assets/Fonts/TripSans-Medium.ttf') format('truetype');
+  font-weight: medium;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Trip-Bold';
+  src: url('src/assets/Fonts/TripSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+h2 {
+  font-family: 'Trip-Bold', sans-serif;
+  text-align: center; /* Centriranje teksta */
+  margin-bottom: 20px; /* Povećanje donje margine */
+  margin-top: 30px;
+  font: size 30px; ;
+}
+h1 {
+  font-family: 'Trip-Bold', sans-serif;
+  text-align: center; /* Centriranje teksta */
+  margin-bottom: 40px; /* Povećanje donje margine */
+  margin-top: 30px;
+  font: size 30px; ;
+}
+h3 {
+  font-family: 'Trip-Bold', sans-serif;
+  text-align: center; /* Centriranje teksta */
+  margin-bottom: 15px; /* Povećanje donje margine */
+  margin-top: 15px;
+  font: size 20px; ;
+}
+body {
+  font-family: 'Trip-Regular', sans-serif;
+}
+.table-wrapper {
+  margin: 20px 0;
+}
+
+.table-container {
+  border: 1px solid #707070;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.table-header {
+  display: flex;
+  background-color: #221853;
+  color: white;
+  font-family: 'Trip-Bold'; 
+}
+
+.table-cell {
+  padding: 10px;
+  flex: 1;
+}
+
+.header {
+  font-weight: bold;
+  font-family: 'Trip-Bold'; 
+}
+
+.table-row {
+  display: flex;
+  border-bottom: 1px solid #707070;
+  font-family: 'Trip-Regular'; 
+}
+
+.button {
+  font-family: 'Trip-Medium';
+  font-weight: medium;
+  background-color: #0a83cb;
+  color: #fff;
+  border: none;
+  padding: 7px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+  width: 100px; /* Prilagodite dimenzije prema potrebi */
+  height: 50px;
+}
+
+
+.button:hover {
+  background-color: #221853;
+  box-shadow: 0 2px 5px 1px #333333;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card {
+  width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #221853;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Trip-Bold', sans-serif;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-body p {
+  margin-bottom: 10px;
+  font-family: 'Trip-Regular', sans-serif;
+}
+
+.button {
+  font-family: 'Trip-Medium';
+  font-weight: medium;
+  background-color: #0a83cb;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #221853;
+}

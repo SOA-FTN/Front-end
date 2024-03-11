@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'Trip';
+    src: url(src\assets\Fonts\TripSans-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Trip';
+    src: url(src\assets\Fonts\TripSans-Medium.ttf) format('truetype');
+    font-weight: medium;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Trip';
+    src: url(src\assets\Fonts\TripSans-Bold.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+.button {
+    font-family: 'Trip';
+    font-weight: medium;
+    background-color: #0a83cb;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #221853;
+    box-shadow: 0 2px 5px 1px #333333;
+}
+
+html {
+    /* overflow-x: hidden; */
+    margin-right: calc(-1 * (100vw - 100%));
+}
+
+body {
+  height: 100%;
+  background-color: #FAF9F6;
+}
+
+body {
+  margin: 0;
+  font-family: 'Trip', sans-serif;
+}

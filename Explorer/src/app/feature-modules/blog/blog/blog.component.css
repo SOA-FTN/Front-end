@@ -1,0 +1,111 @@
+.top {
+  text-align: center;
+}
+
+.title {
+  color: black;
+  font-family: 'Trip', sans-serif;
+  font-weight: bold;
+  font-size: 45px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px; /* Add padding for spacing */
+}
+
+.side-container {
+  width: 65%; /* Adjust width as needed */
+}
+
+.create-post-container,
+.filter-section,
+.blog-container {
+  margin-bottom: 20px;
+}
+
+.create-post-container {
+  background-color: white;
+  color: white;
+  border: 3px solid #707070;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transition: box-shadow 0.3s ease; /* Add a smooth transition effect for the shadow */
+}
+
+.create-post-container:hover {
+  box-shadow: 0 0 20px rgba(34, 24, 83, 0.7); /* Add box shadow on hover */
+}
+
+.create-post-button {
+  flex: 1.5;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-family: 'Trip', sans-serif;
+  text-align: center;
+  outline: none;
+  font-weight: bold;
+  color: #221853;
+}
+
+.filter-section {
+  background-color: #ffffff;
+  border: 3px solid #707070;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.filter-section button {
+  margin-right: 10px;
+  font-family: 'Trip', sans-serif;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+  background-color: rgb(219, 211, 250);
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.filter-section button:hover {
+  background-color: #221853;
+  color: #fff;
+  cursor: pointer;
+}
+
+.blog-container {
+  width: 100%; /* Occupy full width */
+}
+
+.bordered-text {
+  width: 48%; /* Adjust width as needed */
+  margin: 20px;
+  padding: 20px;
+  border: 3px solid #707070;
+  border-radius: 8px;
+  height: 300px;
+  font-family: 'Trip', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-top: -1px;
+  background-color: rgb(219, 211, 250);
+}
+
+.about-text {
+  font-size: 24px;
+  text-align: center;
+}
+
+.centered-sentences {
+  text-align: center;
+}

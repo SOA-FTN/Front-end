@@ -1,0 +1,65 @@
+<div id="problem">
+    <div id="problem-details" style="display: flex; width: 70%; justify-content: space-between;">
+        <div style="flex: 1; padding: 10px;">
+            <div *ngFor="let p of problem; let i = index">
+                <mat-card [ngStyle]="{
+                    'background-color': p.isSolved ? 'lightgreen' : (p.isUnsolvedForMoreThan5Days ? '#e23a55' : '/assets/images/q.jpg')
+                  }">
+                  <mat-card-header>
+                    <div style="display: flex; flex-direction: column;">
+                        <mat-card-title>{{p.category}}</mat-card-title>
+                        <mat-card-title>Deadline: {{p.deadline | date:'yyyy-MM-dd' }}</mat-card-title>
+                        <mat-card-subtitle>Priority: {{p.priority}}</mat-card-subtitle>
+                        
+                    </div>
+                </mat-card-header>
+                
+                    <mat-card-content>
+                        <p>{{p.description}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button color="primary" (click)="onProblemReplay(p)" mat-icon-button [disabled]="p.isSolved || isSolving || disabledRows.includes(i)">
+                            <mat-icon>reply</mat-icon>
+                        </button>
+                        <button *ngIf="p.id != newMessProbId" color="primary" (click)="onAllMesagges(p)" mat-icon-button [disabled]="p.isSolved || isSolving || disabledRows.includes(i)">
+                            <mat-icon>message</mat-icon>
+                        </button>
+                        <button *ngIf="p.id == newMessProbId" color="primary" (click)="onAllMesagges(p)" mat-icon-button
+                            [disabled]="p.isSolved || isSolving || disabledRows.includes(i)">
+                            <mat-icon>add_alert</mat-icon>
+                        </button>
+                        <button *ngIf="isTourist" color="primary" (click)="solveProblem(p, i)" mat-icon-button [disabled]="p.isSolved || isSolving || disabledRows.includes(i)">
+                            <mat-icon>done_all</mat-icon>
+                        </button>
+                        <button *ngIf="isTourist" color="primary" (click)="onProblemReplay(p)" mat-icon-button [disabled]="p.isSolved || isSolving || disabledRows.includes(i)">
+                            <mat-icon>highlight_off</mat-icon>
+                        </button>
+                        <button color="primary" *ngIf="isAdministartor" (click)="addDeadline(p)" mat-icon-button>
+                            <mat-icon>access_alarm</mat-icon>
+                        </button>
+                        <button mat-button color="primary" *ngIf="isAdministartor" (click)="deleteProblem(p)" [disabled]="!p.deadlineMissed">
+                            Close problem
+                        </button>
+                        <button mat-button color="primary" *ngIf="isAdministartor" (click)="archiveTour(p)" [disabled]="!p.deadlineMissed">
+                            Archive tour
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+
+        <!-- Right side: Forms, Chat, Deadline -->
+        <div style="flex: 1; padding: 10px;">
+            <div *ngIf="shouldRenderForm">
+                <xp-problem-message-form [problem]="selectedProblem" (problemUpdated)="getProblems()"></xp-problem-message-form>
+            </div>
+            <div *ngIf="shouldRenderChat">
+                <xp-problem-chat [problem]="selectedProblem"></xp-problem-chat>
+            </div>
+            <div *ngIf="shouldRenderDeadline">
+                <xp-problem-deadline [problem]="selectedProblem" (problemUpdated)="getUnsolvedProblems()"></xp-problem-deadline>
+            </div>
+        </div>
+    </div>
+</div>
+

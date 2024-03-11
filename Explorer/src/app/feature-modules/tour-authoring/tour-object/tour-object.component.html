@@ -1,0 +1,41 @@
+<div id="tourObject">
+    <p>Tour Object:</p>
+    <hr>
+    <div id="objects-details">
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Lat.</th>
+                        <th>Long.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let obj of tourObject">
+                        <td>{{obj.name}}</td>
+                        <td>{{obj.description}}</td>
+                        <td>{{obj.latitude}}</td>
+                        <td>{{obj.longitude}}</td>
+                        <td>
+                            <button color="accent" (click)="deleteObject(obj.id || 0)" mat-icon-button>
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button color="primary" (click)="onEditClicked(obj)" mat-icon-button>
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr><button color="primary" (click)="onAddClicked()" mat-icon-button>
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <xp-object-form *ngIf="shouldRenderObjectForm" (objectUpdated)="getObjects()" [object]="selectedTourObject" [shouldEdit]="shouldEdit"></xp-object-form>
+        </div>
+    </div>
+</div>

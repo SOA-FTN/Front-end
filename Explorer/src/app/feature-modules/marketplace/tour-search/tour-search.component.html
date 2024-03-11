@@ -1,0 +1,123 @@
+<div class="topDiv">
+  <div class="search-container">
+
+    <div class="map-container">
+      <app-map [saveOnlyLatest]="true"></app-map>
+    </div>
+    <form [formGroup]="searchForm">
+      <div class="form-container">
+        <div class="top-form-comp">
+          <p>Search range</p>
+          <mat-form-field>
+            <mat-label>Range (km)</mat-label>
+            <input matInput formControlName="range" type="number">
+          </mat-form-field>
+
+          <p>Max length</p>
+          <mat-form-field>
+            <mat-label>Length (km)</mat-label>
+            <input matInput formControlName="length" type="number">
+          </mat-form-field>
+          <p>Circle contains...</p>
+          <mat-form-field>
+            <mat-select formControlName="searchType" [(value)]="selectedValue">
+              <mat-option value="0">Any</mat-option>
+              <mat-option value="1">Starting</mat-option>
+              <mat-option value="2">Ending</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p>Checkpoint</p>
+
+          <!-- </div> -->
+        </div>
+        <span class="slider">
+        <p class="p-slider-header">Show tours with discount >= than...</p>
+        <div class="slider-container">
+          <input type="range" min="0" max="100" step="1" value="0" (input)="updateSliderValue($event)">
+          <p class="p-slider-value">{{ discount }}</p>
+        </div>
+      </span>
+        <!--      <span><p class="p-header">Show tours with discount >= than...</p><input type="range" min="0" max="100" step="1" value="0" (input)="updateSliderValue($event)"><p class="p-value">{{ discount }}</p></span>-->
+        <button class="button" raised-button type="submit" (click)="search()">Search</button>
+      </div>
+    </form>
+
+  </div>
+  <div class="tours-view" [ngStyle]="{'display': isListVisible ? 'block' : 'none'}">
+
+    <h1 class="results-title">Search results</h1>
+    <p class="results-number">{{ brTura }}</p>
+    <form [formGroup]="filterForm">
+      <div class="horizontal">
+        <p class="aaa">Difficulty:&nbsp;&nbsp;&nbsp;</p>
+        <mat-form-field>
+          <mat-select [(value)]="selectedLevel">
+            <mat-option value="">Any</mat-option>
+            <mat-option value="0">Easy</mat-option>
+            <mat-option value="1">Moderate</mat-option>
+            <mat-option value="2">Difficult</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <p class="aaa">Price:&nbsp;&nbsp;&nbsp;</p>
+        <mat-form-field>
+          <mat-select  [(value)]="selectedPrice">
+            <mat-option value="">Any</mat-option>
+            <mat-option value="0">0-100$</mat-option>
+            <mat-option value="1">100$-200$</mat-option>
+            <mat-option value="2">200$+</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button class="button2" raised-button type="submit" (click)="filter()">Filter</button>
+      </div>
+    </form>
+    <div class="slide-content">
+      <div class="card-wrapper">
+
+        <div class="card" *ngFor="let tour of tours">
+
+          <div class="image-content">
+            <span class="overlay">
+              <p class="tag" *ngFor="let tag of tour.tags | slice:0:3">{{ tag }}</p>
+            </span>
+
+            <div class="card-image">
+              <img [src]="tour.tourPoints[0].imageUrl" alt="" class="card-img">
+            </div>
+          </div>
+
+          <div class="card-content">
+            <h2 class="name">{{ tour.name }}</h2>
+
+            <div class="desc-container">
+              <p class="description">{{ tour.description }}</p>
+            </div>
+
+            <div class="card-footer">
+              <div class="price">
+                <ng-container *ngIf="getDisc(tour.id, tour.price) < tour.price; else noDiscount">
+                  <p class="price-text">Price</p>
+                  <p class="price-number old-price crossed-out">{{ tour.price }}</p>
+                  <p class="price-number discount-price">{{ getDisc(tour.id, tour.price) }}</p>
+                </ng-container>
+                <ng-template #noDiscount>
+                  <p class="price-text">Price</p>
+                  <p class="price-number">{{ getDisc(tour.id, tour.price) }}</p>
+                </ng-template>
+              </div>
+
+              <p class="difficulty" [ngClass]="{'easy': tour.difficultyLevel === 'Easy', 'moderate': tour.difficultyLevel === 'Moderate', 'difficult': tour.difficultyLevel === 'Difficult'}">
+                {{ tour.difficultyLevel }}
+              </p>
+
+              <button class="btn-add-to-cart" *ngIf="isTourist && isInCart(tour.id) == 0" (click)="addToCart(tour.id, tour.name, tour.price)">Add to Cart</button>
+              <p class="tour-buy-info" *ngIf="isTourist && isInCart(tour.id) == 1">Tour in cart</p>
+              <p class="tour-buy-info" *ngIf="isTourist && isInCart(tour.id) == 2">Tour owned</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

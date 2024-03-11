@@ -1,0 +1,109 @@
+/* tour-details.component.css */
+
+.purchased {
+  border: 2px solid #007800;
+  border-radius: 20px; /* Adjust the border-radius to control the pill shape */
+  padding: 5px 20px; /* Adjust the padding to control the width of the pill */
+  background-color: rgb(210, 245, 210);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.lbl {
+  margin: 0px 5px;
+  color: #007800;
+}
+
+.tour-details-container {
+    max-width: 800px;  /* Adjust the max-width as needed */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tour-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .tour-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .buy-button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .buy-button:hover {
+    background-color: #45a049;
+  }
+
+  .remove-button {
+    background-color: #e74c3c; /* Red color */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  }
+
+  .remove-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .tour-info {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  .tour-image img {
+    width: 100%;
+    max-width: 90%;
+    height: auto;
+    border-radius: 8px;
+    flex-shrink: 0;
+    
+  }
+  
+  .tour-description {
+    margin-top: 15px;
+    flex: 1;
+   /* margin-left: 20px;*/
+  }
+  
+  .description {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .tour-details {
+    flex: 1;
+    margin-left: 10px;
+  }
+  
+  .price,
+  .difficulty,
+  .distance,
+  .duration {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }

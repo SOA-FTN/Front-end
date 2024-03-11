@@ -1,0 +1,37 @@
+<div class="blog-post-creation">
+    <div class="line-container">
+        <h1 class="title">Create a post</h1>
+        <button mat-raised-button color="primary" class="drafts-button" (click)="showDraftsPopup()">Drafts</button>
+    </div>
+    <xp-blogpost-form></xp-blogpost-form>
+    <div *ngIf="showPopup" class="overlay"></div>
+    <div *ngIf="showPopup" class="popup-container">
+        <div class="popup">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Creation Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let draft of userDrafts">
+                        <td>{{ draft.title }}</td>
+                        <td>{{ draft.creationDate | date: 'medium' }}</td>
+                        <td>
+                            <button mat-icon-button color="primary" (click)="editDraft(draft)">
+                                <mat-icon>edit</mat-icon>
+                              </button>
+                            <button mat-icon-button color="warn" (click)="deleteDraft(draft)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button mat-raised-button color="primary" (click)="closePopup()">Close</button>
+        </div>
+
+    </div>
+</div>

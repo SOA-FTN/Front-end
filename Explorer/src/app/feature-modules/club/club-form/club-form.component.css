@@ -1,0 +1,25 @@
+div {
+    width: 400px;
+    display:flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.mat-icon {
+    vertical-align: middle;
+}
+
+.button {
+    color: #221853;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 20px;
+    font-family: 'Trip', sans-serif;
+    transition: background-color 0.3s ease; /* Add transition for hover effect */
+    cursor: text;
+    margin-bottom: 10px;
+}

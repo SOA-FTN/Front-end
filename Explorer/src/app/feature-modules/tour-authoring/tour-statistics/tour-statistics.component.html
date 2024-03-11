@@ -1,0 +1,93 @@
+<h1>Show tours statistic</h1>
+
+<p>Choose type of statitics: </p>
+<select [(ngModel)]="selectedOption" class="custom-combobox">
+    <option value="option1">All tours statistics</option>
+    <option value="option2">One tour statistics</option>
+  </select>
+<div *ngIf="selectedOption === 'option1'">
+    <canvasjs-chart [options]="chartOptions" [styles]="{width: '60%', height:'360px'}" class="canvas"></canvasjs-chart>    
+</div>  
+
+<div  *ngIf="selectedOption === 'option1'" >
+    <canvasjs-chart [options]="percentages" [styles]="{width: '60%', height:'360px'}" class="canvas"></canvasjs-chart>    
+</div>
+
+<div class="container">
+<div class="tours"  *ngIf="selectedOption === 'option2'">
+    <div *ngFor="let t of tour" class="card">
+      <mat-card>
+        <mat-card-header>
+          <div class="headerName">
+            <div class="title">
+              <mat-card-title>{{ t.name }}</mat-card-title>
+              
+            </div>
+            <div class="status">
+              <mat-card-subtitle>{{ t.status }}</mat-card-subtitle>
+            </div>
+          </div>
+        </mat-card-header>
+
+        <div class="maindiv">
+          <mat-card-content>
+            <div class="content">
+              <p class="details">🛈 Details</p>
+
+              <p class="desc">{{ t.description }}</p>
+            </div>
+            <div class="other">
+              <div>
+                <p class="price-value">{{ t.price }}$</p>
+
+                <div class="difLevel">
+                  <mat-card-subtitle
+                    [ngClass]="{
+                      easy: t.difficultyLevel === 'Easy',
+                      medium: t.difficultyLevel === 'Moderate',
+                      hard: t.difficultyLevel === 'Difficult'
+                    }"
+                  >
+                    {{ t.difficultyLevel }}
+                  </mat-card-subtitle>
+                </div>
+              </div>
+
+              
+            </div>
+          </mat-card-content>
+        </div>
+        <mat-card-actions>
+          <div class="definition">
+           
+            <div class="isPublished">
+              <button
+                mat-button
+                color="white"
+                (click)="showStatistics(t)"
+              >
+                Show statistic
+              </button>
+                        
+            </div>
+            
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+     <div class="dijagrami">
+        <div  *ngIf="shoulShowOneTourStatistic && selectedOption==='option2'" >
+            <canvasjs-chart [options]="chartOptionsForTour" [styles]="{width: '60%', height:'360px'}" class="canvas"></canvasjs-chart>    
+        </div>
+
+        <div  *ngIf="shoulShowOneTourStatistic && selectedOption==='option2'" >
+            <canvasjs-chart [options]="encountrsPercentageChartOptions" [styles]="{width: '60%', height:'360px'}" class="canvas"></canvasjs-chart>    
+        </div>
+        <div  *ngIf="shoulShowOneTourStatistic && selectedOption==='option2'" >
+            <canvasjs-chart [options]="chartOptionsForTourPoints" [styles]="{width: '60%', height:'360px'}" class="canvas"></canvasjs-chart>    
+        </div>
+    </div>
+</div>
+

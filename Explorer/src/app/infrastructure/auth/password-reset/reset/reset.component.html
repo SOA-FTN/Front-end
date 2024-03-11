@@ -1,0 +1,13 @@
+<form [formGroup]="resetForm" (ngSubmit)="reset()" *ngIf="showForm">
+  <div>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <input matInput formControlName="confirmPassword" type="password"/>
+    </mat-form-field>
+    <button color="primary" type="submit" mat-raised-button>Reset</button>
+  </div>
+</form>

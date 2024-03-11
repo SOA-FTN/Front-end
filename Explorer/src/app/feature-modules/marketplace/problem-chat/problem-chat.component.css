@@ -1,0 +1,61 @@
+#chat {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    background-color:rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+.user{
+    display: flex;
+}
+
+#chat p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+
+.img{
+    margin: 3px;
+}
+
+#problem-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.chat-bubble-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    width: 400px;
+}
+
+.chat-bubble-container.sender {
+    justify-content: flex-end;
+}
+
+.chat-bubble {
+    padding: 10px;
+    margin: 7px;
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.sender .chat-bubble {
+    background-color: blue;
+    color: white;
+    align-self: flex-end;
+}
+
+.chat-bubble:not(.sender) {
+    background-color: beige;
+    align-self: flex-start;
+}
+#chat-input-container {
+    display: flex;
+    justify-content: center;
+}

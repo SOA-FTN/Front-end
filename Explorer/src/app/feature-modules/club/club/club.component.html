@@ -1,0 +1,17 @@
+<div id="club">
+    <h1 class="title">Clubs</h1>
+    <button class="button" (click)="onAddClicked()"> Create club
+    </button>
+    <div id="club-details">
+        <div class="club-container">
+            <div *ngFor="let club of club">
+                <xp-club-card [club]="club" (editClicked)="onEditClickedFromChild($event)" (deleteClicked)="ondDeleteClubClicked($event)"></xp-club-card>
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="form" *ngIf="shouldRenderClubForm">
+                <xp-club-form (clubUpdated)="getClubs()" [club]="selectedClub" [shouldEdit] = "shouldEdit"></xp-club-form>
+            </div>
+        </div>
+    </div>
+</div>

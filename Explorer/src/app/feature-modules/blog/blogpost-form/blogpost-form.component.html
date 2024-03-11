@@ -1,0 +1,47 @@
+
+<form [formGroup]="blogPostForm" class="blog-post-form">
+    <div>
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" type="text"/>
+        </mat-form-field>
+        <div style="display:flex; flex-direction:row; width: 100%;">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Description</mat-label>
+                <textarea matInput
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="6"
+                    placeholder="Enter Markdown..."
+                    formControlName="description"
+                    cdkAutosizeMaxRows="15">
+                </textarea>
+            </mat-form-field>
+        </div>
+        <mat-form-field>
+            <mat-label>Image URLs</mat-label>
+            <input
+              matInput
+              formControlName="imageURLs"
+              type="text"
+              placeholder="Enter image URLs (comma-separated)"
+            />
+        </mat-form-field>
+        <div *ngIf="shouldDisplayEquipment()">
+            <p>Equipment Checklist:</p>
+            <div *ngFor="let equipment of equipmentLIst; let i = index">
+              <mat-checkbox [formControlName]="i">{{ equipment.name }}</mat-checkbox>
+            </div>
+          </div>
+
+          
+        <span >
+            <button *ngIf="!shouldEdit" mat-raised-button type="submit" color="primary" class="button" (click)="addBlogPostDraft()">Save to draft</button>
+            <button *ngIf="!shouldEdit" mat-raised-button type="submit" color="primary" class="button" (click)="addBlogPost()">Post</button>
+            <button *ngIf="shouldEdit && !shouldEditDraft" mat-raised-button type="submit" color="primary" class="button" (click)="updateBlogPost()">Update</button>
+            <button *ngIf="shouldEdit && shouldEditDraft" mat-raised-button type="submit" color="primary" class="button" (click)="updateBlogPost()">Update draft</button>
+            <button *ngIf="shouldEdit && shouldEditDraft" mat-raised-button type="submit" color="primary" class="button" (click)="postBlogPostDraft()">Post</button>
+        </span>
+        
+        
+    </div>
+</form>

@@ -1,0 +1,50 @@
+<div class="container">
+  
+   
+
+  
+
+  <div class="slide-content">
+    <h1>My Reviews</h1>
+    <div class="card-wrapper">
+    
+      <div class="card" *ngFor="let review of _observableList| async">
+        <div class="image-content">
+
+
+          <div class="card-image">
+            <div *ngFor="let image of review.images">
+              <img [src]="image">
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <h2 class="name">Review Details </h2>
+          <div class="eq-app">
+            <div class="desc-container">
+
+              <p class="description">&#9733;{{review.grade}} </p>
+              <p class="description">Comment: {{review.comment}} </p>
+             
+              <button mat-raised-button type="submit" color="primary" (click)="delete(review)">Delete</button>
+            </div>
+
+
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <div *ngIf="showUpdate">
+    <xp-update-review [reviewForUpdate]="selectedReview"></xp-update-review>
+
+  </div>
+</div>

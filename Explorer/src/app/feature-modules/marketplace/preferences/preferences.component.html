@@ -1,0 +1,43 @@
+<div id="preferences">
+  <p>Preferences</p>
+  <hr>
+  <div id="preferences-details">
+    <div>
+      <table>
+        <thead>
+        <tr>
+          <th>Turista</th>
+          <th>Tezina</th>
+          <th>Prevoz</th>
+          <th>Tagovi</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let pr of preferences">
+          <td>{{pr.userId}}</td>
+          <td>{{pr.preferredDifficulty}}</td>
+          <td>{{pr.transportationPreferences}}</td>
+          <td>{{pr.interestTags}}</td>
+          <td>
+            <button (click)="deletePreferences(pr)" color="accent" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button (click)="onEditClicked(pr)" color="primary" mat-icon-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </tr>
+        <tr><button (click)="onAddClicked()" color="primary" mat-icon-button>
+          <mat-icon>add</mat-icon>
+        </button></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <xp-preferences-form *ngIf="shouldRenderPreferencesForm" (preferencesUpdated)="getPreferences()" [preferences]="selectedPreferences" [shouldEdit]="shouldEdit"></xp-preferences-form>
+    </div>
+  </div>
+</div>
+

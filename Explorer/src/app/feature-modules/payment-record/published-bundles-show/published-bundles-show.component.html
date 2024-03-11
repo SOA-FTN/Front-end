@@ -1,0 +1,41 @@
+<div class="body">
+
+    <div class="slide-container">
+  
+      <div class="title">Tour Bundles Marketplace</div>
+  
+      <div class="slide-content">
+        <div class="card-wrapper">
+
+
+            
+
+          <!-- <button *ngFor="let tour of tours" (click)="showTourDetails(tour.id)"> -->
+          <div class="card" *ngFor="let publishedBundle of publishedBundles">
+  
+            <div class="card-content">
+              <h2 class="name">{{ publishedBundle.name }}</h2>
+  
+              <div class="card-footer">
+                <div class="price">
+                  <p class="price-text">Price</p>
+                  <p class="price-number" *ngIf="shouldShowOriginal; else convertedPrice">{{ publishedBundle.price }}</p>
+                  <ng-template #convertedPrice>{{ convertedCurrency(publishedBundle.price) }}</ng-template>
+                  <mat-select class="currency" [(ngModel)]="selectedCurrency" (ngModelChange)="onCurrencyChange($event)">
+                    <mat-option *ngFor="let cr of currency"  value={{cr}}>{{cr}}</mat-option>
+                  </mat-select>
+                </div>
+                <button class="tourBundlePurchase-button" (click)="tourBundlePurchase(publishedBundle.id )">Purchase</button>
+               
+              </div>
+  
+            </div>
+
+          </div>
+        <!-- </button> -->
+  
+        </div>
+      </div>
+    </div>
+  
+  </div>

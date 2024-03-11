@@ -1,0 +1,346 @@
+@font-face {
+  font-family: 'Trip';
+  src: url(src\assets\Fonts\TripSans-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Trip';
+  src: url(src\assets\Fonts\TripSans-Medium.ttf) format('truetype');
+  font-weight: medium;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Trip';
+  src: url(src\assets\Fonts\TripSans-Bold.ttf) format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+.blog-detail {
+  width: 800px; /* Set the width of the component */
+  margin: 20px auto; /* Center the component horizontally */
+  border: 3px solid #ccc; /* Add a border */
+  padding: 10px; /* Add padding for better aesthetics */
+  text-align: center; /* Center the title */
+  font-family: 'Trip', sans-serif;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(34, 24, 83, 0.7);
+}
+
+.header-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; /* Align items to the start (upper left corner) */
+  font-family: 'Trip', sans-serif;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  
+}
+
+.buttons-part {
+  display: flex;
+  flex-direction: column; /* Align buttons vertically */
+  font-family: 'Trip', sans-serif;
+  margin: 10px;
+
+}
+
+.post-title {
+  flex: 1; /* Take remaining space, pushing title to the top */
+  margin-top: 47px; /* Adjust margin as needed */
+  text-align: left;
+  margin-left: 30px;
+}
+.post-title h2 {
+  font-size: 35px;
+  font-family: 'Trip', sans-serif;
+  margin: 0;
+}
+
+.rating {
+  margin: 10px;
+  font-size: 25px;
+}
+
+.upvote.active {
+  background-color: #0a83cb; /* Green when active (clicked) */
+  color: white;
+  border: 3px solid black;
+}
+
+.downvote.active {
+  background-color: #e23a55; /* Green when active (clicked) */
+  color: white;
+  border: 3px solid black;
+}
+
+.upvote,
+.downvote {
+  background-color: white; /* Default color */
+  cursor: pointer;
+  border-radius: 50%;
+  border: 3px solid black;
+  transition: background-color 0.3s ease
+}
+
+.upvote:hover {
+  background-color: #0a83cb;
+}
+
+.downvote:hover {
+  background-color: #e23a55;
+}
+
+.downvote {
+  margin-bottom: 5px;
+}
+
+.post-description {
+  text-align: left; /* Align the description text to the left */
+  margin: 20px;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.line-divider {
+  border-top: 2px solid #d7d5d5; /* Adjust the color and thickness as needed */
+  width: 100%; /* Ensure the line spans the entire width of the container */
+  display: block; /* Ensure the line is a block element */
+  margin-top: 5px; /* Adjust the margin as needed */
+  margin-bottom: 1px;
+}
+
+.image-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 15px; /* Adjust as needed */
+}
+
+img {
+  max-width: 200%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.post-image {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.nav-arrow mat-icon {
+  font-size: 24px; /* Adjust the font size of the material icon */
+}
+.nav-arrow {
+  color: #221853;
+  border: 2px solid white;
+  cursor: pointer;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 34px;
+  background-color: white;
+  transition: border-width 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-arrow:hover {
+  border-width: 3px;
+  border-color:#221853;
+}
+
+.nav-arrow.left {
+  margin-right: 125px; /* Adjust as needed */
+}
+
+.nav-arrow.right {
+  margin-left: 125px; /* Adjust as needed */
+}
+.post-content {
+  display: flex;
+  flex-direction: column; /* Set to column layout for post content */
+  align-items: center; /* Center post content horizontally */
+  width: 100%;
+  font-family: 'Trip', sans-serif;
+}
+
+.comments-section {
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.comments-section h3 {
+  font-size: 25px;
+  margin-bottom: 16px;
+  font-family: 'Trip', sans-serif;
+}
+
+.comment {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  width: 600px;
+  border: 3px solid #ccc;
+  margin-top: 10px;
+}
+
+.comment-text {
+  margin-top: 8px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.comment-metadata {
+  font-size: 10px;
+  color: #666;
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap; /* Allow content to wrap onto a new line */
+  align-items: flex-start;
+}
+
+.newCommentText {
+  resize: none; 
+  border-radius: 8px;
+  width: 600px;
+  height: 100px;
+  font-size: 20px;
+  font-family: 'Trip', sans-serif;
+  padding: 5px;
+}
+
+.commentCreation {
+  border: 3px solid #221853;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 5px;
+  font-family: 'Trip', sans-serif;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.submit_button {
+  align-self: flex-end; /* Align the button to the right within the flex container */
+   /* Add margin to separate the button from the textarea */
+  font-family: 'Trip', sans-serif;
+  color: white;
+  background-color: #221853;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 5px;
+  width: 100px;
+  transition: background-color 0.3s ease
+}
+.delete-button {
+  color: red;
+
+}
+
+.submit_button:hover {
+  background-color: #0a83cb;
+}
+
+.edit-button {
+  color: #0a83cb;
+
+}
+
+.comment {
+  position: relative;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-delete-buttons {
+  display: flex;
+  align-items: flex-end; /* Align buttons at the bottom */
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+/* Add some basic styling for the centered popup */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Trip', sans-serif;
+}
+
+.popup {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+  width: 500px;
+  font-family: 'Trip', sans-serif;
+}
+
+textarea {
+  width: 90%;
+  height: 200px; /* Adjust the height as needed */
+  resize: none; /* Prevent textarea resizing */
+  font-family: 'Trip', sans-serif;
+  font-size: 20px;
+  border: 2px solid #ccc;
+}
+
+.button-container {
+  margin-top: 15px; /* Adjust the margin as needed */
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Trip', sans-serif;
+}
+
+.save_button {
+  color: white;
+  font-family: 'Trip', sans-serif;
+  background-color: #221853;
+  cursor: pointer;
+  border-radius: 10px;
+  border: white;
+  font-size: 20px;
+  width: 100px;
+  margin-left: 25px;
+}
+
+.close_button {
+  color: white;
+  font-family: 'Trip', sans-serif;
+  background-color: #221853;
+  cursor: pointer;
+  border-radius: 10px;
+  border: white;
+  font-size: 20px;
+  margin-right: 25px;
+  width: 100px;
+}
+
+
+.disabled-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px; /* Adjust as needed */
+}

@@ -1,0 +1,38 @@
+div {
+    width: 400px;
+    display:flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.mat-icon {
+    vertical-align: middle;
+}
+
+.star-filled {
+    color: #3F51B5;
+}
+
+.stars {
+    display: inline;
+    color: #828282;
+    font-size: 17px;
+    margin-left: 16px;
+    margin-top: 16px;
+    margin-bottom: -15px;
+    font-weight: lighter;
+}
+.stars2 {
+    display: inline;
+    color: #828282;
+    padding: 1px;
+    margin-left: 5px;
+    font-size: 17px;
+    font-weight: lighter;
+}
+
+.star-icon {
+    font-size: 32px;
+    margin: 2px;
+    padding: 5px;
+}

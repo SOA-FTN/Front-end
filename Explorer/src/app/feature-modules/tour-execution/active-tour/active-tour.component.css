@@ -1,0 +1,257 @@
+@font-face {
+  font-family: 'Trip';
+  src: url(src\assets\Fonts\TripSans-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.tour-window{
+  display: flex;
+  flex-direction: column;
+  width: 1400px;
+  margin: 60px auto;
+  font-family: "Trip", sans-serif;
+
+}
+
+.tour-details{
+  border-radius: 8px;
+  padding: 50px;
+  box-shadow: 0 2px 16px 3px #dddddd;
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-around;
+}
+
+.tour-image img{
+  max-width: 400px;
+  max-height: 400px;
+  border-radius: 5px;
+}
+
+.tour-information{
+  width: 800px;
+}
+
+.tour-information h2{
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+}
+
+.tour-information p{
+  color: #707070;
+}
+
+
+
+/* CSS */
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+.tour-details:hover {
+  box-shadow: 0 4px 16px 3px #707070;
+}
+
+.tour-description{
+  font-size: 16px;
+}
+
+.bottom-information{
+  display: flex;
+  margin: 60px auto;
+  width: 1400px;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 80px;
+}
+
+.tour-points {
+  width: 50%;
+}
+
+.tour-point {
+  padding: 10px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 16px 3px #dddddd;
+  transition: background-color 0.5s ease-in-out; /* Added transition for background color */
+
+}
+
+.map-container {
+  width: 50%;
+  margin: 20px;
+}
+
+
+.accordion-header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content:space-between
+}
+
+.accordion-header-plus{
+  margin-top: 10px;
+  display: flex;
+}
+
+.accordion-header span{
+  font-size: 25px;
+}
+
+.minutes-ago{
+  margin-top: 10px;
+}
+
+.accordion-title{
+  font-size: 19px;
+}
+
+.tour-point:hover {
+  background-color: #f0f0f0; /* Change the background color on hover as a visual cue */
+}
+
+.accordion-toggle {
+  margin-right: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.accordion-content {
+  padding: 10px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.accordion-content p{
+  font-size: 16px;
+}
+
+.tour-points h3{
+  font-size: 30px;
+  font-family: "Trip", sans-serif;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+
+.accordion-header.open .accordion-toggle {
+  transform: rotate(180deg);
+}
+
+.accordion-content.open {
+  max-height: 300px; /* Set the max-height when open */
+  opacity: 1;
+}
+
+.gg-lock-unlock {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs,1));
+  width: 12px;
+  height: 6px;
+  border: 2px solid;
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  border-bottom: transparent;
+  margin-top: -18px;
+  margin-left: -2px
+}
+.gg-lock-unlock::after,
+.gg-lock-unlock::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute
+}
+.gg-lock-unlock::after {
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 2px;
+  width: 16px;
+  height: 10px;
+  border-radius: 2px;
+  left: -4px;
+  top: 10px
+}
+.gg-lock-unlock::before {
+  width: 2px;
+  height: 6px;
+  background: currentColor;
+  left: -2px;
+  top: 4px;
+}
+
+.gg-lock {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs,1));
+  width: 12px;
+  height: 11px;
+  border: 2px solid;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom: transparent;
+  margin-top: -12px
+}
+.gg-lock::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 16px;
+  height: 10px;
+  border-radius: 2px;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 2px;
+  left: -4px;
+  top: 9px
+}

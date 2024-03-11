@@ -1,0 +1,18 @@
+<h1>Create public tour points</h1>
+
+<div class="card-wrapper">
+    <div *ngFor="let t of filteredPrivateTourPoints" class="card">
+        <div class="card-header">
+            <h3> {{t.name}}</h3>
+        </div>
+        <div class="card-body">
+            <p><b>Description:</b> {{t.description}}</p>
+            <p><b>Longitude:</b> {{t.longitude}}</p>
+            <p><b>Latitude: </b>{{t.latitude}}</p>
+            <button (click)="sendRequest(t)" class="button">
+                <mat-icon>send</mat-icon>
+                    Send Request
+            </button>
+        </div>
+    </div>
+</div>

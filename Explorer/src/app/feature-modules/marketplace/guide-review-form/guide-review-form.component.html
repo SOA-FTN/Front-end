@@ -1,0 +1,18 @@
+<form [formGroup]="guideReviewForm">
+    <div>
+        <div class="stars">
+            <mat-label>Rating</mat-label>
+        </div>
+        <div class="stars2"><mat-icon class="star-icon" *ngFor="let star of [1, 2, 3, 4, 5]" (click)="setRating(star)" [ngClass]="{ 'star-filled': star <= selectedRating }" >star</mat-icon></div>
+        <mat-form-field>
+          <mat-label>Comment</mat-label>
+          <textarea matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          formControlName="comment"
+          cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+        <button *ngIf="!shouldEdit && selectedRating!=0" mat-raised-button type="submit" color="primary" (click)="addGuideReview()">Create Review</button>
+        <button *ngIf="shouldEdit" mat-raised-button type="submit" color="primary" (click)="updateGuideReview()">Update Review</button>
+    </div>
+</form>

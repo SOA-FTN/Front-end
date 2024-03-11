@@ -1,0 +1,40 @@
+<div id="gr">
+    <p>Guide Reviews</p>
+    <hr>
+    <div id="gr-details">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                    <th>Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let gr of guideReviews">
+                    <td>{{gr.rating}}</td>
+                    <td>{{gr.comment}}</td>
+                    <td>{{gr.submissionDate | date:'dd.MM.yyyy. HH:mm'}}</td>
+                    <td>
+                        <button color="accent" (click)="onDeleteClicked(gr)" mat-icon-button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button color="primary" (click)="onEditClicked(gr)" mat-icon-button>
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                <tr><button color="primary" (click)="onAddClicked()" mat-icon-button>
+                    <mat-icon>add</mat-icon>
+                </button></tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <xp-guide-review-form *ngIf="shouldRenderGuideReviewForm" (guideReviewUpdated)="getGuideReviews()" [user]="user" [guideRev]="selectedGuideReview" [shouldEdit]="shouldEdit"></xp-guide-review-form>
+    </div>
+    </div>
+</div>

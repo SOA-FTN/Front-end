@@ -1,0 +1,48 @@
+<div>
+    <table *ngIf="user && user.role != 'tourist'">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>XP</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let enc of encounters">
+                <td>{{enc.name}}</td>
+                <td>{{enc.description}}</td>
+                <td>{{enc.xpPoints}}</td>
+                <td>{{enc.status}}</td>
+                <td>{{enc.type}}</td>
+                <td>{{enc.latitude}}</td>
+                <td>{{enc.longitude}}</td>
+                <td>
+                    <button (click)="onDeleteClicked(enc)" color="accent" mat-icon-button>
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button (click)="onEditClicked(enc)" color="primary" mat-icon-button>
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button (click)="onArchiveClicked(enc)" color="primary" mat-icon-button>
+                        <mat-icon>archive</mat-icon>
+                    </button>
+                </td>
+                <td *ngIf="enc.shouldBeApproved && !approved">
+                    <button (click)="onApproveClicked(enc)" color="primary" mat-icon-button>
+                        <mat-icon>check</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button *ngIf="user && user.role != 'tourist'" (click)="onAddClicked()" color="primary" mat-icon-button>
+        <mat-icon>add</mat-icon>
+    </button>
+    <div>
+        <xp-encounters-form (encountersUpdated)="getEncounters()" [encounter]="selectedEncounter" [shouldEdit]="shouldEdit" [shouldEditDraft]="shouldEditDraft" [isLocation]="Location" [isSocial]="Social"></xp-encounters-form>
+    </div>
+</div>

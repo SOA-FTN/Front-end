@@ -1,0 +1,35 @@
+<div class="window">
+    <div class="map-container">
+        <app-map (click)="updatePositions($event)"></app-map>
+    </div>
+
+    <div class="encounter-details">
+        <div>
+            <h1>{{encounter.name}}</h1>
+        </div>
+        <div>
+            <p>{{encounter.description}}</p>
+        </div>
+    </div>
+
+    <div class="location-details" *ngIf="isLocation">
+        <p>Place to find: </p>
+        <button (click)="togglePicture()" mat-raised-button
+        type="submit"
+        color="primary">Toggle Picture</button>
+        <div class="tour-image" *ngIf="showPicture">
+            <img [src]="hiddenLocationEncounter.imageURL" alt="{{ encounter.name }} Image">
+        </div>
+        
+    </div>
+
+    <div class="misc-details" *ngIf="isMisc">
+        <button 
+      mat-raised-button
+      type="submit"
+      color="primary"
+      (click)="completeExecution()"
+      >Done</button>
+    </div>
+
+</div>

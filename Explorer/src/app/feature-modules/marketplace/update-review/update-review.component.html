@@ -1,0 +1,45 @@
+<div class="container">
+  <div>
+    <h1>Update TourReview</h1>
+
+    <form [formGroup]="inputForm">
+      <div class="grade">
+        <mat-form-field>
+          <mat-label>Grade</mat-label>
+          <input
+            matInput
+            type="number"
+            min="1"
+            max="5"
+            formControlName="grade"
+          />
+          <mat-hint>Enter grade from 1 to 5 </mat-hint>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <textarea
+            matInput
+            rows="4"
+            placeholder="comment"
+            formControlName="comment"
+          ></textarea>
+          <mat-hint>Please enter a comment</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="images">
+        <input matInput type="text" formControlName="images" />
+      </div>
+      <div class="buttonClass">
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          (click)="onEdit()"
+        >
+          Edit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

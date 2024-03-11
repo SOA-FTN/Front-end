@@ -1,0 +1,35 @@
+<div id="accounts">
+    <p>Accounts</p>
+    <hr>
+    <div id="account-details">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let acc of accounts">
+                    <td id="username">{{acc.username}}</td>
+                    <td>{{acc.email}}</td>
+                    <td>{{acc.role}}</td>
+                    <td class="button-collumn">
+                        <div *ngIf="acc.role !== 'administrator'">
+                        <button class="block-btn" (click)="changeAccountStatus(acc)" *ngIf="acc.isActive" color="accent" mat-button>
+                            Block
+                        </button>
+                        <button class="unblock-btn" (click)="changeAccountStatus(acc)" *ngIf="acc.isActive === false" mat-button>
+                            Unblock
+                        </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

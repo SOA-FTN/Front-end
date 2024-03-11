@@ -1,0 +1,42 @@
+div {
+    width: 750px;
+    display:flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.mat-icon {
+    vertical-align: middle;
+}
+
+
+.blog-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%; /* Adjust width as needed */
+    margin: 0 auto; /* Center the form vertically */
+  }
+  
+  .blog-post-form button {
+    margin-top: 10px; /* Add spacing between buttons */
+  }
+
+  .button {
+    font-family: 'Trip';
+    font-weight: medium;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 10px;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #221853;
+    box-shadow: 0 2px 5px 1px #333333;
+}

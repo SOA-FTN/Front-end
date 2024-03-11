@@ -1,0 +1,40 @@
+<div id="tourPoint">
+    <p>Tour points</p>
+    <hr>
+    <div id="tourPoint-details">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Key point name: </th>
+                    <th>Key point description: </th>
+                    <th>Key point imageUrl: </th>
+                    <th>Key point latitude: </th>
+                    <th>Key point longitude: </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tP of tourPoint">
+                    <td>{{tP.name}}</td>
+                    <td>{{tP.description}}</td>
+                    <td>{{tP.imageUrl}}</td>
+                    <td>{{tP.latitude}}</td>
+                    <td>{{tP.longitude}}</td>
+                    <td>
+                        <button (click)="deleteTourPoint(tP)" color="accent" mat-icon-button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button (click)="onEditClicked(tP)" color="primary" mat-icon-button>
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <xp-tour-point-form *ngIf="shouldRenderTourPointForm" (tourPointUpdated)="getTourPoint()" [tourPoint]="selectedTourPoint" [shouldEdit]="shouldEdit"></xp-tour-point-form>
+    </div>
+    </div>
+</div>

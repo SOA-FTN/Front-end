@@ -1,0 +1,54 @@
+.container {
+    width: 650px;
+    height: 200px;
+    border: 5px solid #707070;
+    overflow: hidden;
+    position: relative;
+    padding: 10px;
+    border-radius: 5px;
+    clear: both; /* Add this line */
+    margin-bottom: 10px; /* Optional: Add some margin between the cards */
+    display: flex; /* Use flexbox for easier positioning */
+}
+
+img {
+    width: 40%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.content {
+    flex: 1;
+    width: 55%; /* Adjust the width as needed */
+    padding: 10px;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    margin-top: 0;
+    font-size: 28px;
+    font-family: 'Trip', sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.description {
+    margin-top: 30px;
+    font-size: 18px;
+    font-family: 'Trip', sans-serif;
+    text-align: left;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    justify-content: flex-end; /* Align buttons to the bottom of the container */
+    align-items: flex-end; /* Align buttons to the right side of the container */
+}
+
+.button {
+    margin-top: 5px; /* Optional: Add some margin between the buttons */
+}

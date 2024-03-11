@@ -1,0 +1,310 @@
+#equipment {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  .table-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    align-items: flex-start;
+    padding-left: 2rem;
+  }
+  .card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding-left: 20px;
+  }
+  
+  
+  mat-card-header{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .card-wrapperB {
+    width: 20%;
+    height: 5%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .card-wrapperB button {
+    height: 80%;
+    width: 40%;
+    border-radius: 8px;
+    background-color: #124174;
+    color: #ffffff;
+    padding: 5px 10px;
+    width: 100px;
+  }
+  
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    text-align: center;
+    background-image: url("/assets/images/main.jpg");
+    background-size: cover;
+    background-repeat: repeat;
+    min-height: 150vh;
+    height: 100%;
+  }
+  
+  .tours {
+    display: flex;
+  
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  
+  .card {
+    flex: 1 0 calc(50% - 16px);
+    max-width: calc(40% - 6px);
+    height: 350px;
+    margin-bottom: 16px;
+    margin-top: 20px;
+    /* color: #ffffff; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-card {
+    background-color: rgba(240, 246, 246, 0.7);
+    height: 100%;
+  }
+  
+  .definition {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .definition .buttons {
+    margin-right: 10px;
+  }
+  
+  .definition .isPublished {
+    margin-left: 10px;
+    border-radius: 8px;
+    background-color: #124174;
+    color: #ffffff;
+    padding: 5px 10px;
+    width: 100px;
+  }
+  
+  /* .card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  } */
+  
+  .content {
+    width: 60%;
+    height: 150px;
+    overflow-y: scroll;
+  }
+  
+  .details {
+    text-decoration: solid;
+    font-weight: bold;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 20px;
+  }
+  
+  .maindiv {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-top: 10px;
+  }
+  
+  .title {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px 10px 20px;
+    gap: 10px;
+    color: #161414;
+  }
+  
+  .headerName {
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  mat-card-content {
+    color: #333;
+    font-size: 1em;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    text-align: justify;
+    font-family: "Lucida Console", "Courier New", monospace;
+  }
+  .desc {
+    color: #a19b9b;
+    text: caption;
+  }
+  
+  mat-card-actions equipment {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #78a3d0;
+  }
+  
+  mat-card-content {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  mat-card-subtitle {
+    font-size: 1.7em;
+    text-transform: uppercase;
+    color: #4e79a7;
+    font-family: Georgia, serif;
+    border-bottom: 1px solid #ccc;
+    margin-top: 10px;
+    padding-top: 5px;
+  }
+  
+  .other {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .other button {
+    width: 50%;
+    height: 50%;
+    font-size: 50px;
+  }
+  
+  .other .price-value {
+    background-color: rgba(246, 245, 245, 0.8);
+    color: #333;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+  }
+  
+  .other:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  .content:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .difLevel .easy {
+    background-color: rgba(246, 245, 245, 0.8);
+    border-radius: 10px;
+    border-color: green 1rem;
+    padding: 5px 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    color: green;
+  }
+  
+  .difLevel .medium {
+    background-color: rgba(246, 245, 245, 0.8);
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    color: orange;
+    border-color: orange;
+    border-style: double;
+  }
+  
+  .difLevel .hard {
+    background-color: rgba(246, 245, 245, 0.8);
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    color: red;
+    border-color: red;
+    border-style: double;
+  }
+  
+  mat-card-title {
+    font-size: 30px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #4409e8, rgb(147, 161, 211));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+  
+  .mat-card {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mat-card-title,
+  .mat-card-subtitle {
+    color: #89295c;
+  }
+
+  h2{
+    font-size: 2em;
+    text-transform: uppercase;
+    color: #89295c;
+    font-family: Georgia, serif;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    padding-top: 5px;
+  }
+
+  .definition {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .buttons1 {
+    display: flex;
+    align-items: center;
+
+  }
+  
+  .equipment {
+    margin-right: 10px; /* Adjust as needed */
+  }
+  
+  .card1 {
+    margin-top: 30px; 
+    padding: 10px;
+    height: 75px;
+  }
+  
+  .title1 {
+    font-weight: bold;
+    font-size: small;
+  }
+  
+  .description {
+    margin-top: 25px; /* Adjust as needed */
+  }
+  
+  .inner-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }

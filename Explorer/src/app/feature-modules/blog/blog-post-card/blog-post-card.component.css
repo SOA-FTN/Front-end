@@ -1,0 +1,163 @@
+@font-face {
+    font-family: 'Trip';
+    src: url(src\assets\Fonts\TripSans-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+@font-face {
+    font-family: 'Trip';
+    src: url(src\assets\Fonts\TripSans-Medium.ttf) format('truetype');
+    font-weight: medium;
+    font-style: normal;
+    font-display: swap;
+}
+  
+@font-face {
+    font-family: 'Trip';
+    src: url(src\assets\Fonts\TripSans-Bold.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+.blog-post-card {
+    display: flex;
+    border: 3px solid #707070;
+    flex-direction: column; /* Change to column layout */
+    align-items: center;
+    border-radius: 8px;
+    margin: 5px;
+    padding: 10px;
+    background-color: #ffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;    cursor: pointer;
+    position: relative;
+    min-height: 120px;
+}
+
+.blog-post-card:hover,
+.blog-post-card:hover .post-content {
+    
+    border-color: black; /* Change the border color on hover */
+}
+
+.post-content:hover {
+    cursor: pointer;
+}
+  
+.vote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: #888;
+}
+  
+.vote i {
+    cursor: pointer;
+    margin: 0 5px;
+}
+  
+.post-content {
+    display: flex;
+    flex-direction: column; /* Set to column layout for post content */
+    align-items: center; /* Center post content horizontally */
+    width: 100%;
+}
+  
+.post-content h2 {
+    margin-bottom: 5px;
+    color: #221853;
+    font-family: 'Trip', sans-serif; /* Updated font-family */
+    font-weight: bold; /* Removed 'sans-serif' */
+}
+  
+.image-container {
+    position: relative;
+    display: flex;
+    align-items: center; /* Make sure the image container takes full width *//* Center images horizontally */
+}
+  
+.post-image {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.line-divider {
+    border-top: 2px solid #707070; /* Adjust the color and thickness as needed */
+    width: 100%; /* Ensure the line spans the entire width of the container */
+    display: block; /* Ensure the line is a block element */
+    margin-top: 1px; /* Adjust the margin as needed */
+    margin-bottom: 1px;
+}
+  
+.nav-arrow {
+    color: #221853;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 34px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+}
+
+  
+.nav-arrow mat-icon {
+    font-size: 24px; /* Adjust the font size of the material icon */
+}
+.nav-arrow.left {
+    align-self: flex-start;
+    margin-left: 15px;
+}
+
+.nav-arrow.right {
+    align-self: flex-end;
+    margin-right: 15px;
+}
+  
+.description {
+    line-height: 1.5;
+    color: #000000;
+    text-align: center;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit the number of lines to show */
+    -webkit-box-orient: vertical;
+    margin-top: 10px;
+}
+  
+.interaction-bar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+    
+  /* Add these styles for the upvote and downvote icons */
+.vote i {
+    color: #0a83cb;
+}
+  
+.rating {
+    color: #e23a55;
+}
+
+.author-date-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 10px; /* Adjust as needed */
+  }
+
+  .author, .date {
+    font-size: 0.6em; /* Adjust as needed */
+    /* Add any other styles for author and date */
+  }

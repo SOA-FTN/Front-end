@@ -1,0 +1,165 @@
+<div class="wrapper">
+    <div class="frame">
+      <div class="inner-wrapper">
+        <p class="mini-title">Chose at least two public points for your tour</p>
+        <div class="creating-tour">
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Longitude</th>
+                  <th>Latitude</th>
+                  <th>Add</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ptp of publicTourPoints">
+                  <td>{{ ptp.name }}</td>
+                  <td>{{ ptp.description }}</td>
+                  <td>{{ ptp.longitude }}</td>
+                  <td>{{ ptp.latitude }}</td>
+                  <button
+                    (click)="onAddPublicTP(ptp)"
+                    color="primary"
+                    mat-icon-button
+                  >
+                    <mat-icon>+</mat-icon>
+                  </button>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="buttons">
+            <button class="buttonCreate" (click)="addTour()">
+              Create your tour
+            </button>
+            <button class="buttonCreate" (click)="findTours()" color="primary">
+              Find tours
+            </button>
+          </div>
+        </div>
+        <div class="flex" *ngIf="!showTourForm">
+          <div class="slide-container">
+            <div class="title"></div>
+  
+            <div class="slide-content">
+              <div class="card-wrapper">
+                <button
+                  *ngFor="let tour of tours"
+                  (click)="showTourDetails(tour.id)"
+                >
+                  <div class="card">
+                    <div class="image-content">
+                      <span
+                        class="overlay"
+                        *ngIf="tour.tags && tour.tags.length > 0"
+                      >
+                        <p *ngFor="let tag of tour.tags" class="tag">{{ tag }}</p>
+                      </span>
+  
+                      <div class="card-image">
+                        <img
+                          [src]="tour.tourPoints[0].imageUrl"
+                          alt=""
+                          class="card-img"
+                        />
+                      </div>
+                    </div>
+  
+                    <div class="card-content">
+                      <h2 class="name">{{ tour.name }}</h2>
+  
+                      <div class="desc">
+                        <div class="additionO" *ngIf="tour.tourPoints.length > 2">
+                          <div class="addition">
+                            This tour includes additional tour points!!!
+                          </div>
+                        </div>
+                      </div>
+  
+                      <div class="desc-container">
+                        <p class="description">{{ tour.description }}</p>
+                      </div>
+  
+                      <div class="card-footer">
+                        <div class="price">
+                          <p class="price-text">Price</p>
+                          <p class="price-number">{{ tour.price }}$</p>
+                        </div>
+                        <button
+                          *ngIf="tour.id !== undefined"
+                          mat-button
+                          (click)="viewMap(tour.id)"
+                        >
+                          🗺️
+                        </button>
+  
+                        <p
+                          *ngIf="tour.difficultyLevel === 'Easy'"
+                          class="difficulty easy"
+                        >
+                          {{ tour.difficultyLevel }}
+                        </p>
+                        <p
+                          *ngIf="tour.difficultyLevel === 'Moderate'"
+                          class="difficulty moderate"
+                        >
+                          {{ tour.difficultyLevel }}
+                        </p>
+                        <p
+                          *ngIf="tour.difficultyLevel === 'Difficult'"
+                          class="difficulty difficult"
+                        >
+                          {{ tour.difficultyLevel }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tour-form">
+        <div class="form">
+          <xp-tour-form [tour]="selectedTour" *ngIf="showTourForm"></xp-tour-form>
+        </div>
+        <button
+          *ngIf="showTourForm"
+          class="form-button"
+          (click)="onAddPublicTourPoint()"
+        >
+          Add selected points to your tour
+        </button>
+        <button *ngIf="showTourForm" class="form-button" (click)="previewTour()">
+          Preview your tour
+        </button>
+        <div *ngIf="showMap" class="map-container">
+          <div class="map"><app-map></app-map></div>
+  
+          <div class="transport-wrapper">
+            <label for="transport" class="label">Choose transport type:</label>
+            <select
+              id="transport"
+              (change)="onTransportChange($event)"
+              class="select"
+            >
+              <option value="walking">🚶Walking</option>
+              <option value="cycling">🚲 Cycling</option>
+              <option value="driving">🚗 Driving</option>
+            </select>
+            <button
+              class="characteristics-button"
+              type="submit"
+              (click)="getTourCharacteristic()"
+            >
+              Set characteristics
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

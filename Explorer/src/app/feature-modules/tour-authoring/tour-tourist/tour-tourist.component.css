@@ -1,0 +1,395 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+  
+    background-image: url("/assets/images/main.jpg");
+    background-size: cover;
+    background-repeat: repeat;
+    min-height: 150vh;
+    height: 100%;
+  }
+  .creating-tour {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .buttonCreate {
+    height: 80%;
+    width: 60%;
+    border-radius: 8px;
+    background-color: #124174;
+    color: #ffffff;
+    padding: 5px 10px;
+    width: 100px;
+  }
+  .frame {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .tour-form {
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    gap: 10px;
+  }
+  
+  .form-button:hover {
+    background-color: #3f51b5;
+  }
+  .form-button {
+    border-radius: 8px;
+    background-color: #124174;
+    color: #ffffff;
+    padding: 10px;
+    margin-left: 20px;
+  }
+  
+  .characteristics-button {
+    border-radius: 8px;
+    background-color: #124174;
+    color: #ffffff;
+    padding: 10px;
+  }
+  .inner-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 50%;
+  }
+  
+  .mini-title {
+    font-size: 1.7em;
+    text-transform: uppercase;
+    color: #4e79a7;
+    font-family: Georgia, serif;
+    background-color: rgba(246, 245, 245, 0.8);
+    border-radius: 10px;
+    width: 80%;
+    padding: 5px 10px;
+  }
+  
+  .table-wrapper {
+    max-width: 800px;
+  
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-wrapper th,
+  .table-wrapper td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-family: Georgia, serif;
+    background-color: rgba(246, 245, 245, 0.8);
+  }
+  
+  .table-wrapper th {
+    background-color: #f2f2f2;
+  }
+  
+  .table-wrapper button {
+    background-color: #4e79a7;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .table-wrapper button:hover {
+    background-color: #0056b3;
+  }
+  
+  @font-face {
+    font-family: "Trip";
+    src: url(src\assets\Fonts\TripSans-Regular.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Trip";
+    src: url(src\assets\Fonts\TripSans-Medium.ttf) format("truetype");
+    font-weight: medium;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Trip";
+    src: url(src\assets\Fonts\TripSans-Bold.ttf) format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Trip", sans-serif;
+  }
+  
+  .body {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+  }
+  
+  .title {
+    font-size: 42px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  
+  .slide-container {
+    max-width: 100%;
+    width: 100%;
+    padding: 10px 0;
+  }
+  
+  .flex {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+  
+  .slide-content {
+    border-radius: 10px;
+  }
+  
+  .card-wrapper {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .additionO {
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .desc {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .addition {
+    color: red;
+    font-size: 20px;
+  }
+  
+  .card {
+    width: auto;
+    flex: 1;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    box-shadow: 0 2px 16px 3px #dddddd;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 16px 3px #707070;
+  }
+  
+  .image-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 24px;
+    max-width: 300px;
+  }
+  
+  .image-content {
+    position: relative;
+  }
+  
+  .overlay {
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 18%;
+    width: 100%;
+    border-radius: 10px;
+    padding: 0 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .tag {
+    font-size: 12px;
+    font-weight: medium;
+    color: #fff;
+    background-color: #e23a55;
+    border-radius: 15px;
+    padding: 3px 9px;
+  }
+  
+  .card-image {
+    position: relative;
+    height: 100%;
+    max-height: 200px;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+  }
+  
+  .card-image .card-img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover .card-image .card-img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .name {
+    font-family: "Trip", "sans-serif";
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    margin-top: 12px;
+  }
+  
+  .card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .price-text {
+    font-size: 16px;
+  }
+  
+  .price-number {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .difficulty {
+    font-size: 14px;
+    border-radius: 6px;
+    padding: 2px 4px;
+    color: #fff;
+  }
+  
+  .easy {
+    border: 2px solid green;
+    color: green;
+  }
+  
+  .moderate {
+    border: 2px solid darkorange;
+    color: darkorange;
+  }
+  
+  .difficult {
+    border: 2px solid red;
+    color: red;
+  }
+  
+  .desc-container {
+    overflow: hidden;
+    height: 150px;
+  }
+  
+  .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+    color: #707070;
+    margin: 0 8px 16px 8px;
+    text-align: left;
+    overflow: hidden;
+    white-space: pre-wrap;
+  }
+  
+  .map-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 800px;
+  }
+  
+  .transport-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .form {
+    width: 450%;
+    padding: 10px;
+  }
+  
+  .map {
+    width: 150%;
+    height: 50%;
+  }
+  
+  .select {
+    font-size: 14px;
+    width: 150px;
+    height: 25px;
+    border-radius: 10px;
+    background-color: rgba(246, 245, 245, 0.8);
+  }
+  
+  .label {
+    font-size: 1.2em;
+    color: #4e79a7;
+  
+    font-family: Georgia, serif;
+    background-color: rgba(246, 245, 245, 0.8);
+    border-radius: 10px;
+    padding: 5px 10px;
+  }

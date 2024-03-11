@@ -1,0 +1,60 @@
+<div class="profile-container">
+  <img class="title profile-image" [src]="userProfile.profileImage" alt="Profile Image" onerror="this.src='assets/images/profile_img.png'">
+    <div class="notif">
+      <h2 class="title">PROFILE INFO</h2>
+
+      <div class="notification-icon" (click)="onBellClicked()">
+        <img src="assets/images/bell-ring.png" alt="Notification Icon">
+      </div>
+
+      
+    </div>
+
+    <div class="notification-container">
+      <xp-request-response-notification *ngIf="shouldRenderNotifications" ></xp-request-response-notification>
+    </div>
+
+    
+  <div class="form-container">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input id="name" [(ngModel)]="userProfile.name" [disabled]="!isEditMode">
+    </div>
+    <div class="form-group">
+      <label for="surname">Surname:</label>
+      <input id="surname" [(ngModel)]="userProfile.surname" [disabled]="!isEditMode">
+    </div>
+    <div class="form-group">
+      <label for="profileImage">Profile Image:</label>
+      <input id="profileImage" [(ngModel)]="userProfile.profileImage" [disabled]="!isEditMode">
+    </div>
+    <div class="form-group">
+      <label for="bio">Bio:</label>
+      <textarea id="bio" [(ngModel)]="userProfile.bio" [disabled]="!isEditMode"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="quote">Quote:</label>
+      <input id="quote" [(ngModel)]="userProfile.quote" [disabled]="!isEditMode">
+    </div>
+    <div class="form-group">
+      <label>XP:</label>
+      <label *ngFor="let txp of touristXP">{{txp.experience}}</label>
+    </div>
+    <div class="form-group">
+      <label>Level:</label>
+      <label *ngFor="let txp of touristXP">{{txp.level}}</label>
+    </div>
+    <div class="form-group" *ngIf="user.role==='tourist'">
+      <label>Balance:</label>
+      <label>{{userProfile.balance}}$</label>
+    </div>
+    <button class="edit-button" (click)="toggleEditMode()">{{ isEditMode ? 'Save' : 'Edit' }}</button>
+    <div>
+      <mat-icon (click)="onMessagesClicked()">mail_outline</mat-icon>
+      </div>
+      <div>
+        <xp-follower-messages *ngIf="shouldRenderMessages"></xp-follower-messages>
+      </div>
+  </div>
+</div>
+

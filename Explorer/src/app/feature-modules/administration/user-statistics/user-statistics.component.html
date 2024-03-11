@@ -1,0 +1,45 @@
+<!-- user-statistics.component.html -->
+
+<div class="statistics-window">
+    <!-- Display user's mileage -->
+    <div class="user-details">
+      <div class="picture">
+        <img src="https://static-00.iconduck.com/assets.00/profile-circle-icon-2048x2048-cqe5466q.png" class="profile-picture">
+      </div>
+      <div class="user-stats">
+        <h2>My statistics: </h2>
+        <p>Username: {{ userMileage?.username }}</p>
+        <p>Mileage: {{ userMileage?.mileage }} km </p>
+        <p>Mileage this month: {{ userMileage?.mileageByMonth }} km</p>
+      </div>
+    </div>
+    <!-- Display table with all mileages of other users -->
+    <div class="all-mileages">
+    <h2>User ranking by mileage</h2>
+    <div class="sort">
+        <label for="sortOption">Sort by:</label>
+        <select #mySelect id="sortOption" [(ngModel)]="sortOption" (change)="onSortOptionChange()">
+          <option value="allTime">All Time</option>
+          <option value="byMonth">By Month</option>
+        </select>
+      </div>
+    <div class="mileage-table">
+      <div class="table-header">
+        <p> Position </p>
+        <p> Username </p>
+        <p> Mileage </p>
+        <p> Mileage this month </p>
+      </div>
+      <div *ngFor="let mileage of userMileages; let i = index" class="mileage">
+        
+        <p>{{ i + 1 }}. </p>
+        <p>{{ mileage.username }}</p>
+        <p>{{ mileage.mileage }} km</p>
+        <p>{{ mileage.mileageByMonth }} km</p>
+
+        
+    </div>
+
+    </div>
+  </div>
+  

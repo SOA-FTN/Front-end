@@ -1,0 +1,43 @@
+<h2>My equipment</h2>
+<div class="table-wrapper">
+    <div class="table-container">
+        <div class="table-header">
+            <div class="table-cell header">Name</div>
+            <div class="table-cell header">Description</div>
+            <div class="table-cell header">Actions</div>
+        </div>
+        <div class="table-body">
+            <div *ngFor="let e of equipments" class="table-row">
+                <div class="table-cell">{{ e.name }}</div>
+                <div class="table-cell">{{ e.description }}</div>
+                <div class="table-cell">
+                    <button (click)="deleteEquipment(e)" class="buttonDelete">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Equipment to add</h2>
+<div class="table-wrapper">
+    <div class="table-container">
+        <div class="table-header">
+            <div class="table-cell header">Name</div>
+            <div class="table-cell header">Description</div>
+            <div class="table-cell header">Actions</div>
+        </div>
+        <div class="table-body">
+            <div *ngFor="let e of otherEquipment" class="table-row">
+                <div class="table-cell">{{ e.name }}</div>
+                <div class="table-cell">{{ e.description }}</div>
+                <div class="table-cell">
+                    <button (click)="onAddClicked(e)" class="button">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
