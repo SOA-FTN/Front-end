@@ -8,7 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Login } from './model/login.model';
 import { AuthenticationResponse } from './model/authentication-response.model';
 import { User } from './model/user.model';
-import { Registration } from './model/registration.model';
+import { RegistrationData } from './model/registration.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,24 +24,34 @@ export class AuthService {
 
   login(login: Login): Observable<AuthenticationResponse> {
     return this.http
-      .post<AuthenticationResponse>(environment.apiHost + 'users/login', login)
+      .post<AuthenticationResponse>(
+        environment.stakeholderHost + 'login',
+        login
+      )
       .pipe(
         tap((authenticationResponse) => {
-          this.tokenStorage.saveAccessToken(authenticationResponse.accessToken, authenticationResponse.id);
+          console.log(authenticationResponse);
+          this.tokenStorage.saveAccessToken(
+            authenticationResponse.accessToken,
+            authenticationResponse.id
+          );
           this.setUser();
         })
       );
   }
 
-  register(registration: Registration): Observable<AuthenticationResponse> {
+  register(registration: RegistrationData): Observable<AuthenticationResponse> {
     return this.http
-    .post<AuthenticationResponse>(environment.apiHost + 'users', registration)
-    .pipe(
-      tap((authenticationResponse) => {
-        //this.tokenStorage.saveAccessToken(authenticationResponse.accessToken, authenticationResponse.id);
-        //this.setUser();
-      })
-    );
+      .post<AuthenticationResponse>(
+        environment.stakeholderHost + 'register',
+        registration
+      )
+      .pipe(
+        tap((authenticationResponse) => {
+          //this.tokenStorage.saveAccessToken(authenticationResponse.accessToken, authenticationResponse.id);
+          //this.setUser();
+        })
+      );
   }
 
   logout(): void {
@@ -81,6 +91,9 @@ export class AuthService {
   }
 
   resetPassword(token: string, password: string): Observable<any> {
-    return this.http.post(environment.apiHost + `users/reset`, { token, password });
+    return this.http.post(environment.apiHost + `users/reset`, {
+      token,
+      password,
+    });
   }
 }
