@@ -3,7 +3,7 @@ import { Profile } from '../model/profile.model';
 import { AdministrationService } from '../administration.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {GoogleAnalyticsService} from "../../../infrastructure/google-analytics/google-analytics.service";
+import { GoogleAnalyticsService } from '../../../infrastructure/google-analytics/google-analytics.service';
 import { TouristXP } from '../model/tourist-xp.model';
 import { TokenStorage } from 'src/app/infrastructure/auth/jwt/token.service';
 import { PagedResults } from 'src/app/shared/model/paged-results.model';
@@ -12,10 +12,9 @@ import { User } from 'src/app/infrastructure/auth/model/user.model';
 @Component({
   selector: 'xp-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-
   userProfile: Profile = {} as Profile;
   user: User;
   isEditMode: boolean = false;
@@ -23,11 +22,12 @@ export class ProfileComponent implements OnInit {
   shouldRenderMessages: boolean = false;
   touristXP: TouristXP[] = [];
 
-  constructor(private tokenStorage: TokenStorage,
+  constructor(
+    private tokenStorage: TokenStorage,
     private service: AdministrationService,
     private auth: AuthService,
     private googleAnalytics: GoogleAnalyticsService
-){}
+  ) {}
 
   ngOnInit(): void {
     this.googleAnalytics.sendPageView(window.location.pathname);
@@ -35,17 +35,14 @@ export class ProfileComponent implements OnInit {
     this.loadTouristXP();
   }
 
-  loadProfileData(){
+  loadProfileData() {
     this.auth.user$.subscribe((user) => {
       if (user.username) {
-
-
-        this.user = user
-
-
+        this.user = user;
+        console.log(this.user);
         this.service.getProfile(user.id).subscribe({
           next: (data: Profile) => {
-            this.userProfile.id = data.id;
+            this.userProfile.ID = data.ID;
             this.userProfile.userId = data.userId;
             this.userProfile.email = data.email;
             this.userProfile.name = data.name;
@@ -58,52 +55,49 @@ export class ProfileComponent implements OnInit {
           },
           error: (err: any) => {
             console.log(err);
-          }
+          },
         });
       }
     });
-    }
+  }
 
   toggleEditMode() {
-    if(this.isEditMode == false)
-    {
+    if (this.isEditMode == false) {
       this.isEditMode = !this.isEditMode;
-    }
-    else{
-      this.service.updateProfile(this.userProfile, this.userProfile.userId).subscribe({
-        next: (data: Profile) => {
-          this.isEditMode = !this.isEditMode;
-          this.loadProfileData();
-        },
-        error: (err: any) => {
-          console.log(err);
-        }
-      });
+    } else {
+      this.service
+        .updateProfile(this.userProfile, this.userProfile.userId)
+        .subscribe({
+          next: (data: Profile) => {
+            this.isEditMode = !this.isEditMode;
+            this.loadProfileData();
+          },
+          error: (err: any) => {
+            console.log(err);
+          },
+        });
 
       //alert(JSON.stringify(this.userProfile));
     }
   }
 
-  loadTouristXP()
-  {
+  loadTouristXP() {
     const userId = this.tokenStorage.getUserId();
     this.service.getTouristXPByID(userId).subscribe({
       next: (result: PagedResults<TouristXP>) => {
         this.touristXP = result.results;
       },
-      error: () => {
-      }
-    })
+      error: () => {},
+    });
   }
 
-  onBellClicked(): void{
+  onBellClicked(): void {
     this.shouldRenderMessages = false;
     this.shouldRenderNotifications = !this.shouldRenderNotifications;
   }
 
-  onMessagesClicked(): void{
+  onMessagesClicked(): void {
     this.shouldRenderNotifications = false;
     this.shouldRenderMessages = true;
   }
-
 }
