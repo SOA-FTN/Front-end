@@ -63,8 +63,23 @@ export class TourComponent implements OnInit {
     });
   }
 
-  loadTours() {
+  loadTours(): void {
     const userId = this.tokenStorage.getUserId();
+    this.service.getTourCreationDto(userId)
+      .subscribe(
+        (result: Tour[]) => {
+          this.tour = result;
+        },
+        (error) => {
+          console.error('An error occurred:', error);
+          // Handle error appropriately
+        }
+      );
+  }
+
+  loadTourss() {
+    const userId = this.tokenStorage.getUserId();
+    console.log("userId" +userId)
 
     this.service.getTourByGuide(userId, this.page, this.pageSize).subscribe({
       next: (result: PagedResults<Tour>) => {

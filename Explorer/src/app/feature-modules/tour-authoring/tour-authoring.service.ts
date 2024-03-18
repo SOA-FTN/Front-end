@@ -101,13 +101,23 @@ export class TourAuthoringService {
     );
   }
 
+  getTourCreationDto(userId: number): Observable<Tour[]> {
+    const url =environment.apiHost + `administration/tour/${userId}`;
+    return this.http.get<Tour[]>(url);
+  }
+
+  private handleError(error: any) {
+    console.error('An error occurred:', error);
+    throw error;
+  }
+
   getTourByGuide(
     userId: number,
     page: number,
     pageSize: number
   ): Observable<PagedResults<Tour>> {
     return this.http.get<PagedResults<Tour>>(
-      environment.apiHost + `administration/tour/${userId}?page=${page}&pageSize=${pageSize}`
+      environment.apiHost + `administration/tour/${userId}`
     );
   }
 
