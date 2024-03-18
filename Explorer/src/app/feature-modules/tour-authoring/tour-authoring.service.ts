@@ -63,7 +63,7 @@ export class TourAuthoringService {
   }
   addTourPoint(tourPoint: TourPoint): Observable<TourPoint> {
     return this.http.post<TourPoint>(
-      environment.apiHost + 'administration/tourPoint',
+      environment.apiHost + 'administration/tourPoint/createTourPoint',
       tourPoint
     );
   }
@@ -84,7 +84,7 @@ export class TourAuthoringService {
 
   getTourPoint(): Observable<PagedResults<TourPoint>> {
     return this.http.get<PagedResults<TourPoint>>(
-      environment.apiHost + 'administration/tourPoint'
+      environment.apiHost + 'administration/tourPoint/tourPoints'
     );
   }
 
@@ -129,9 +129,9 @@ export class TourAuthoringService {
     );
   }
 
-  getTourPointsByTourId(tourId: number): Observable<TourPoint> {
-    return this.http.get<TourPoint>(
-      environment.apiHost + `administration/tourPoint/${tourId}`
+  getTourPointsByTourId(tourId: number): Observable<TourPoint[]> {
+    return this.http.get<TourPoint[]>(
+      environment.apiHost + `administration/tourPoint/tourPoints/${tourId}`
     );
   }
 

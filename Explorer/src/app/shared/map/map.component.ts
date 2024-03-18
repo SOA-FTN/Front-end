@@ -291,7 +291,8 @@ export class MapComponent implements AfterViewInit {
     this.tourAuthoringService
       .getTourPointsByTourId(parseInt(this.tourId))
       .subscribe((tourData: any) => {
-        const tourPoints = tourData.results;
+        const tourPoints = tourData;
+        console.log("tourpointi: ",tourData.results)
 
         const waypoints = tourPoints.map((point: any) =>
           L.latLng(point.latitude, point.longitude)
