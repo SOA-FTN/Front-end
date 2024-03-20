@@ -20,6 +20,10 @@ export class EncountersService {
     return this.http.get<PagedResults<Encounter>>(environment.apiHost + 'encounters');
   }
 
+  getAllEncounters(): Observable<Encounter[]> {
+    return this.http.get<Encounter[]>(environment.apiHost + 'encounters');
+  }
+
   getSocialEncounters(): Observable<PagedResults<SocialEncounter>> {
     return this.http.get<PagedResults<SocialEncounter>>(environment.apiHost + 'encounters/social');
   }

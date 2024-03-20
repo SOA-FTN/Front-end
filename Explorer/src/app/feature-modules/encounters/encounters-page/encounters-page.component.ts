@@ -29,7 +29,8 @@ export class EncountersPageComponent implements OnInit {
     this.authService.user$.subscribe(user => {
       this.user = user;
     });
-    this.getEncounters(); 
+    //this.getEncounters(); 
+    this.getAllEncounters();
   }
 
   getEncounters(): void{
@@ -41,6 +42,20 @@ export class EncountersPageComponent implements OnInit {
         console.log(err);
       }
     })
+  }
+
+  getAllEncounters(): void {
+    this.service.getAllEncounters()
+      .subscribe(
+        (encounters: Encounter[]) => {
+          this.encounters = encounters;
+          console.log(encounters); // Just to verify if data is received
+        },
+        (error) => {
+          console.error('Error occurred while fetching encounters:', error);
+          // Handle error here (e.g., show error message)
+        }
+      );
   }
 
   onApproveClicked(encounter: Encounter): void{
@@ -58,7 +73,8 @@ export class EncountersPageComponent implements OnInit {
 
     this.service.updateEncounter(updatedEncounter).subscribe({
       next: (_) => {
-        this.getEncounters();
+        //this.getEncounters();
+        this.getAllEncounters();
       }
     })
     this.approved = true;
@@ -82,7 +98,8 @@ export class EncountersPageComponent implements OnInit {
   onDeleteClicked(encounter: Encounter): void{
     this.service.deleteEncounter(encounter).subscribe({
       next: (_) => {
-        this.getEncounters();
+        //this.getEncounters();
+        this.getAllEncounters();
       }
     });
   }
@@ -108,7 +125,7 @@ export class EncountersPageComponent implements OnInit {
 
     this.service.updateEncounter(updatedEncounter).subscribe({
       next: (_) => {
-        this.getEncounters();
+        this.getAllEncounters();
       }
     })
   }
