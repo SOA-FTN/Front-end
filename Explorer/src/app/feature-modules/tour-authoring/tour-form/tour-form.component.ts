@@ -54,6 +54,7 @@ export class TourFormComponent implements OnChanges {
     console.log(this.tourForm.value);
     const tour: Tour = {
       name: this.tourForm.value.name || '',
+      tStatus: '0',
       description: this.tourForm.value.description || '',
       status: Status.Draft,
       difficultyLevel: this.tourForm.value.difficulytLevel as DifficultyLevel,

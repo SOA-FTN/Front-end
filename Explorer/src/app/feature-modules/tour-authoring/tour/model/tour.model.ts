@@ -10,6 +10,7 @@ export interface Tour {
   price: number;
   status: Status;
   difficultyLevel: DifficultyLevel;
+  tStatus: string;
 
   UserId: number;
   tags: string[];

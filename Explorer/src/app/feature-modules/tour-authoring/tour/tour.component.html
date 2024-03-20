@@ -115,8 +115,8 @@
             </div>
 
             <div class="foot-column publish-buttons">
-              <button class="publish-archive" *ngIf="t.status !== 'Published'" (click)="publishTour(t)">Publish</button>
-              <button class="publish-archive" *ngIf="t.status === 'Published'" (click)="archiveTour(t)">Archive</button>
+              <button class="publish-archive" *ngIf="t.tStatus !== '1'" (click)="publishTour(t)">Publish</button>
+              <button class="publish-archive" *ngIf="t.tStatus === '1'" (click)="archiveTour(t)">Archive</button>
             </div>
           </div>
         </div>

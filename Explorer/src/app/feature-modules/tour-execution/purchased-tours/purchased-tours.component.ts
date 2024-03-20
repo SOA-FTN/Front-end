@@ -299,6 +299,7 @@ styles: [`
     connectTours() : void {
       const tour: Tour = {
         name: this.compositeTourForm.value.name || 'ime',
+        tStatus: '0',
         description: 'opis',
         status: Status.Draft,
         difficultyLevel: this.calculateDifficultyLevel(),

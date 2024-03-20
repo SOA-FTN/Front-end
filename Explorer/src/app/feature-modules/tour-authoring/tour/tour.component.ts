@@ -69,6 +69,7 @@ export class TourComponent implements OnInit {
       .subscribe(
         (result: Tour[]) => {
           this.tour = result;
+          console.log(this.tour)
         },
         (error) => {
           console.error('An error occurred:', error);
