@@ -19,7 +19,9 @@ import { AdministrationService } from '../../administration/administration.servi
 export class EncountersMapComponent implements OnInit {
   activeEncounters: Encounter[] = [];
   displayEncounters: Encounter[] = [];
+  encounters: Encounter[]=[];
   executions: EncounterExecution[] = [];
+  proba: EncounterExecution[]=[];
   encounterExecution: EncounterExecution;
   idPosition:number|undefined
   userPosition:UserPosition;
@@ -36,19 +38,42 @@ export class EncountersMapComponent implements OnInit {
 
   ngOnInit(): void {
     this.getActiveEncounters(); 
-    this.checkUserPosition();
+    //this.checkUserPosition();
+    this.loadEncounters();
+    this.probaEncounters();
+    
+  }
+
+  loadEncounters(): void {
+    this.encounterService.getAllEncounters().subscribe(encounters => {
+      this.encounters = encounters;
+      console.log("encounteri: ", encounters)
+    });
+  }
+
+  probaEncounters(): void {
+    this.executionService.getAllExecutions().subscribe(e => {
+      this.proba = e;
+      console.log("proab: ",this.proba);
+    });
     
   }
   getActiveEncounters(): void {
-    this.executionService.getExecutions().subscribe({
-      next: (result: PagedResults<EncounterExecution>) => {
-        this.executions = result.results.filter(execution => (execution.userId === this.tokenStorage.getUserId() && execution.isCompleted));
-        console.log(this.executions);
-        this.encounterService.getEncounters().subscribe({
-          next: (result: PagedResults<Encounter>) => {
-            this.displayEncounters = result.results.filter(encounter =>
-              encounter.status === 'ACTIVE' && !this.executions.some(execution => execution.encounterId === encounter.id)
+    this.executionService.getAllExecutions().subscribe({
+      next: (executions: EncounterExecution[]) => {
+        // Filter executions for the current user and completed encounters
+        this.executions = executions.filter(execution =>
+          execution.userId === this.tokenStorage.getUserId() && execution.isCompleted
+        );
+        console.log("capcina: ",this.executions);
+        this.encounterService.getAllEncounters().subscribe({
+          next: (encounters: Encounter[]) => {
+            // Filter encounters that are ACTIVE and not completed by the user
+            this.displayEncounters = encounters.filter(encounter =>
+              encounter.status === '0' &&
+              !this.executions.some(execution => execution.encounterId === encounter.id)
             );
+            console.log("display ", this.displayEncounters)
           }
         });
       }

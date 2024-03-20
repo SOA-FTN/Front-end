@@ -18,4 +18,8 @@ export class EncountersExecutionService {
   getExecutions(): Observable<PagedResults<EncounterExecution>> {
     return this.http.get<PagedResults<EncounterExecution>>(environment.apiHost + 'encounterExecution');
   }
+
+  getAllExecutions(): Observable<EncounterExecution[]> {
+    return this.http.get<EncounterExecution[]>(environment.apiHost + 'encounterExecution');
+  }
 }
