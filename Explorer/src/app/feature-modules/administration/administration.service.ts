@@ -58,7 +58,7 @@ export class AdministrationService {
 
   changeAccountStatus(account: Account): Observable<Account> {
     return this.http.put<Account>(
-      environment.apiHost + 'administration/accounts/' + account.userId,
+      environment.apiHost + 'administration/accounts/' + account.id,
       account
     );
   }

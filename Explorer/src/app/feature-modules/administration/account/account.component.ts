@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from '../model/account.model';
 import { AdministrationService } from '../administration.service';
-import {GoogleAnalyticsService} from "../../../infrastructure/google-analytics/google-analytics.service";
+import { GoogleAnalyticsService } from '../../../infrastructure/google-analytics/google-analytics.service';
 
 @Component({
   selector: 'xp-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  styleUrls: ['./account.component.css'],
 })
-export class AccountComponent implements OnInit{
-
+export class AccountComponent implements OnInit {
   accounts: Account[] = [];
   selectedAccount: Account;
 
-  constructor(private service: AdministrationService,
-              private googleAnalytics: GoogleAnalyticsService
-  ) { }
+  constructor(
+    private service: AdministrationService,
+    private googleAnalytics: GoogleAnalyticsService
+  ) {}
 
   ngOnInit(): void {
     this.googleAnalytics.sendPageView(window.location.pathname);
@@ -28,21 +28,31 @@ export class AccountComponent implements OnInit{
       next: (result: Account[]) => {
         this.accounts = result;
       },
-      error: () => {
-      }
-    })
+      error: () => {},
+    });
   }
 
   changeAccountStatus(account: Account): void {
     this.selectedAccount = account;
+    console.log(this.selectedAccount);
     this.service.changeAccountStatus(this.selectedAccount).subscribe({
       next: () => {
         this.getAccounts();
       },
-      error: () => {
-      }
-    })
+      error: () => {},
+    });
   }
 
-
+  getRoleName(role: string): string {
+    switch (role) {
+      case '0':
+        return 'Administrator';
+      case '1':
+        return 'Turista';
+      case '2':
+        return 'Autor';
+      default:
+        return 'Unknown';
+    }
+  }
 }
