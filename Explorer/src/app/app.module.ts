@@ -71,6 +71,9 @@ import { VisualGalleryModule } from './feature-modules/visual-gallery/visual-gal
     CommonModule,
     EncountersModule,
     VisualGalleryModule,
+    MatFormFieldModule, // Import MatFormFieldModule
+    MatInputModule,     // Import MatInputModule
+    MatButtonModule     // Import MatButtonModule
   ],
   providers: [
     {

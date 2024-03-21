@@ -16,12 +16,24 @@ export class TourExecutionService {
 
   constructor(private http: HttpClient) { }
 
+  createTourReview(tourReview: any): Observable<any> {
+    return this.http.post<any>(environment.apiHost + `tourist/tourReview/create`, tourReview);
+  }
+
   addTourExecutionPosition(tourExecutionPosition: TourExecutionPosition): Observable<TourExecutionPosition> {
     return this.http.post<TourExecutionPosition>(
       environment.apiHost + 'administration/tourExecutionPosition',
       tourExecutionPosition
     );
   }
+
+  getPublishedTours(): Observable<Tour[]> {
+    const url = environment.apiHost + 'administration/tour/getPublished';
+    return this.http.get<Tour[]>(url);
+      
+  }
+
+  
 
   updateTourExecutionPosition(tourExecutionPosition: TourExecutionPosition): Observable<TourExecutionPosition> {
     return this.http.put<TourExecutionPosition>(

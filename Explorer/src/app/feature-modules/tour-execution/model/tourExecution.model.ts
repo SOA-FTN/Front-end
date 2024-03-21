@@ -64,3 +64,23 @@ export interface TourExecutionTourPoint {
   completed: boolean;
   secret: string;
 }
+
+export class Review{
+  rating: number; // Rating given for the tour
+  comment: string; // Comment left by the user
+  userId: number; // ID of the user who left the review
+  tourId: number | undefined; // ID of the tour being reviewed
+  imageURL: string; // URL of an image related to the review (optional)
+  visitDate: Date; // Date when the user visited the tour
+  commentDate: Date;
+
+  constructor() {
+    this.rating = 0;
+    this.comment = '';
+    this.userId = 0;
+    this.tourId = 0;
+    this.imageURL = '';
+    this.visitDate = new Date();
+    this.commentDate = new Date();
+  }
+}

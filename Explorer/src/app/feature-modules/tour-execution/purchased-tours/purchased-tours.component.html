@@ -12,18 +12,10 @@
     <div class="slide-content">
 
       <div class="card-wrapper">
-        <button *ngFor="let tour of tours" (click)="selectTour(tour)">
-        <div class="card" [ngClass]="{ 'card-selected': tour.selected == true }">
+        <button *ngFor="let tour of publishedTours" (click)="selectTour(tour)">
+        <div class="card">
 
-          <div class="image-content">
-              <span class="overlay" *ngIf="tour.tags && tour.tags.length > 0">
-                  <p *ngFor="let tag of tour.tags" class="tag">{{ tag }}</p>
-              </span>
-
-            <div class="card-image">
-              <img [src]="tour.tourPoints[0].imageUrl" alt="" class="card-img">
-            </div>
-          </div>
+          
 
           <div class="card-content">
             <h2 class="name">{{ tour.name }}</h2>
@@ -38,12 +30,13 @@
                 <p class="price-number">{{ tour.price }}$</p>
               </div>
 
-              <p *ngIf="tour.difficultyLevel==='Easy'" class="difficulty easy">{{ tour.difficultyLevel }}</p>
-              <p *ngIf="tour.difficultyLevel==='Moderate'" class="difficulty moderate">{{ tour.difficultyLevel }}</p>
-              <p *ngIf="tour.difficultyLevel==='Difficult'" class="difficulty difficult">{{ tour.difficultyLevel }}</p>
             </div>
             <button class="startTour" (click)="startTour(tour.id)">
               Start tour
+            </button>
+
+            <button class="startTour" (click)="reviewTour(tour.id)">
+              Give review
             </button>
           </div>
 
@@ -55,4 +48,35 @@
   </div>
 </div>
 
+
+</div>
+
+<div *ngIf="showForm" class="formDiv">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="reviewForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Rate</mat-label>
+      <mat-select formControlName="rating" required>
+        <mat-option *ngFor="let rating of ratings" [value]="rating">{{ rating }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Comment</mat-label>
+      <textarea matInput formControlName="comment" rows="5" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Image URL</mat-label>
+      <input matInput formControlName="imageUrl" type="text" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Visit date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="visitDate" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="submitButton">Submit</button>
+  </form>
 </div>

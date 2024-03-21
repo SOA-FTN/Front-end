@@ -73,6 +73,7 @@
   cursor: pointer;
   box-shadow: 0 2px 16px 3px #dddddd;
   transition: box-shadow 0.3s ease;
+  min-width: 200px;
 }
 
 .card:hover {
@@ -235,4 +236,32 @@
 
 .startTour{
 margin-bottom: 20px;
+}
+
+.formDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF;
+
+}
+
+.reviewForm{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+
+}
+
+mat-form-field{
+  width: 300px;
+}
+
+.submitButton{
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
 }

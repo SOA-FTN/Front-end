@@ -8,7 +8,11 @@ import { PurchasedToursComponent } from './purchased-tours/purchased-tours.compo
 import { PurchasedTourDetailsComponent } from './purchased-tour-details/purchased-tour-details.component';
 import { MyEndedToursComponent } from './my-ended-tours/my-ended-tours.component';
 import { MyToursComponent } from './my-tours/my-tours.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -23,7 +27,12 @@ import { MyToursComponent } from './my-tours/my-tours.component';
   imports: [
     CommonModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports:[
     TourExecutionPositionComponent,

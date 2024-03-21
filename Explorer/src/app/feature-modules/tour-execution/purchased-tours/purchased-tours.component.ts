@@ -29,6 +29,10 @@ import { TourCharacteristic, TransportType } from '../../tour-authoring/tour/mod
 import { MapService } from 'src/app/shared/map/map.service';
 import { TourObject } from '../../tour-authoring/model/tourObject.model';
 import { ObjInTour } from '../../tour-authoring/model/objInTour.model';
+import { TourExecutionService } from '../tour-execution.service';
+import { tap } from 'rxjs/operators';
+import { Review } from '../model/tourExecution.model';
+
 
 interface ExtendedTour extends Tour {
   selected?: boolean;
@@ -41,19 +45,43 @@ interface ExtendedTour extends Tour {
   styleUrls: ['./purchased-tours.component.css']
 })
 export class PurchasedToursComponent implements OnInit{
-  
+  publishedTours: Tour[] = [];
   tours: ExtendedTour[] = []
   touristId: number
   tokens: TourPurchaseToken[] = []
   selectedTours: Tour[] = []
   tourNames : String []
 
-  constructor(private service: MarketplaceService, private auth: AuthService, private router: Router, private dialog: MatDialog) {}
+  selectedTour: number | undefined;
+  showForm: boolean = false;
+  review: Review = new Review();
+  form: FormGroup;
+  ratings: number[] = [1, 2, 3, 4, 5];
+  
+
+  constructor(private service: MarketplaceService, private auth: AuthService, private router: Router, private dialog: MatDialog, private execService: TourExecutionService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getLogedUser()
     this.getPurchasedTours()
+    this.loadTours()
+    this.form = this.fb.group({
+      rating: ['', Validators.required],
+      comment: ['', Validators.required],
+      imageUrl: ['', Validators.required],
+      visitDate: ['', Validators.required]
+    });
   }
+
+  reviewTour(tourId: number | undefined): void{
+    this.showForm = true;
+    this.selectedTour = tourId;
+  }
+
+  dateFilter = (date: Date): boolean => {
+    const today = new Date();
+    return date <= today;
+  };
 
   getLogedUser(): void{
     this.auth.user$.subscribe((user) => {
@@ -62,6 +90,80 @@ export class PurchasedToursComponent implements OnInit{
        console.log(this.touristId)
       }
     });
+  }
+
+  onSubmit() {
+    const ratingControl = this.form.get('rating');
+    if (ratingControl) {
+      this.review.rating = ratingControl.value;
+    } else {
+      console.error('Rating form control not found');
+    }
+
+    const commentControl = this.form.get('comment');
+    if (commentControl) {
+      this.review.comment = commentControl.value;
+    } else {
+      console.error('Comment form control not found');
+    }
+
+    const imageUrlControl = this.form.get('imageUrl');
+    if (imageUrlControl) {
+      this.review.imageURL = imageUrlControl.value;
+    } else {
+      console.error('Image URL form control not found');
+    }
+
+    const visitDateControl = this.form.get('visitDate');
+    if (visitDateControl) {
+      this.review.visitDate = visitDateControl.value;
+    } else {
+      console.error('Visit date form control not found');
+    }
+
+    this.review.userId = this.touristId;
+    this.review.tourId = this.selectedTour;
+    this.review.commentDate = new Date();
+    this.createReview();
+    console.log(this.review)
+
+  }
+
+  createReview(): void{
+    this.execService.createTourReview(this.review)
+      .subscribe(
+        createdTourReview => {
+          // Handle successful response
+          console.log('Tour review created:', createdTourReview);
+        },
+        error => {
+          // Handle error
+          console.error('An error occurred while creating tour review:', error);
+          // Optionally, display an error message to the user
+        }
+      );
+  }
+
+  fetchPublishedTours(): void {
+    this.execService.getPublishedTours()
+      .subscribe(tours => {
+        this.publishedTours = tours;
+        console.log("Published tours: ", tours);
+      });
+  }
+
+  loadTours(): void {
+    this.execService.getPublishedTours()
+      .subscribe(
+        (result: Tour[]) => {
+          this.publishedTours = result;
+          console.log(this.publishedTours)
+        },
+        (error) => {
+          console.error('An error occurred:', error);
+          // Handle error appropriately
+        }
+      );
   }
   
   /*getPurchasedTours(): void {
