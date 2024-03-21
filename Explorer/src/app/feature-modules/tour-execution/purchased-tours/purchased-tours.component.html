@@ -38,6 +38,10 @@
             <button class="startTour" (click)="reviewTour(tour.id)">
               Give review
             </button>
+
+            <button class="startTour" (click)="getTourReviewsByTourID(tour.id)">
+              See reviews
+            </button>
           </div>
 
         </div>
@@ -79,4 +83,18 @@
 
     <button mat-raised-button color="primary" type="submit" class="submitButton">Submit</button>
   </form>
+</div>
+
+<div class="reviewList" *ngIf="showReviewList">
+  <div *ngFor="let review of tourReviews" class="review-container">
+    <div class="reviewText">
+      <div class="rating">Rating: {{ review.rating }}</div>
+      <div class="comment">Comment: {{ review.comment }}</div>
+      <div class="visitDate">Visit Date: {{ review.visitDate | date:'mediumDate' }}</div>
+      <div class="commentDate">Comment Date: {{ review.commentDate | date:'mediumDate' }}</div>
+    </div>
+    <div class="reviewImage">
+      <img [src]="review.imageURL" alt="Review Image" />
+    </div>
+  </div>
 </div>

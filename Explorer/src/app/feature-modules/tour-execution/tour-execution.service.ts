@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { PagedResults } from 'src/app/shared/model/paged-results.model';
 import { environment } from 'src/env/environment';
 import { TourExecutionPosition } from './model/tourExecutionPosition.model';
-import { TourExecution,TourExecutionTourPoint,TourPoint } from './model/tourExecution.model';
+import { Review, TourExecution,TourExecutionTourPoint,TourPoint } from './model/tourExecution.model';
 import { map } from 'rxjs';
 import { catchError } from 'rxjs';
 import { Tour } from '../tour-authoring/tour/model/tour.model';
@@ -15,6 +15,11 @@ import { Tour } from '../tour-authoring/tour/model/tour.model';
 export class TourExecutionService {
 
   constructor(private http: HttpClient) { }
+
+  getTourReviewsByTourID(tourID: number): Observable<Review[]> {
+    const url = environment.apiHost + `tourist/tourReview/tourReviewsByTourID/${tourID}`;
+    return this.http.get<Review[]>(url);
+  }
 
   createTourReview(tourReview: any): Observable<any> {
     return this.http.post<any>(environment.apiHost + `tourist/tourReview/create`, tourReview);

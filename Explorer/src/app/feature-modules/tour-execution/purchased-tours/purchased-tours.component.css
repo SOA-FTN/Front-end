@@ -265,3 +265,46 @@ mat-form-field{
   height: 30px;
   font-size: 14px;
 }
+
+.reviewList {
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+  padding: 10px; /* Add padding */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF;
+}
+
+.review-container {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  margin-bottom: 20px; /* Add space between review containers */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 5px; /* Rounded corners */
+  width: 600px;
+  max-height: 150px;
+  padding: 20px;
+}
+
+.rating {
+  font-weight: bold; /* Make rating text bold */
+}
+
+.comment {
+  margin-top: 5px; /* Add space between rating and comment */
+}
+
+.visitDate,
+.commentDate {
+  font-style: italic; /* Make visitDate and commentDate italic */
+}
+
+.reviewImage{
+  width: 100px;
+  height: 80px;
+}

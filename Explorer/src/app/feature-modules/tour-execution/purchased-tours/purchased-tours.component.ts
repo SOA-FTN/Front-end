@@ -52,8 +52,10 @@ export class PurchasedToursComponent implements OnInit{
   selectedTours: Tour[] = []
   tourNames : String []
 
+  tourReviews: Review[] = [];
   selectedTour: number | undefined;
   showForm: boolean = false;
+  showReviewList: boolean = false;
   review: Review = new Review();
   form: FormGroup;
   ratings: number[] = [1, 2, 3, 4, 5];
@@ -127,6 +129,29 @@ export class PurchasedToursComponent implements OnInit{
     this.createReview();
     console.log(this.review)
 
+  }
+
+  getTourReviewsByTourID(tourId: number | undefined): void {
+    this.selectedTour = tourId;
+    this.showReviewList = true;
+    if (this.selectedTour) { // Check if selectedTour is defined
+      this.execService.getTourReviewsByTourID(this.selectedTour)
+        .subscribe(
+          tourReviews => {
+            // Handle successful response
+            this.tourReviews = tourReviews;
+            console.log('Tour reviews:', tourReviews);
+          },
+          error => {
+            // Handle error
+            console.error('An error occurred while retrieving tour reviews:', error);
+            // Optionally, display an error message to the user
+          }
+        );
+    } else {
+      console.error('Selected tour is not defined.');
+      // Optionally, display an error message to the user
+    }
   }
 
   createReview(): void{
