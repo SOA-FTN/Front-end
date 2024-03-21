@@ -39,25 +39,10 @@ export class EncountersMapComponent implements OnInit {
   ngOnInit(): void {
     this.getActiveEncounters(); 
     //this.checkUserPosition();
-    //this.loadEncounters();
-    //this.probaEncounters();
     
   }
 
-  loadEncounters(): void {
-    this.encounterService.getAllEncounters().subscribe(encounters => {
-      this.encounters = encounters;
-      console.log("encounteri: ", encounters)
-    });
-  }
-
-  probaEncounters(): void {
-    this.executionService.getAllExecutions().subscribe(e => {
-      this.proba = e;
-      console.log("proab: ",this.proba);
-    });
-    
-  }
+  
   getActiveEncounters(): void {
     this.executionService.getAllExecutions().subscribe({
       next: (executions: EncounterExecution[]) => {
@@ -65,7 +50,7 @@ export class EncountersMapComponent implements OnInit {
         this.executions = executions.filter(execution =>
           execution.userId === this.tokenStorage.getUserId() && execution.isCompleted
         );
-        console.log("capcina: ",this.executions);
+        
         this.encounterService.getAllEncounters().subscribe({
           next: (encounters: Encounter[]) => {
             // Filter encounters that are ACTIVE and not completed by the user
@@ -73,13 +58,13 @@ export class EncountersMapComponent implements OnInit {
               encounter.status === '0' &&
               !this.executions.some(execution => execution.encounterId === encounter.id)
             );
-            console.log("display ", this.displayEncounters)
+            console.log("display: ", this.displayEncounters)
           }
         });
       }
     });
     }
-    arePositionsClose(lat1: number, lon1: number, lat2: number, lon2: number, radius: number = 100): boolean {
+    /*arePositionsClose(lat1: number, lon1: number, lat2: number, lon2: number, radius: number = 100): boolean {
       // Convert degrees to radians
       const toRadians = (degrees: number) => degrees * (Math.PI / 180);
   
@@ -95,9 +80,9 @@ export class EncountersMapComponent implements OnInit {
   
       // Check if the distance is within the radius
       return distance <= radius;
-  }
+  }*/
     activateEncounter(selectedEncounter:Encounter) {
-        console.log("molim te ",selectedEncounter);
+        console.log("Selected encounter ",selectedEncounter);
         this.executionService.getAllExecutions().subscribe({
           next: (executions: EncounterExecution[]) => {
             this.executions = executions;
@@ -112,7 +97,7 @@ export class EncountersMapComponent implements OnInit {
                 completionTime: undefined,
                 isCompleted: false
               }
-              console.log("ajde: ",this.encounterExecution)
+              console.log("Encounter execution: ",this.encounterExecution)
               this.executionService.addEncounterExecution(this.encounterExecution).subscribe({
                 next: (_) => {
                   this.router.navigate(['/activeEncounter']);
@@ -125,7 +110,7 @@ export class EncountersMapComponent implements OnInit {
       
     }
 
-    updateUserPosition(): void {
+    /*updateUserPosition(): void {
       var id = 0;
       const userPosition: UserPosition = {
         userId: this.tokenStorage.getUserId(),
@@ -157,31 +142,30 @@ export class EncountersMapComponent implements OnInit {
       });
     }
   
-    
+    */    
     updatePositions(event:MouseEvent):void{
-      this.updateUserPosition();
+      //this.updateUserPosition();
       this.filterEncounters();
     }
     filterEncounters() : void {
       this.backupEncounters = this.displayEncounters;
       this.displayEncounters.splice(0, this.displayEncounters.length);
-      console.log(this.userPosition.longitude);
-      this.executionService.getExecutions().subscribe({
-        next: (result: PagedResults<EncounterExecution>) => {
-          this.executions = result.results.filter(execution => (execution.userId === this.tokenStorage.getUserId() && execution.isCompleted));
-          console.log(this.executions);
-          this.encounterService.getEncounters().subscribe({
-            next: (result: PagedResults<Encounter>) => {
-              this.displayEncounters = result.results.filter(encounter =>
-                encounter.status === 'ACTIVE' &&
-                !this.executions.some(execution => execution.encounterId === encounter.id) &&
+      this.executionService.getAllExecutions().subscribe({
+        next: (executions:EncounterExecution[]) => {
+          this.executions = executions.filter(execution => (execution.userId === this.tokenStorage.getUserId() && execution.isCompleted));
+          //console.log(this.executions);
+          this.encounterService.getAllEncounters().subscribe({
+            next: (encounters:Encounter[]) => {
+              this.displayEncounters = encounters.filter(encounter =>
+                encounter.status === '0' &&
+                !this.executions.some(execution => execution.encounterId === encounter.id) /*&&
                 this.arePositionsClose(
                   this.userPosition.latitude,
                   this.userPosition.longitude,
                   encounter.latitude,
                   encounter.longitude,
-                  100 // Adjust the radius as needed
-                )
+                  100*/ // Adjust the radius as needed
+                //)
               );
             }
           });
@@ -189,7 +173,7 @@ export class EncountersMapComponent implements OnInit {
       });
     }
 
-    checkUserPosition(): void {
+    /*checkUserPosition(): void {
       this.administrationService.getByUserId(this.tokenStorage.getUserId(), 0, 0).subscribe(
         (result) => {
           this.shouldEdit = result != null; 
@@ -199,6 +183,6 @@ export class EncountersMapComponent implements OnInit {
           console.error('Error fetching user positions:', error);
         }
       );
-    }
+    }*/
   }
 

@@ -93,10 +93,10 @@ export class MapComponent implements AfterViewInit {
         //
       }
       else if(path.includes('activeEncounter')){
-        //this.setPosition();
+        this.setEncounterPosition();
       }
       else if(path.includes('encounterMap')){
-        this.setPosition();
+        //this.setPosition();
         this.setEncounterPosition();
       }
       else{
@@ -422,16 +422,16 @@ export class MapComponent implements AfterViewInit {
       iconAnchor: [12, 41],
     });
 
-    this.encounterService.getEncounters().subscribe(
-      (pagedResults: PagedResults<Encounter>) => {
-        if (Array.isArray(pagedResults.results)) {
-          this.objects = pagedResults.results;
+    this.encounterService.getAllEncounters().subscribe(
+      (encounters:Encounter[]) => {
+        if (Array.isArray(encounters)) {
+          this.objects = encounters;
           this.objects.forEach((object) => {
             L.marker([object.latitude, object.longitude], {
               icon: specialTourIcon,
             }).addTo(this.map);
           });
-          console.log('Dohvaćeni objekti:', pagedResults.results);
+          console.log('Dohvaćeni objekti:', encounters);
         } else {
           console.error('Results received are not in an array format.');
         }
@@ -442,6 +442,7 @@ export class MapComponent implements AfterViewInit {
     );
   }
 
+  
   private openSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 30000,
