@@ -56,7 +56,7 @@ export class ActivatedExecutionComponent implements OnChanges {
   
 
   ngOnInit(): void {
-    this.checkUserPosition();
+    //this.checkUserPosition();
     this.getEncounterExecutionByUser(this.userId);
     
     this.startPolling();
@@ -65,6 +65,7 @@ export class ActivatedExecutionComponent implements OnChanges {
   ngAfterInit(): void{
     this.getEncounterById(this.activeEncounter.id);
     this.checkEncounterType();
+    console.log(this.activeEncounter)
     
   }
 
@@ -84,7 +85,8 @@ export class ActivatedExecutionComponent implements OnChanges {
       this.checkHiddenEncounter();
       console.log(this.hiddenLocationEncounter.imageURL)
     }
-    
+    console.log(this.encounter)
+    console.log(this.activeEncounter)
       
     }, 5000);
   }
@@ -137,8 +139,8 @@ export class ActivatedExecutionComponent implements OnChanges {
   }
 
   getEncounterExecutionByUser(userId: number) : void{
-    this.service.getByUser(8);
-    this.service.getByUser(userId).subscribe(
+    
+    /*this.service.getByUser(userId).subscribe(
       (result) => {
         this.activeEncounter = result;
         console.log("Active encounter: ",this.activeEncounter); 
@@ -146,7 +148,18 @@ export class ActivatedExecutionComponent implements OnChanges {
       (error) => {
         console.error('Error fetching TourExecution', error);
       }
-    );
+    );*/
+    this.service.getActiveEncounterByUser(this.userId)
+      .subscribe({
+        next: (encounterExecution: EncounterExecution) => {
+          this.activeEncounter = encounterExecution;
+        },
+        error: (error) => {
+          console.error('Error occurred while fetching active encounter:', error);
+          // Handle error here
+        }
+      });
+  
   }
 
   getEncounterById(encounterId: number) : void{
@@ -199,17 +212,20 @@ export class ActivatedExecutionComponent implements OnChanges {
   }
 
   completeExecution():void{
-    this.service.completeExecution(this.userId).subscribe(
-      (result) => {
-        console.log("Executionss: ",this.executions); 
+    this.service.completeExecution(this.userId).subscribe({
+       next: (encounterExecution: EncounterExecution) => {
+        // Handle the response here
+        console.log('Encounter execution completed successfully:', encounterExecution);
       },
-      (error) => {
-        console.error('Error', error);
+      error: (error) => {
+        // Handle errors here
+        console.error('Error completing encounter execution:', error);
       }
-    );
+    });
     alert('You completed this challenge ! ');
     this.router.navigate(['/encounterMap']);
-  }
+  
+}
 
   updateSocialExecution() : void{
     this.executions.forEach(ex => {

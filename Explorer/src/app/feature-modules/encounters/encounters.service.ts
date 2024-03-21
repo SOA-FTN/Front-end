@@ -65,11 +65,17 @@ export class EncountersService {
     
     return this.http.get<EncounterExecution>(url);
   }
+
+  getActiveEncounterByUser(userId: number): Observable<EncounterExecution> {
+    return this.http.get<EncounterExecution>(`${environment.apiHost}encounterExecution/getActive/${userId}`);
+  }
   
   getEncounterById(encounterId: number): Observable<Encounter>{
-    const url = `${environment.apiHost+ 'encounters/getEncounter'}/${encounterId}`;
-    return this.http.get<Encounter>(url);
+    return this.http.get<Encounter>(`${environment.apiHost}encounters/getEncounter/${encounterId}`);
+
   }
+
+
 
   checkSocialEncounter(encounterId: number): Observable<PagedResults<EncounterExecution>>{
     const url = `${environment.apiHost+ 'encounterExecution/checkSocialEncounter'}/${encounterId}`;
@@ -83,10 +89,7 @@ export class EncountersService {
   }
 
   completeExecution(userId: number): Observable<EncounterExecution> {
-    console.log("usao u servis")
-    const url = `${environment.apiHost}encounterExecution/completeExecution/${userId}`;
-    console.log(url);
-    return this.http.get<EncounterExecution>(url);
+    return this.http.get<EncounterExecution>(`${environment.apiHost}encounterExecution/completeExecution/${userId}`);
   }
 
   getHiddenLocationEncounterByEncounterId(encounterId: number): Observable<ShortHiddenLocationEncounter> {

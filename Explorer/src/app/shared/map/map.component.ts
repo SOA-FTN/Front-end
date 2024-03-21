@@ -93,7 +93,7 @@ export class MapComponent implements AfterViewInit {
         //
       }
       else if(path.includes('activeEncounter')){
-        this.setPosition();
+        //this.setPosition();
       }
       else if(path.includes('encounterMap')){
         this.setPosition();
