@@ -39,8 +39,8 @@ export class EncountersMapComponent implements OnInit {
   ngOnInit(): void {
     this.getActiveEncounters(); 
     //this.checkUserPosition();
-    this.loadEncounters();
-    this.probaEncounters();
+    //this.loadEncounters();
+    //this.probaEncounters();
     
   }
 
@@ -97,14 +97,14 @@ export class EncountersMapComponent implements OnInit {
       return distance <= radius;
   }
     activateEncounter(selectedEncounter:Encounter) {
-      console.log(this.userPosition.latitude);
-        this.executionService.getExecutions().subscribe({
-          next: (result: PagedResults<EncounterExecution>) => {
-            this.executions = result.results;
+        console.log("molim te ",selectedEncounter);
+        this.executionService.getAllExecutions().subscribe({
+          next: (executions: EncounterExecution[]) => {
+            this.executions = executions;
             const foundExecution = this.executions.find(
               execution => execution.userId === this.tokenStorage.getUserId() && execution.encounterId === selectedEncounter.id && execution.isCompleted == false
             );
-            if(foundExecution == null) {
+           
               this.encounterExecution = {
                 id: 0,
                 userId: this.tokenStorage.getUserId(),
@@ -112,15 +112,14 @@ export class EncountersMapComponent implements OnInit {
                 completionTime: undefined,
                 isCompleted: false
               }
+              console.log("ajde: ",this.encounterExecution)
               this.executionService.addEncounterExecution(this.encounterExecution).subscribe({
                 next: (_) => {
                   this.router.navigate(['/activeEncounter']);
                 }
               })
-            }
-            else {
-              this.router.navigate(['/activeEncounter']);
-            }
+            
+            
           }
         })
       
