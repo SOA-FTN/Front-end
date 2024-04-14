@@ -1,6 +1,6 @@
 export interface TourKeyPointEncounter {
     id?: number,
-    encounterId: number,
+    encounterId: string,
     keyPointId: number,
     isMandatory: boolean
 }

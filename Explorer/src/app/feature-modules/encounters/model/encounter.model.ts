@@ -1,5 +1,5 @@
 export interface Encounter {
-    id: number,
+    id: string,
     name: string,
     description: string,
     xpPoints: number,
