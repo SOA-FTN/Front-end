@@ -77,7 +77,7 @@ export class EncountersFormComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(this.isSocial){
-      /*this.service.getSocialEncounters().subscribe({
+      this.service.getSocialEncounters().subscribe({
         next: (result: PagedResults<ShortSocialEncounter>) => {
           var socialEncounters = result.results;
           const shortSocialEncounter = socialEncounters.find(
@@ -98,10 +98,10 @@ export class EncountersFormComponent implements OnChanges {
             this.encounterForm.patchValue(this.inputSocialEncounter);
           }
         },
-      })*/
+      })
     }
     else if(this.isLocation){
-      /*this.service.getHiddenLocationEncounters().subscribe({
+      this.service.getHiddenLocationEncounters().subscribe({
         next: (result: PagedResults<ShortHiddenLocationEncounter>) => {
           var hiddenLocationEncounters = result.results;
           const shortHiddenLocationEncounter = hiddenLocationEncounters.find(
@@ -122,7 +122,7 @@ export class EncountersFormComponent implements OnChanges {
             this.encounterForm.patchValue(this.inputHiddenLocationEncounter);
           }
         },
-      })*/
+      })
     }
     else{
       this.encounterForm.reset();
@@ -203,7 +203,7 @@ export class EncountersFormComponent implements OnChanges {
       });
     }else{
       const encounter = {
-        id: "",
+        id: 0,
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -289,7 +289,7 @@ export class EncountersFormComponent implements OnChanges {
       });
     }else{
       const encounter = {
-        id: "",
+        id: 0,
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -335,7 +335,7 @@ export class EncountersFormComponent implements OnChanges {
         socialEncounter.latitude = coordinates.lat;
         socialEncounter.longitude = coordinates.lng;
       });
-      /*this.service.getSocialEncounters().subscribe({
+      this.service.getSocialEncounters().subscribe({
         next: (result: PagedResults<ShortSocialEncounter>) => {
           var socialEncounters = result.results;
           const shortSocialEncounter = socialEncounters.find(
@@ -354,7 +354,7 @@ export class EncountersFormComponent implements OnChanges {
             }
           });
         },
-      })*/
+      })
     }else if(this.isLocation){
       const hiddenLocationEncounter = {
         id: 0,
@@ -378,7 +378,7 @@ export class EncountersFormComponent implements OnChanges {
         hiddenLocationEncounter.imageLatitude = coordinates.lat;
         hiddenLocationEncounter.imageLongitude = coordinates.lng;
       });
-      /*this.service.getHiddenLocationEncounters().subscribe({
+      this.service.getHiddenLocationEncounters().subscribe({
         next: (result: PagedResults<ShortHiddenLocationEncounter>) => {
           var hiddenLocationEncounters = result.results;
           const shortHiddenLocationEncounter = hiddenLocationEncounters.find(
@@ -396,7 +396,7 @@ export class EncountersFormComponent implements OnChanges {
             }
           });
         },
-      })*/
+      })
     }else{
       const encounter = {
         id: this.encounter.id,
@@ -443,7 +443,7 @@ export class EncountersFormComponent implements OnChanges {
         socialEncounter.latitude = coordinates.lat;
         socialEncounter.longitude = coordinates.lng;
       });
-     /* this.service.getSocialEncounters().subscribe({
+      this.service.getSocialEncounters().subscribe({
         next: (result: PagedResults<ShortSocialEncounter>) => {
           var socialEncounters = result.results;
           const shortSocialEncounter = socialEncounters.find(
@@ -462,7 +462,7 @@ export class EncountersFormComponent implements OnChanges {
           });
             
         },
-      })*/
+      })
     }else if(this.isLocation){
       const hiddenLocationEncounter = {
         id: 0,
@@ -486,7 +486,7 @@ export class EncountersFormComponent implements OnChanges {
         hiddenLocationEncounter.imageLatitude = coordinates.lat;
         hiddenLocationEncounter.imageLongitude = coordinates.lng;
       });
-      /*this.service.getHiddenLocationEncounters().subscribe({
+      this.service.getHiddenLocationEncounters().subscribe({
         next: (result: PagedResults<ShortHiddenLocationEncounter>) => {
           var hiddenLocationEncounters = result.results;
           const shortHiddenLocationEncounter = hiddenLocationEncounters.find(
@@ -503,7 +503,7 @@ export class EncountersFormComponent implements OnChanges {
             }
           });
         },
-      })*/
+      })
     }else{
       const encounter = {
         id: this.encounter.id,

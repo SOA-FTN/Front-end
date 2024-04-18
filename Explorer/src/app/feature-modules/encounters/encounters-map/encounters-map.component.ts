@@ -91,7 +91,7 @@ export class EncountersMapComponent implements OnInit {
             );
            
               this.encounterExecution = {
-                id: "",
+                id: 0,
                 userId: this.tokenStorage.getUserId(),
                 encounterId: selectedEncounter.id,
                 completionTime: undefined,

@@ -1,7 +1,7 @@
 export interface EncounterExecution {
-    id: string,
+    id: number,
     userId: number,
-    encounterId: string,
+    encounterId: number,
     completionTime?: Date,
     isCompleted: boolean,
 }

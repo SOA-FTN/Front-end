@@ -74,7 +74,7 @@ export class ActivatedExecutionComponent implements OnChanges {
     this.getEncounterById(this.activeEncounter.encounterId);
     if(this.encounter.type === "SOCIAL"){
       
-      
+      this.checkSocialEncounter(this.activeEncounter.encounterId);
       if(this.activeEncounter.isCompleted){
         alert('You completed this challenge ! ');
         this.router.navigate(['/encounterMap']);
@@ -82,7 +82,7 @@ export class ActivatedExecutionComponent implements OnChanges {
     }
     if(this.encounter.type === "LOCATION"){
       
-     
+      this.checkHiddenEncounter();
       console.log(this.hiddenLocationEncounter.imageURL)
     }
     console.log(this.encounter)
@@ -162,7 +162,7 @@ export class ActivatedExecutionComponent implements OnChanges {
   
   }
 
-  getEncounterById(encounterId: string) : void{
+  getEncounterById(encounterId: number) : void{
     this.service.getEncounterById(encounterId).subscribe(
       (result) => {
         this.encounter = result;
@@ -173,7 +173,7 @@ export class ActivatedExecutionComponent implements OnChanges {
       }
     );
     this.checkEncounterType();
-    
+    this.fetchHiddenLocation(this.encounter.id);
   }
 
   checkSocialEncounter(encounterId: number) : void{
@@ -189,7 +189,27 @@ export class ActivatedExecutionComponent implements OnChanges {
     );
   }
 
-  
+  checkHiddenEncounter(){
+    this.service.checkHiddenEncounter(this.activeEncounter.id, this.encounter.id).subscribe(
+      (result: boolean) => {
+        this.isHiddenInRange = result;
+        console.log("Is Hidden: ", this.isHiddenInRange);
+        if(this.isHiddenInRange){
+          this.hiddenCount += 1;
+          console.log("Hidden count:", this.hiddenCount)
+          if(this.hiddenCount == 2){
+            this.completeExecution();
+          }
+        }else{
+          this.hiddenCount = 0;
+          console.log("Hidden count:", this.hiddenCount)
+        }
+      },
+      (error: any) => {
+        console.error('Error checking boolean value', error);
+      }
+    );
+  }
 
   completeExecution():void{
     this.service.completeExecution(this.userId).subscribe({
