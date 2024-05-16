@@ -206,18 +206,29 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  
+
   getRecommendations(username: string): void {
     this.service.getUsers(username)
       .subscribe(
         (recommendations: string[]) => {
           this.recommendedUsers = recommendations;
           console.log('Recommendations:', recommendations);
+          this.deleteMeFromList();
+          
           // Handle the recommendations data as needed
         },
         (error: any) => { // Explicitly specify the type of 'error' parameter
           // Handle errors
         }
       );
+  }
+
+  deleteMeFromList(): void {
+    const index = this.recommendedUsers.indexOf(this.username);
+    if (index !== -1) {
+      this.recommendedUsers.splice(index, 1);
+    }
   }
 }
 
