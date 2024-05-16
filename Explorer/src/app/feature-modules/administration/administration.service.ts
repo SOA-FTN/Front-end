@@ -64,12 +64,12 @@ export class AdministrationService {
   }
 
   getProfile(id: number): Observable<Profile> {
-    return this.http.get<Profile>('https://localhost:44333/api/profile/' + id);
+    return this.http.get<Profile>('http://localhost:8084/api/profile/' + id);
   }
 
   updateProfile(profile: Profile, id: number): Observable<Profile> {
     return this.http.put<Profile>(
-      'https://localhost:44333/api/profile/' + id,
+      'http://localhost:8084/api/profile/' + id,
       profile
     );
   }
