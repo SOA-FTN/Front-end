@@ -17,10 +17,16 @@ import { User } from 'src/app/infrastructure/auth/model/user.model';
 export class ProfileComponent implements OnInit {
   userProfile: Profile = {} as Profile;
   user: User;
+  username: string;
   isEditMode: boolean = false;
   shouldRenderNotifications: boolean = false;
   shouldRenderMessages: boolean = false;
   touristXP: TouristXP[] = [];
+  allUsers: string[] = [];
+  recommendedUsers: string[] = [];
+  followedUsers: UserFollowerDto[] = [];
+  isFollowingBool: boolean;
+
 
   constructor(
     private tokenStorage: TokenStorage,
@@ -33,13 +39,17 @@ export class ProfileComponent implements OnInit {
     this.googleAnalytics.sendPageView(window.location.pathname);
     this.loadProfileData();
     this.loadTouristXP();
+    this.loadFollowedUsers();
+    this.loadAllUsernames();
+    this.getRecommendations(this.username);
   }
 
   loadProfileData() {
     this.auth.user$.subscribe((user) => {
       if (user.username) {
         this.user = user;
-
+        this.username = user.username;
+        console.log("username: ", user.username)
         this.service.getProfile(user.id).subscribe({
           next: (data: Profile) => {
             this.userProfile.id = data.id;
@@ -100,4 +110,122 @@ export class ProfileComponent implements OnInit {
     this.shouldRenderNotifications = false;
     this.shouldRenderMessages = true;
   }
+
+  loadUsersExcept(){
+    this.service.getUsersExcept(this.username)
+      .subscribe(
+        (users: string[]) => {
+          this.allUsers = users;
+          console.log('Users except', this.username, ':', this.allUsers);
+        },
+        (error) => {
+          console.error('There was an error!', error);
+        }
+      );
+  }
+
+  loadFollowedUsers(){
+    this.service.getFollowedUsers(this.username)
+      .subscribe(
+        (users: UserFollowerDto[]) => {
+          this.followedUsers = users;
+          console.log(this.followedUsers[0]);
+          console.log('Users except', this.username, ':', this.followedUsers);
+        },
+        (error) => {
+          console.error('There was an error!', error);
+        }
+      );
+  }
+
+  loadAllUsernames(){
+    this.service.getAllUsernames()
+      .subscribe(
+        (users: string[]) => {
+          this.allUsers = users;
+          console.log(this.allUsers[0]);
+          console.log('Users except', this.allUsers);
+          this.deleteUsername();
+        },
+        (error) => {
+          console.error('There was an error!', error);
+        }
+      );
+  }
+
+  usernameFollowStatusMap: Map<string, boolean> = new Map<string, boolean>();
+
+  checkedUsernames: string[] = []; // Array to store usernames for which follow status has been checked
+
+  follow(username: string){
+    this.callFollowPerson(username);
+  }
+  
+  async callFollowPerson(username: string) {
+    const relationship: FollowingRelationshipDto = {
+      followerUsername: this.username,
+      followedUsername: username
+    };
+
+    try {
+      const response = await this.service.followPerson(relationship);
+      console.log("zapracivanje jebeno", response); // Log the response
+      this.loadAllUsernames();
+      this.loadFollowedUsers();
+      this.getRecommendations(this.username);
+    } catch (error) {
+      console.error('Failed to follow person:', error);
+    }
+  }
+
+  deleteUsername(): void {
+    const index = this.allUsers.indexOf(this.username);
+    if (index !== -1) {
+      this.allUsers.splice(index, 1);
+    }
+  
+    // Check if this.username is following each username in allUsers
+    this.allUsers.forEach(username => {
+      this.service.isFollowing(this.username, username)
+        .subscribe(
+          isFollowing => {
+            console.log(`${this.username} is following ${username}:`, isFollowing);
+            if (isFollowing) {
+              // If this.username is following username, remove it from allUsers
+              const idx = this.allUsers.indexOf(username);
+              if (idx !== -1) {
+                this.allUsers.splice(idx, 1);
+              }
+            }
+          },
+          error => {
+            console.error(`Error checking if ${this.username} is following ${username}:`, error);
+            // Optionally handle errors
+          }
+        );
+    });
+  }
+
+  getRecommendations(username: string): void {
+    this.service.getUsers(username)
+      .subscribe(
+        (recommendations: string[]) => {
+          this.recommendedUsers = recommendations;
+          console.log('Recommendations:', recommendations);
+          // Handle the recommendations data as needed
+        },
+        (error: any) => { // Explicitly specify the type of 'error' parameter
+          // Handle errors
+        }
+      );
+  }
+}
+
+export interface UserFollowerDto {
+  username: string;
+}
+
+interface FollowingRelationshipDto {
+  followerUsername: string;
+  followedUsername: string;
 }

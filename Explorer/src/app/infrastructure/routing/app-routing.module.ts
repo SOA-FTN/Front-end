@@ -95,6 +95,7 @@ import { ShowCompetitionComponent } from 'src/app/feature-modules/competition/sh
 import { OneCompetitionComponent } from 'src/app/feature-modules/competition/one-competition/one-competition.component';
 import { WinnerApplyComponent } from 'src/app/feature-modules/competition/winner-apply/winner-apply.component';
 import { ApplyFormComponent } from 'src/app/feature-modules/competition/apply-form/apply-form.component';
+import { FollowingProfileComponent } from 'src/app/feature-modules/administration/following-profile/following-profile.component';
 
 
 const routes: Routes = [
@@ -182,7 +183,8 @@ const routes: Routes = [
 
 
   { path: 'statistics', component: UserStatisticsComponent},
-  { path: 'gallery', component: VisualGalleryComponent}
+  { path: 'gallery', component: VisualGalleryComponent},
+  { path: 'following-profile', component: FollowingProfileComponent}
 
 
 ];

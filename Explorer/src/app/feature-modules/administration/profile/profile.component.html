@@ -57,4 +57,31 @@
       </div>
   </div>
 </div>
+<div class="followings">
+  <div class="not-following">
+    <h2>All users you are not following</h2>
+    <div *ngFor="let user of allUsers" class="username">
+      {{ user }}
+      <button class="button-3d" (click)="follow(user)">
+        <span class="button-text">Follow</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="recommended">
+    <h2>People you might know</h2>
+    <div *ngFor="let user of recommendedUsers" class="username">
+      {{ user }}
+      <button class="button-3d" (click)="follow(user)">
+        <span class="button-text">Follow</span>
+      </button>
+    </div>
+  </div>
+  <div class="followed">
+    <h2>People you follow</h2>
+    <div *ngFor="let user of followedUsers" class="username">
+      {{ user.username }}
+    </div>
+  </div>
+</div>
 

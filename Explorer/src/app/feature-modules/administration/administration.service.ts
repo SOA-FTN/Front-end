@@ -212,4 +212,48 @@ export class AdministrationService {
       environment.apiHost + 'followerMessage/' + messageId
     );
   }
+
+  isFollowing(followerUsername: string, followedUsername: string): Observable<boolean> {
+    const url = environment.apiHost + 'follower/isFollowing/' + followerUsername + '/' + followedUsername;
+
+    return this.http.get<boolean>(url);
+  }
+
+  async followPerson(relationship: FollowingRelationshipDto): Promise<any>{
+      const url = environment.apiHost + 'follower/followPerson'
+      const response = await this.http.post<string>(url, relationship).toPromise();
+  }
+
+  getUsersExcept(username: string): Observable<string[]> {
+    const url = `${environment.apiHost}follower/getUsersExcept/${username}`;
+  
+    return this.http.get<string[]>(url);
+  }
+
+  getFollowedUsers(username: string): Observable<UserFollowerDto[]> {
+    const url = `${environment.apiHost}follower/getFollowedUsers/${username}`;
+    return this.http.get<UserFollowerDto[]>(url);
+  }
+
+  getAllUsernames(): Observable<string[]>{
+    const url = environment.apiHost + 'follower/GetAllUsernames';
+    console.log(url)
+    return this.http.get<string[]>(url);
+  }
+
+  getUsers(username: string): Observable<string[]> {
+    const url = environment.apiHost + 'follower/getRecommendations/' + username; // Assuming this is the endpoint to get users from .NET
+    return this.http.get<string[]>(url);
+  }
+
+
+}
+
+interface FollowingRelationshipDto {
+  followerUsername: string;
+  followedUsername: string;
+}
+
+export interface UserFollowerDto {
+  username: string;
 }
