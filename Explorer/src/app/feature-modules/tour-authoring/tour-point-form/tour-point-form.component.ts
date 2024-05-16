@@ -256,7 +256,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
         socialEncounter.latitude = coordinates.lat;
         socialEncounter.longitude = coordinates.lng;
       });
-      this.encounterService.addSocialEncounter(socialEncounter).subscribe({
+      /*this.encounterService.addSocialEncounter(socialEncounter).subscribe({
         next: (_) => {
           const tourKeyPointEncounter: TourKeyPointEncounter = {
             encounterId: socialEncounter.id,
@@ -296,8 +296,8 @@ export class TourPointFormComponent implements OnChanges, OnInit {
       this.mapService.coordinate$.subscribe((coordinates) => {
         hiddenLocationEncounter.latitude = coordinates.lat;
         hiddenLocationEncounter.longitude = coordinates.lng;
-      });
-      this.encounterService.addHiddenLocationEncounter(hiddenLocationEncounter).subscribe({
+      });*/
+      /*this.encounterService.addHiddenLocationEncounter(hiddenLocationEncounter).subscribe({
         next: (_) => {
           const tourKeyPointEncounter: TourKeyPointEncounter = {
             encounterId: hiddenLocationEncounter.id,
@@ -314,11 +314,11 @@ export class TourPointFormComponent implements OnChanges, OnInit {
           this.encountersUpdated.emit();
           this.encounterForm.reset();
         }
-      });
+      });*/
       this.showPopup = false;
     }else{
       const encounter = {
-        id: 0,
+        id: "",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,

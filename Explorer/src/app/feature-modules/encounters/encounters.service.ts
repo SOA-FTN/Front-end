@@ -70,7 +70,7 @@ export class EncountersService {
     return this.http.get<EncounterExecution>(`${environment.apiHost}encounterExecution/getActive/${userId}`);
   }
   
-  getEncounterById(encounterId: number): Observable<Encounter>{
+  getEncounterById(encounterId: string): Observable<Encounter>{
     return this.http.get<Encounter>(`${environment.apiHost}encounters/getEncounter/${encounterId}`);
 
   }
