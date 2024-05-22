@@ -24,7 +24,10 @@ export class AuthService {
 
   login(login: Login): Observable<AuthenticationResponse> {
     return this.http
-      .post<AuthenticationResponse>(environment.apiHost + 'users/login', login)
+      .post<AuthenticationResponse>(
+        'http://localhost:8000/api/auth/login',
+        login
+      )
       .pipe(
         tap((authenticationResponse) => {
           this.tokenStorage.saveAccessToken(
@@ -38,7 +41,10 @@ export class AuthService {
 
   register(registration: Registration): Observable<AuthenticationResponse> {
     return this.http
-      .post<AuthenticationResponse>(environment.apiHost + 'users', registration)
+      .post<AuthenticationResponse>(
+        'http://localhost:8000/api/stakeholders/registration',
+        registration
+      )
       .pipe(
         tap((authenticationResponse) => {
           //this.tokenStorage.saveAccessToken(authenticationResponse.accessToken, authenticationResponse.id);

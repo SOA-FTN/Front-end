@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 //import { Equipment } from './model/equipment.model';
 import { environment } from 'src/env/environment';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { PagedResults } from 'src/app/shared/model/paged-results.model';
 import { AppRating } from './model/app-rating.model';
 import { Account } from './model/account.model';
@@ -64,14 +64,21 @@ export class AdministrationService {
   }
 
   getProfile(id: number): Observable<Profile> {
-    return this.http.get<Profile>('http://localhost:8084/api/profile/' + id);
+    return this.http
+      .get<{ person: Profile }>(
+        'http://localhost:8000/api/stakeholders/getProfile/' + id
+      )
+      .pipe(map((response) => response.person));
   }
 
   updateProfile(profile: Profile, id: number): Observable<Profile> {
-    return this.http.put<Profile>(
-      'http://localhost:8084/api/profile/' + id,
-      profile
-    );
+    console.log(profile);
+    return this.http
+      .put<{ person: Profile }>(
+        'http://localhost:8000/api/stakeholders/updateProfile',
+        profile
+      )
+      .pipe(map((response) => response.person));
   }
 
   // App ratings
@@ -213,20 +220,30 @@ export class AdministrationService {
     );
   }
 
-  isFollowing(followerUsername: string, followedUsername: string): Observable<boolean> {
-    const url = environment.apiHost + 'follower/isFollowing/' + followerUsername + '/' + followedUsername;
+  isFollowing(
+    followerUsername: string,
+    followedUsername: string
+  ): Observable<boolean> {
+    const url =
+      environment.apiHost +
+      'follower/isFollowing/' +
+      followerUsername +
+      '/' +
+      followedUsername;
 
     return this.http.get<boolean>(url);
   }
 
-  async followPerson(relationship: FollowingRelationshipDto): Promise<any>{
-      const url = environment.apiHost + 'follower/followPerson'
-      const response = await this.http.post<string>(url, relationship).toPromise();
+  async followPerson(relationship: FollowingRelationshipDto): Promise<any> {
+    const url = environment.apiHost + 'follower/followPerson';
+    const response = await this.http
+      .post<string>(url, relationship)
+      .toPromise();
   }
 
   getUsersExcept(username: string): Observable<string[]> {
     const url = `${environment.apiHost}follower/getUsersExcept/${username}`;
-  
+
     return this.http.get<string[]>(url);
   }
 
@@ -235,9 +252,9 @@ export class AdministrationService {
     return this.http.get<UserFollowerDto[]>(url);
   }
 
-  getAllUsernames(): Observable<string[]>{
+  getAllUsernames(): Observable<string[]> {
     const url = environment.apiHost + 'follower/GetAllUsernames';
-    console.log(url)
+    console.log(url);
     return this.http.get<string[]>(url);
   }
 
@@ -245,8 +262,6 @@ export class AdministrationService {
     const url = environment.apiHost + 'follower/getRecommendations/' + username; // Assuming this is the endpoint to get users from .NET
     return this.http.get<string[]>(url);
   }
-
-
 }
 
 interface FollowingRelationshipDto {
