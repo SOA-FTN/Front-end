@@ -27,7 +27,7 @@ import { AdministrationModule } from './feature-modules/administration/administr
 //import { MapComponent } from './shared/map/map.component';
 import { ClubModule } from './feature-modules/club/club.module';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { GoogleAnalyticsService } from "./infrastructure/google-analytics/google-analytics.service";
+import { GoogleAnalyticsService } from './infrastructure/google-analytics/google-analytics.service';
 import { EncountersModule } from './feature-modules/encounters/encounters.module';
 
 import { CreateCompetitionComponent } from './feature-modules/competition/create-competition/create-competition.component';
@@ -38,11 +38,17 @@ import { WinnerApplyComponent } from './feature-modules/competition/winner-apply
 import { ApplyFormComponent } from './feature-modules/competition/apply-form/apply-form.component';
 import { PublishedBundlesShowComponent } from './feature-modules/payment-record/published-bundles-show/published-bundles-show.component';
 import { VisualGalleryModule } from './feature-modules/visual-gallery/visual-gallery.module';
+import { BachelorEncountersModule } from './feature-modules/bachelor-encounters/bachelor-encounters.module';
 @NgModule({
-
-
-  declarations: [AppComponent, CreateCompetitionComponent, ShowCompetitionComponent, OneCompetitionComponent, ApplyFormComponent, WinnerApplyComponent, PublishedBundlesShowComponent],
-
+  declarations: [
+    AppComponent,
+    CreateCompetitionComponent,
+    ShowCompetitionComponent,
+    OneCompetitionComponent,
+    ApplyFormComponent,
+    WinnerApplyComponent,
+    PublishedBundlesShowComponent,
+  ],
 
   imports: [
     BrowserModule,
@@ -58,6 +64,7 @@ import { VisualGalleryModule } from './feature-modules/visual-gallery/visual-gal
     HttpClientModule,
     MarkdownModule.forRoot(),
     ClubModule,
+    BachelorEncountersModule,
     ReactiveFormsModule,
     FormsModule,
     AdministrationModule,
@@ -72,8 +79,8 @@ import { VisualGalleryModule } from './feature-modules/visual-gallery/visual-gal
     EncountersModule,
     VisualGalleryModule,
     MatFormFieldModule, // Import MatFormFieldModule
-    MatInputModule,     // Import MatInputModule
-    MatButtonModule     // Import MatButtonModule
+    MatInputModule, // Import MatInputModule
+    MatButtonModule, // Import MatButtonModule
   ],
   providers: [
     {

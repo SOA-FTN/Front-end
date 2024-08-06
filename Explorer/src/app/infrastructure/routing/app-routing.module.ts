@@ -11,7 +11,6 @@ import { TourReviewsShowComponent } from 'src/app/feature-modules/marketplace/to
 import { AccountComponent } from 'src/app/feature-modules/administration/account/account.component';
 import { GuideReviewComponent } from 'src/app/feature-modules/marketplace/guide-review/guide-review.component';
 import { PreferencesComponent } from '../../feature-modules/marketplace/preferences/preferences.component';
-
 import { TourPointsComponent } from 'src/app/feature-modules/tour-authoring/tour-points/tour-points.component';
 import { TourComponent } from 'src/app/feature-modules/tour-authoring/tour/tour.component';
 import { TourObjectComponent } from 'src/app/feature-modules/tour-authoring/tour-object/tour-object.component';
@@ -87,6 +86,7 @@ import { OneCompetitionComponent } from 'src/app/feature-modules/competition/one
 import { WinnerApplyComponent } from 'src/app/feature-modules/competition/winner-apply/winner-apply.component';
 import { ApplyFormComponent } from 'src/app/feature-modules/competition/apply-form/apply-form.component';
 import { FollowingProfileComponent } from 'src/app/feature-modules/administration/following-profile/following-profile.component';
+import { EncountersPreviewComponent } from 'src/app/feature-modules/bachelor-encounters/encounters-preview/encounters-preview.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -96,6 +96,7 @@ const routes: Routes = [
   { path: 'requestReset', component: RequestComponent },
   { path: 'reset', component: ResetComponent },
   { path: 'confirm', component: ConfirmationComponent },
+  { path: 'encounters-preview', component: EncountersPreviewComponent },
   //{path: 'equipment', component: EquipmentComponent, canActivate: [AuthGuard]}, khm, khm..
   {
     path: 'guideReview',
