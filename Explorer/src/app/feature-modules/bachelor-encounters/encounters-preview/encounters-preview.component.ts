@@ -14,9 +14,12 @@ export class EncountersPreviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.encountersService.getAllEncounters().subscribe({
-      next: (data: BachelorEncounter[]) => {
-        this.allEncounters = data;
+      next: (data: any) => {
+        this.allEncounters = data.encounters;
         console.log(this.allEncounters);
+      },
+      error: (err) => {
+        console.error('Error fetching encounters:', err);
       },
     });
   }

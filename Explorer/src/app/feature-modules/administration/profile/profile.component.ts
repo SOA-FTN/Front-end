@@ -27,7 +27,6 @@ export class ProfileComponent implements OnInit {
   followedUsers: UserFollowerDto[] = [];
   isFollowingBool: boolean;
 
-
   constructor(
     private tokenStorage: TokenStorage,
     private service: AdministrationService,
@@ -49,9 +48,10 @@ export class ProfileComponent implements OnInit {
       if (user.username) {
         this.user = user;
         this.username = user.username;
-        console.log("username: ", user.username)
+        console.log('username: ', user.username);
         this.service.getProfile(user.id).subscribe({
           next: (data: Profile) => {
+            console.log(data);
             this.userProfile.id = data.id;
             this.userProfile.userId = data.userId;
             this.userProfile.email = data.email;
@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
             this.userProfile.profileImage = data.profileImage;
             this.userProfile.bio = data.bio;
             this.userProfile.quote = data.quote;
-            this.userProfile.balance = data.balance;
+            //this.userProfile.balance = data.balance;
             //alert(JSON.stringify(this.userProfile));
           },
           error: (err: any) => {
@@ -111,65 +111,62 @@ export class ProfileComponent implements OnInit {
     this.shouldRenderMessages = true;
   }
 
-  loadUsersExcept(){
-    this.service.getUsersExcept(this.username)
-      .subscribe(
-        (users: string[]) => {
-          this.allUsers = users;
-          console.log('Users except', this.username, ':', this.allUsers);
-        },
-        (error) => {
-          console.error('There was an error!', error);
-        }
-      );
+  loadUsersExcept() {
+    this.service.getUsersExcept(this.username).subscribe(
+      (users: string[]) => {
+        this.allUsers = users;
+        console.log('Users except', this.username, ':', this.allUsers);
+      },
+      (error) => {
+        console.error('There was an error!', error);
+      }
+    );
   }
 
-  loadFollowedUsers(){
-    this.service.getFollowedUsers(this.username)
-      .subscribe(
-        (users: UserFollowerDto[]) => {
-          this.followedUsers = users;
-          console.log(this.followedUsers[0]);
-          console.log('Users except', this.username, ':', this.followedUsers);
-        },
-        (error) => {
-          console.error('There was an error!', error);
-        }
-      );
+  loadFollowedUsers() {
+    this.service.getFollowedUsers(this.username).subscribe(
+      (users: UserFollowerDto[]) => {
+        this.followedUsers = users;
+        console.log(this.followedUsers[0]);
+        console.log('Users except', this.username, ':', this.followedUsers);
+      },
+      (error) => {
+        console.error('There was an error!', error);
+      }
+    );
   }
 
-  loadAllUsernames(){
-    this.service.getAllUsernames()
-      .subscribe(
-        (users: string[]) => {
-          this.allUsers = users;
-          console.log(this.allUsers[0]);
-          console.log('Users except', this.allUsers);
-          this.deleteUsername();
-        },
-        (error) => {
-          console.error('There was an error!', error);
-        }
-      );
+  loadAllUsernames() {
+    this.service.getAllUsernames().subscribe(
+      (users: string[]) => {
+        this.allUsers = users;
+        console.log(this.allUsers[0]);
+        console.log('Users except', this.allUsers);
+        this.deleteUsername();
+      },
+      (error) => {
+        console.error('There was an error!', error);
+      }
+    );
   }
 
   usernameFollowStatusMap: Map<string, boolean> = new Map<string, boolean>();
 
   checkedUsernames: string[] = []; // Array to store usernames for which follow status has been checked
 
-  follow(username: string){
+  follow(username: string) {
     this.callFollowPerson(username);
   }
-  
+
   async callFollowPerson(username: string) {
     const relationship: FollowingRelationshipDto = {
       followerUsername: this.username,
-      followedUsername: username
+      followedUsername: username,
     };
 
     try {
       const response = await this.service.followPerson(relationship);
-      console.log("zapracivanje jebeno", response); // Log the response
+      console.log('zapracivanje jebeno', response); // Log the response
       this.loadAllUsernames();
       this.loadFollowedUsers();
       this.getRecommendations(this.username);
@@ -183,45 +180,48 @@ export class ProfileComponent implements OnInit {
     if (index !== -1) {
       this.allUsers.splice(index, 1);
     }
-  
+
     // Check if this.username is following each username in allUsers
-    this.allUsers.forEach(username => {
-      this.service.isFollowing(this.username, username)
-        .subscribe(
-          isFollowing => {
-            console.log(`${this.username} is following ${username}:`, isFollowing);
-            if (isFollowing) {
-              // If this.username is following username, remove it from allUsers
-              const idx = this.allUsers.indexOf(username);
-              if (idx !== -1) {
-                this.allUsers.splice(idx, 1);
-              }
+    this.allUsers.forEach((username) => {
+      this.service.isFollowing(this.username, username).subscribe(
+        (isFollowing) => {
+          console.log(
+            `${this.username} is following ${username}:`,
+            isFollowing
+          );
+          if (isFollowing) {
+            // If this.username is following username, remove it from allUsers
+            const idx = this.allUsers.indexOf(username);
+            if (idx !== -1) {
+              this.allUsers.splice(idx, 1);
             }
-          },
-          error => {
-            console.error(`Error checking if ${this.username} is following ${username}:`, error);
-            // Optionally handle errors
           }
-        );
+        },
+        (error) => {
+          console.error(
+            `Error checking if ${this.username} is following ${username}:`,
+            error
+          );
+          // Optionally handle errors
+        }
+      );
     });
   }
 
-  
-
   getRecommendations(username: string): void {
-    this.service.getUsers(username)
-      .subscribe(
-        (recommendations: string[]) => {
-          this.recommendedUsers = recommendations;
-          console.log('Recommendations:', recommendations);
-          this.deleteMeFromList();
-          
-          // Handle the recommendations data as needed
-        },
-        (error: any) => { // Explicitly specify the type of 'error' parameter
-          // Handle errors
-        }
-      );
+    this.service.getUsers(username).subscribe(
+      (recommendations: string[]) => {
+        this.recommendedUsers = recommendations;
+        console.log('Recommendations:', recommendations);
+        this.deleteMeFromList();
+
+        // Handle the recommendations data as needed
+      },
+      (error: any) => {
+        // Explicitly specify the type of 'error' parameter
+        // Handle errors
+      }
+    );
   }
 
   deleteMeFromList(): void {

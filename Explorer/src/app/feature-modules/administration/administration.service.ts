@@ -64,11 +64,12 @@ export class AdministrationService {
   }
 
   getProfile(id: number): Observable<Profile> {
+    console.log(id);
     return this.http
-      .get<{ person: Profile }>(
-        'http://localhost:8000/api/stakeholders/getProfile/' + id
+      .get<Profile>(
+        `http://localhost:8000/api/stakeholders/getProfile?ID=${id}`
       )
-      .pipe(map((response) => response.person));
+      .pipe(map((response) => response));
   }
 
   updateProfile(profile: Profile, id: number): Observable<Profile> {

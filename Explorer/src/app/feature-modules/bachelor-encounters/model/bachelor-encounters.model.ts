@@ -1,11 +1,11 @@
 export interface BachelorEncounter {
   ID: string;
-  name: string;
-  description: string;
-  xp_points: string;
-  status: string;
-  type: string;
-  latitude: string;
-  longitude: string;
-  should_be_approved: boolean;
+  Name: string;
+  Description: string;
+  Xp_Points: string;
+  Status: string;
+  Type: string;
+  Latitude: string;
+  Longitude: string;
+  Should_be_approved: boolean;
 }

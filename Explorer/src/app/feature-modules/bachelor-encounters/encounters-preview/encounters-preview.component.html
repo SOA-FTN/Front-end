@@ -1,1 +1,11 @@
-<p>encounters-preview works!</p>
+<div class="container">
+  <h1 class="title">All Encounters</h1>
+  <div class="encounters-grid">
+    <div class="encounter-card" *ngFor="let encounter of allEncounters">
+      <h2 class="encounter-name">{{ encounter.Name }}</h2>
+      <p class="encounter-type">Type:{{ encounter.Type }}</p>
+      <p class="encounter-status">Status:{{ encounter.Status }}</p>
+      <p class="encounter-xp">XP Points: {{ encounter.Xp_Points }}</p>
+    </div>
+  </div>
+</div>
