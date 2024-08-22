@@ -31,3 +31,13 @@ export enum DifficultyLevel {
   Medium = 'Moderate',
   Hard = 'Difficult',
 }
+
+export interface BachelorTour {
+  name: string;
+  description: string;
+  price: number;
+  status: Status;
+  difficultyLevel: DifficultyLevel;
+  tStatus: string;
+  userId: number;
+}

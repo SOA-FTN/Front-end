@@ -1,0 +1,33 @@
+<div class="shopping-cart-container" *ngIf="shoppingCart">
+  <h2>Your Shopping Cart</h2>
+
+  <div
+    class="cart-items"
+    *ngIf="shoppingCart.cart_items.length > 0; else emptyCart"
+  >
+    <div class="cart-item" *ngFor="let item of shoppingCart.cart_items">
+      <div class="item-details">
+        <p class="item-name">{{ item.tour_name }}</p>
+        <p class="item-price">Price: {{ item.tour_price | currency }}</p>
+      </div>
+      <button class="remove-btn" (click)="removeFromCart(item)">Remove</button>
+    </div>
+  </div>
+
+  <ng-template #emptyCart>
+    <p>Your shopping cart is empty.</p>
+  </ng-template>
+
+  <div class="cart-summary">
+    <p class="total-price">
+      Total Price: {{ shoppingCart.total_price | currency }}
+    </p>
+    <button
+      class="checkout-btn"
+      [disabled]="shoppingCart.cart_items.length === 0"
+      (click)="checkout()"
+    >
+      Proceed to Checkout
+    </button>
+  </div>
+</div>

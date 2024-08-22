@@ -8,4 +8,8 @@ export interface BachelorEncounter {
   Latitude: string;
   Longitude: string;
   Should_be_approved: boolean;
+  Image: string;
+  TourId: number;
+  AuthorId: number;
+  TourName: string;
 }

@@ -18,8 +18,7 @@ import { MarketplaceService } from 'src/app/feature-modules/marketplace/marketpl
 import { EncountersService } from 'src/app/feature-modules/encounters/encounters.service';
 import { PagedResults } from '../model/paged-results.model';
 import { Encounter } from 'src/app/feature-modules/encounters/model/encounter.model';
-import {MatSnackBar} from "@angular/material/snack-bar";
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-map',
@@ -39,7 +38,7 @@ export class MapComponent implements AfterViewInit {
   tourStartPointSubscription: Subscription | undefined = undefined;
   viewForTourisSubs: Subscription | undefined = undefined;
   routeWaypoints: any[] = [];
-  @Input() tourIdEx: number=0;
+  @Input() tourIdEx: number = 0;
   tourIdexS: string;
   routeControl: any;
 
@@ -52,7 +51,7 @@ export class MapComponent implements AfterViewInit {
     private administrationService: AdministrationService,
     private tokenStorage: TokenStorage,
     private encounterService: EncountersService,
-    private snackBar:MatSnackBar
+    private snackBar: MatSnackBar
   ) {}
 
   private initMap(): void {
@@ -79,38 +78,34 @@ export class MapComponent implements AfterViewInit {
       if (path.includes('activeTour')) {
         this.setExecuteRoute();
         this.setPosition();
-      }
-      else if(path.includes('user-position')){
+      } else if (path.includes('user-position')) {
         this.setPosition();
-      }
-      else if(path.includes('tourMapFirstPoint')){
+      } else if (path.includes('tourMapFirstPoint')) {
         this.setFirstPoint();
-      }
-      else if (path.includes('tourSearch')) {
+      } else if (path.includes('tourSearch')) {
         //
-      }
-      else if (path.includes('encounters')){
+      } else if (path.includes('encounters')) {
         //
-      }
-      else if(path.includes('activeEncounter')){
+      } else if (path.includes('activeEncounter')) {
         this.setEncounterPosition();
-      }
-      else if(path.includes('encounterMap')){
+      } else if (path.includes('encounterMap')) {
         //this.setPosition();
         this.setEncounterPosition();
-      }
-      else{
+      } else {
         this.setRoute();
         this.setObjects();
       }
-    })
-
+    });
 
     /////////////////
     this.service.getRadius().subscribe((radius) => {
       this.service.coordinate$.subscribe((coordinates) => {
         this.map.eachLayer((layer: any) => {
-          if (layer instanceof L.Marker || layer instanceof L.Circle || layer instanceof L.Tooltip) {
+          if (
+            layer instanceof L.Marker ||
+            layer instanceof L.Circle ||
+            layer instanceof L.Tooltip
+          ) {
             this.map.removeLayer(layer);
           }
         });
@@ -123,14 +118,17 @@ export class MapComponent implements AfterViewInit {
         const tours = this.service.getArrayCoordinates();
         this.service.getArrayCoordinates().subscribe((tours) => {
           tours.forEach((t) => {
-            if(t.tourPoints[0].latitude && t.tourPoints[0].longitude) {
+            if (t.tourPoints[0].latitude && t.tourPoints[0].longitude) {
               const tooltip = L.tooltip({
                 permanent: true,
-                direction: 'top'
+                direction: 'top',
               })
-              .setLatLng([t.tourPoints[0].latitude, t.tourPoints[0].longitude])
-              .setContent(t.name)
-              .addTo(this.map);
+                .setLatLng([
+                  t.tourPoints[0].latitude,
+                  t.tourPoints[0].longitude,
+                ])
+                .setContent(t.name)
+                .addTo(this.map);
             }
           });
         });
@@ -160,43 +158,32 @@ export class MapComponent implements AfterViewInit {
       this.transportTypechanged.unsubscribe();
     }
 
-
     this.route.url.subscribe((segments) => {
       const path = segments.map((segment) => segment.path).join('/');
 
       if (path.includes('tourMapFirstPoint')) {
-        this.tourIdSubscriptionFP = this.marketplaceService.currentTourId.subscribe(
-          (tourId) => {
-            console.log(tourId)
+        this.tourIdSubscriptionFP =
+          this.marketplaceService.currentTourId.subscribe((tourId) => {
+            console.log(tourId);
             this.tourId = tourId.split('|#$%@$%|')[0];
             if (tourId.split('|#$%@$%|').length > 1) {
               if (tourId.split('|#$%@$%|')[1] === 'same') {
                 this.ngAfterViewInit();
               }
             }
-
-          }
-        );
+          });
       } else {
-
-
-        this.tourIdSubscription = this.tourAuthoringService.currentTourId.subscribe(
-          (tourId) => {
+        this.tourIdSubscription =
+          this.tourAuthoringService.currentTourId.subscribe((tourId) => {
             this.tourId = tourId.split('|#$%@$%|')[0];
             if (tourId.split('|#$%@$%|').length > 1) {
               if (tourId.split('|#$%@$%|')[1] === 'same') {
                 this.ngAfterViewInit();
               }
             }
-          }
-        );
+          });
       }
     });
-
-
-
-
-
 
     this.tourPointAddSubscription =
       this.tourAuthoringService.tourPointAdded.subscribe(() => {
@@ -206,16 +193,14 @@ export class MapComponent implements AfterViewInit {
         this.setRoute();
       });
 
-      this.viewForTourisSubs = this.marketplaceService.viewForTourist.subscribe(() => {
+    this.viewForTourisSubs = this.marketplaceService.viewForTourist.subscribe(
+      () => {
         if (this.routeControl) {
           this.routeControl.remove();
-
         }
         this.setFirstPoint();
-      });
-
-
-
+      }
+    );
 
     this.transportTypechanged =
       this.tourAuthoringService.transportTypeChanged.subscribe(() => {
@@ -226,15 +211,13 @@ export class MapComponent implements AfterViewInit {
       });
   }
 
-
-
   registerOnClick(): void {
     this.map.on('click', (e: any) => {
       const coord = e.latlng;
       const lat = coord.lat;
       const lng = coord.lng;
       this.service.setCoordinates({ lat, lng });
-
+      /*
       if (this.saveOnlyLatest) {
         // ovaj if radi za tour search
         this.map.eachLayer((layer: any) => {
@@ -242,7 +225,8 @@ export class MapComponent implements AfterViewInit {
             this.map.removeLayer(layer);
           }
         });
-      }
+      }'
+      */
 
       this.service.reverseSearch(lat, lng).subscribe((res) => {
         console.log(res.display_name);
@@ -251,9 +235,9 @@ export class MapComponent implements AfterViewInit {
         'You clicked the map at latitude: ' + lat + ' and longitude: ' + lng
       );
 
-      const mp = new L.Marker([lat, lng]).addTo(this.map);
+      //const mp = new L.Marker([lat, lng]).addTo(this.map);
 
-      if (!this.saveOnlyLatest) this.openSnackBar("Location set."); //ovo samo sklanja za tur src post mi smeta
+      if (!this.saveOnlyLatest) this.openSnackBar('Location set.'); //ovo samo sklanja za tur src post mi smeta
     });
   }
 
@@ -292,7 +276,7 @@ export class MapComponent implements AfterViewInit {
       .getTourPointsByTourId(parseInt(this.tourId))
       .subscribe((tourData: any) => {
         const tourPoints = tourData;
-        console.log("tourpointi: ",tourData.results)
+        console.log('tourpointi: ', tourData.results);
 
         const waypoints = tourPoints.map((point: any) =>
           L.latLng(point.latitude, point.longitude)
@@ -350,13 +334,10 @@ export class MapComponent implements AfterViewInit {
     }
   }
 
-
-
-
-  setPosition():void {
+  setPosition(): void {
     let specialTourIcon = L.icon({
       iconUrl:
-      'https://www.wanderfinder.com/wp-content/uploads/leaflet-maps-marker-icons/MapMarker_Marker_Inside_Azure.png',
+        'https://www.wanderfinder.com/wp-content/uploads/leaflet-maps-marker-icons/MapMarker_Marker_Inside_Azure.png',
       iconAnchor: [12, 41],
     });
 
@@ -364,7 +345,7 @@ export class MapComponent implements AfterViewInit {
       .getByUserId(this.tokenStorage.getUserId(), 0, 0)
       .subscribe(
         (result) => {
-          L.marker([result.latitude, result.longitude],{
+          L.marker([result.latitude, result.longitude], {
             icon: specialTourIcon,
           }).addTo(this.map);
 
@@ -415,7 +396,7 @@ export class MapComponent implements AfterViewInit {
     }
   }
 
-  setEncounterPosition():void{
+  setEncounterPosition(): void {
     let specialTourIcon = L.icon({
       iconUrl:
         'https://www.wanderfinder.com/wp-content/uploads/leaflet-maps-marker-icons/MapMarker_Marker_Outside_Green.png',
@@ -423,7 +404,7 @@ export class MapComponent implements AfterViewInit {
     });
 
     this.encounterService.getAllEncounters().subscribe(
-      (encounters:Encounter[]) => {
+      (encounters: Encounter[]) => {
         if (Array.isArray(encounters)) {
           this.objects = encounters;
           this.objects.forEach((object) => {
@@ -442,7 +423,6 @@ export class MapComponent implements AfterViewInit {
     );
   }
 
-  
   private openSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 30000,

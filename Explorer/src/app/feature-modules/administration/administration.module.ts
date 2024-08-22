@@ -18,6 +18,7 @@ import { UserStatisticsComponent } from './user-statistics/user-statistics.compo
 import { FollowerMessagesComponent } from './follower-messages/follower-messages.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FollowingProfileComponent } from './following-profile/following-profile.component';
+import { AccountConfirmationDialogComponent } from './account/account-confirmation-dialog/account-confirmation-dialog.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { FollowingProfileComponent } from './following-profile/following-profile
     UserPositionComponent,
     UserStatisticsComponent,
     FollowerMessagesComponent,
-    FollowingProfileComponent
+    FollowingProfileComponent,
+    AccountConfirmationDialogComponent
   ],
   imports: [
     CommonModule,

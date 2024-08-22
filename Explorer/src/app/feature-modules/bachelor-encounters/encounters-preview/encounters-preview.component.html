@@ -1,11 +1,43 @@
 <div class="container">
-  <h1 class="title">All Encounters</h1>
+  <h1 class="title">Encounters</h1>
+  <button mat-raised-button color="primary" (click)="navigateToCreation()">
+    Create New Encounter
+  </button>
   <div class="encounters-grid">
-    <div class="encounter-card" *ngFor="let encounter of allEncounters">
-      <h2 class="encounter-name">{{ encounter.Name }}</h2>
-      <p class="encounter-type">Type:{{ encounter.Type }}</p>
-      <p class="encounter-status">Status:{{ encounter.Status }}</p>
-      <p class="encounter-xp">XP Points: {{ encounter.Xp_Points }}</p>
+    <div class="card-wrapper">
+      <div
+        class="encounter-card"
+        *ngFor="let encounter of allEncounters"
+        (click)="navigateToEncounter(encounter.ID)"
+      >
+        <div class="image-content">
+          <span class="overlay">
+            <p class="tag">{{ encounter.Type }}</p>
+          </span>
+
+          <div class="card-image">
+            <img
+              *ngIf="encounter.Image"
+              [src]="'data:image/png;base64,' + encounter.Image"
+              alt="{{ encounter.Name }}"
+              class="img"
+            />
+          </div>
+        </div>
+
+        <div class="card-content">
+          <h2 class="name">{{ encounter.Name }}</h2>
+          <div class="desc-container">
+            <p class="description">
+              {{ encounter.Description }}
+            </p>
+          </div>
+          <div class="card-footer">
+            <p class="encounter-xp">XP Points: {{ encounter.Xp_Points }}</p>
+            <p class="encounter-status">Status: {{ encounter.Status }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

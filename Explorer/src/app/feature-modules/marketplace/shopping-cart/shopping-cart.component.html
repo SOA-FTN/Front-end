@@ -2,8 +2,14 @@
   <div class="hdr">
     <h3>Shopping Cart</h3>
     <div class="balance-container">
-      <p class="balance" *ngIf="shouldShowOriginal; else convertedBalance">Balance: {{ profile.balance }}</p>
-      <ng-template #convertedBalance><p class="balance">Balance: {{ convertedCurrency(profile.balance) }}</p></ng-template>
+      <p class="balance" *ngIf="shouldShowOriginal; else convertedBalance">
+        Balance: {{ profile.balance }}
+      </p>
+      <ng-template #convertedBalance
+        ><p class="balance">
+          Balance: {{ convertedCurrency(profile.balance) }}
+        </p></ng-template
+      >
     </div>
   </div>
   <div *ngIf="shoppingCart.orderItems.length > 0">
@@ -11,25 +17,55 @@
       <li *ngFor="let orderItem of shoppingCart.orderItems">
         <div class="order-item">
           <p class="tour-name">{{ orderItem.tourName }}</p>
-          <p class="price" *ngIf="shouldShowOriginal; else convertedPrice">Price: {{ orderItem.price }}</p>
-          <ng-template #convertedPrice><p class="price">Price: {{ convertedCurrency(orderItem.price) }}</p></ng-template>
+          <p class="price" *ngIf="shouldShowOriginal; else convertedPrice">
+            Price: {{ orderItem.price }}
+          </p>
+          <ng-template #convertedPrice
+            ><p class="price">
+              Price: {{ convertedCurrency(orderItem.price) }}
+            </p></ng-template
+          >
           <div class="coupon-container">
             <input #couponInput type="text" placeholder="Enter coupon code" />
-            <button class="coupon-button" (click)="checkCoupon(couponInput.value, orderItem.idTour)">OK</button>
+            <button
+              class="coupon-button"
+              (click)="checkCoupon(couponInput.value, orderItem.idTour)"
+            >
+              OK
+            </button>
           </div>
-          <button class="remove-button" (click)="removeOrderItem(shoppingCart.id, orderItem.idTour)">Remove</button>
+          <button
+            class="remove-button"
+            (click)="removeOrderItem(shoppingCart.id, orderItem.idTour)"
+          >
+            Remove
+          </button>
         </div>
       </li>
     </ul>
-    
+
     <div class="total-purchase-container">
-      <p class="total" *ngIf="shouldShowOriginal; else convertedPrice">Total: {{ shoppingCart.total }}</p>
-      <ng-template #convertedPrice><p class="total">Total: {{ convertedCurrency(shoppingCart.total) }}</p></ng-template>
-      <button class="purchase-button" (click)="purchase(shoppingCart.id ?? 0)">Purchase</button>
+      <p class="total" *ngIf="shouldShowOriginal; else convertedPrice">
+        Total: {{ shoppingCart.total }}
+      </p>
+      <ng-template #convertedPrice
+        ><p class="total">
+          Total: {{ convertedCurrency(shoppingCart.total) }}
+        </p></ng-template
+      >
+      <button class="purchase-button" (click)="purchase(shoppingCart.id ?? 0)">
+        Purchase
+      </button>
     </div>
     <div>
-      <mat-select class="currency" [(ngModel)]="selectedCurrency" (ngModelChange)="onCurrencyChange($event)">
-        <mat-option *ngFor="let cr of currency"  value={{cr}}>{{cr}}</mat-option>
+      <mat-select
+        class="currency"
+        [(ngModel)]="selectedCurrency"
+        (ngModelChange)="onCurrencyChange($event)"
+      >
+        <mat-option *ngFor="let cr of currency" value="{{ cr }}">{{
+          cr
+        }}</mat-option>
       </mat-select>
     </div>
   </div>

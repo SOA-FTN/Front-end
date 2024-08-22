@@ -6,11 +6,9 @@ import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { environment } from 'src/env/environment';
 import { Preferences } from './model/preferences.model';
 
-
 import { TourReview } from './model/tourReview.model';
 import { Tour } from '../tour-authoring/tour/model/tour.model';
 import { ReviewTour } from './tours-show/ReviewTour.model';
-
 
 import { TouristEquipment } from './model/touristEquipment.model';
 import { NonNullAssert, Token } from '@angular/compiler';
@@ -29,19 +27,20 @@ import { TourPoint } from '../tour-authoring/model/tourPoints.model';
 import { ShoppingCart } from './model/shopping-cart.model';
 import { TourSale } from './model/tour-sale.model';
 import { Coupon } from './model/coupon.model';
+import {
+  BachelorTour,
+  BachelorTourCreation,
+} from '../bachelor-tours/model/bachelor-tours';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MarketplaceService {
-  constructor(private http: HttpClient) {
-    
-  }
+  constructor(private http: HttpClient) {}
   private tourIdSource = new BehaviorSubject<string>('');
   currentTourId = this.tourIdSource.asObservable();
 
   viewForTourist = new EventEmitter<void>();
-
 
   getGuideReviews(): Observable<PagedResults<GuideReview>> {
     return this.http.get<PagedResults<GuideReview>>(
@@ -49,16 +48,13 @@ export class MarketplaceService {
     );
   }
 
-
   getTourStartPoint(tourId: number): Observable<TourPoint> {
-    console.log("rrrrrrrrrrrrrrrrrrrrrrrr")
+    console.log('rrrrrrrrrrrrrrrrrrrrrrrr');
 
     return this.http.get<TourPoint>(
-      environment.apiHost + 'marketplace/'+tourId
+      environment.apiHost + 'marketplace/' + tourId
     );
   }
-  
-  
 
   addGuideReview(guideReview: GuideReview): Observable<GuideReview> {
     return this.http.post<GuideReview>(
@@ -315,13 +311,12 @@ export class MarketplaceService {
     );
   }
 
-  getToursByFilters(level: string, price: number): Observable<PagedResults<Tour>>{
+  getToursByFilters(
+    level: string,
+    price: number
+  ): Observable<PagedResults<Tour>> {
     return this.http.get<PagedResults<Tour>>(
-      environment.apiHost +
-        'administration/tour/filter/' + 
-        level +
-        '/' +
-        price
+      environment.apiHost + 'administration/tour/filter/' + level + '/' + price
     );
   }
 
@@ -338,29 +333,48 @@ export class MarketplaceService {
   }
 
   getAllTokensByTourist(touristId: number): Observable<TourPurchaseToken[]> {
-    return this.http.get<TourPurchaseToken[]>(environment.apiHost + 'tokens/' + touristId)
+    return this.http.get<TourPurchaseToken[]>(
+      environment.apiHost + 'tokens/' + touristId
+    );
   }
 
   getPublishedTours(): Observable<PagedResults<Tour>> {
     return this.http.get<PagedResults<Tour>>(
-      'https://localhost:44333/api/marketplace'
+      'http://localhost:8000/api/tours/getPublishedTours'
     );
   }
-  getSelectedTour(id: number): Observable<Tour> {
-    return this.http.get<Tour>('https://localhost:44333/api/marketplace/selectedTour/' + id);
-  } 
 
-  getShoppingCart(touristId: number): Observable<ShoppingCart>{
-    return this.http.get<ShoppingCart>('https://localhost:44333/api/shoppingcart/'+touristId);
+  getPublishedGRPCTours(): Observable<BachelorTourCreation[]> {
+    return this.http
+      .get<{ tours: BachelorTourCreation[] }>(
+        'http://localhost:8000/api/tours/getPublishedTours'
+      )
+      .pipe(
+        map((response) => response.tours) // Ovde direktno izvučeš `tours` iz odgovora
+      );
+  }
+  getSelectedTour(id: number): Observable<Tour> {
+    return this.http.get<Tour>(
+      'https://localhost:44333/api/marketplace/selectedTour/' + id
+    );
+  }
+
+  getShoppingCart(touristId: number): Observable<ShoppingCart> {
+    return this.http.get<ShoppingCart>(
+      'https://localhost:44333/api/shoppingcart/' + touristId
+    );
   }
 
   removeOrderItem(cartId: number, tourId: number): Observable<ShoppingCart> {
     const url = `https://localhost:44333/api/shoppingcart/${cartId}/${tourId}`;
     return this.http.put<ShoppingCart>(url, null);
   }
-  
-  addOrderItem(shoppingCart: ShoppingCart): Observable<ShoppingCart>{
-    return this.http.put<ShoppingCart>('https://localhost:44333/api/marketplace/buy', shoppingCart);
+
+  addOrderItem(shoppingCart: ShoppingCart): Observable<ShoppingCart> {
+    return this.http.put<ShoppingCart>(
+      'https://localhost:44333/api/marketplace/buy',
+      shoppingCart
+    );
   }
 
   purchase(cartId: number): Observable<ShoppingCart> {
@@ -373,7 +387,6 @@ export class MarketplaceService {
     );
   }
 
-
   getTourSales(id: number): Observable<PagedResults<TourSale>> {
     return this.http.get<PagedResults<TourSale>>(
       environment.apiHost + 'administration/tourSale/' + id
@@ -384,7 +397,7 @@ export class MarketplaceService {
     return this.http.post<TourSale>(
       environment.apiHost + 'administration/tourSale',
       ts
-    ); 
+    );
   }
 
   updateTourSale(ts: TourSale): Observable<TourSale> {
@@ -397,19 +410,19 @@ export class MarketplaceService {
   deleteTourSale(ts: TourSale): Observable<TourSale> {
     return this.http.delete<TourSale>(
       environment.apiHost + 'administration/tourSale/' + ts.id
-    ); 
+    );
   }
 
   getPubToursForAut(authorId: number): Observable<PagedResults<Tour>> {
     return this.http.get<PagedResults<Tour>>(
       environment.apiHost + 'administration/tour/sales/' + authorId
-    ); 
+    );
   }
 
   getTourDiscount(id: number): Observable<number> {
     return this.http.get<number>(
       environment.apiHost + 'administration/tourSale/tour/' + id
-    ); 
+    );
   }
   /*getCouponByCodeAndTourId(code: string, tourId: number): Observable<Coupon> {
     const params = { tourId: tourId.toString(), code: code };
@@ -418,23 +431,35 @@ export class MarketplaceService {
 
   getCouponByCode(code: string): Observable<Coupon> {
     const params = { code: code };
-    return this.http.get<Coupon>('https://localhost:44333/api/authoring/coupon/getByCode', {params: params});
+    return this.http.get<Coupon>(
+      'https://localhost:44333/api/authoring/coupon/getByCode',
+      { params: params }
+    );
   }
 
   updateShoppingCart(cart: ShoppingCart): Observable<ShoppingCart> {
-    return this.http.put<ShoppingCart>(environment.apiHost + 'shoppingcart/update', cart)
+    return this.http.put<ShoppingCart>(
+      environment.apiHost + 'shoppingcart/update',
+      cart
+    );
   }
 
   deleteCoupon(id: number): any {
-    return this.http.delete<any>(environment.apiHost + 'authoring/coupon/' + id.toString())
+    return this.http.delete<any>(
+      environment.apiHost + 'authoring/coupon/' + id.toString()
+    );
   }
 
   createCoupon(coupon: Coupon): Observable<Coupon> {
-    return this.http.post<Coupon>(environment.apiHost + 'authoring/coupon', coupon)
+    return this.http.post<Coupon>(
+      environment.apiHost + 'authoring/coupon',
+      coupon
+    );
   }
 
   getCouponsByAuthor(authorId: number): Observable<Coupon[]> {
-    return this.http.get<Coupon[]>(environment.apiHost + 'authoring/coupon/' + authorId.toString())
+    return this.http.get<Coupon[]>(
+      environment.apiHost + 'authoring/coupon/' + authorId.toString()
+    );
   }
-
 }

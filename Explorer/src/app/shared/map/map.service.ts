@@ -109,4 +109,45 @@ export class MapService {
     this.isMapInitialized = true;
     return this.map;
   }
+
+  addMarker(lat: number, lng: number, color: string = 'blue'): L.Marker {
+    console.log('AAA');
+    const icon = L.icon({
+      iconUrl:
+        color === 'blue'
+          ? 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png'
+          : 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png', // Putanja do crvene ikone
+      iconSize: [25, 41], // Ista veličina kao plavi marker
+      iconAnchor: [12, 41],
+    });
+
+    const marker = L.marker([lat, lng], { icon }).addTo(this.map!);
+    return marker;
+  }
+
+  removeMarker(marker: L.Marker): void {
+    console.log(marker);
+    console.log('WTF');
+    this.map?.removeLayer(marker);
+  }
+
+  changeMarkerColor(marker: L.Marker, color: string): void {
+    const icon = L.icon({
+      iconUrl:
+        color === 'red'
+          ? 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'
+          : 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
+      iconSize: [25, 41], // Ista veličina kao plavi marker
+      iconAnchor: [12, 41],
+    });
+
+    marker.setIcon(icon);
+  }
+
+  drawPath(pathPoints: L.LatLng[]): void {
+    L.Routing.control({
+      waypoints: pathPoints,
+      routeWhileDragging: true,
+    }).addTo(this.map);
+  }
 }

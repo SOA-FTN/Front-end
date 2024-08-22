@@ -76,7 +76,7 @@ export class ProfileComponent implements OnInit {
       this.isEditMode = !this.isEditMode;
     } else {
       this.service
-        .updateProfile(this.userProfile, this.userProfile.userId)
+        .updateProfile(this.userProfile, this.userProfile.id)
         .subscribe({
           next: (data: Profile) => {
             this.isEditMode = !this.isEditMode;

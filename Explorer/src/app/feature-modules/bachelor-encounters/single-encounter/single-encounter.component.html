@@ -1,0 +1,29 @@
+<div class="single-encounter-container" *ngIf="encounter">
+  <div class="encounter-header">
+    <img
+      *ngIf="encounter.Image"
+      [src]="'data:image/png;base64,' + encounter.Image"
+      alt="{{ encounter.Name }}"
+      class="encounter-img"
+    />
+    <h1 class="encounter-name">{{ encounter.Name }}</h1>
+  </div>
+  <div class="button-group">
+    <button mat-raised-button color="primary" (click)="navigateToUpdate()">
+      Update Encounter
+    </button>
+    <button mat-raised-button color="warn" (click)="deleteEncounter()">
+      Delete Encounter
+    </button>
+  </div>
+  <div class="encounter-details">
+    <p class="encounter-description">{{ encounter.Description }}</p>
+    <p class="encounter-type">Tour name: {{ encounter.TourName }}</p>
+    <p class="encounter-type">Type: {{ encounter.Type }}</p>
+    <p class="encounter-status">Status: {{ encounter.Status }}</p>
+    <p class="encounter-xp">XP Points: {{ encounter.Xp_Points }}</p>
+    <p class="encounter-location">
+      Location: {{ encounter.Latitude }}, {{ encounter.Longitude }}
+    </p>
+  </div>
+</div>

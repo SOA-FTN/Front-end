@@ -1,0 +1,48 @@
+<div class="body">
+  <!-- Image Slider -->
+  <div class="slide-container" *ngIf="startEndKeyPoints.length > 0">
+    <div class="slider">
+      <div class="slides">
+        <div *ngFor="let kp of startEndKeyPoints" class="slide">
+          <img
+            [src]="kp.imageUrl"
+            alt="{{ tour?.name }}"
+            class="slider-image"
+          />
+        </div>
+      </div>
+      <!-- Add To Cart Button -->
+      <button class="add-to-cart-button" (click)="addToCart()">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+
+  <!-- Tour Details -->
+  <div class="tour-details">
+    <h1 class="tour-name">{{ tour?.name }}</h1>
+    <p
+      class="difficulty"
+      [ngClass]="tour?.difficultyLevel?.toLowerCase() || ''"
+    >
+      {{ tour?.difficultyLevel }}
+    </p>
+    <p class="description">{{ tour?.description }}</p>
+  </div>
+
+  <!-- Tour Points -->
+  <div class="tour-points">
+    <h2>TOUR POINTS:</h2>
+    <div class="card-wrapper">
+      <div *ngFor="let kp of startEndKeyPoints" class="card">
+        <div class="card-content">
+          <h3 class="name">{{ kp.name }}</h3>
+          <p class="description">{{ kp.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="map-container" id="map"></div>
+</div>

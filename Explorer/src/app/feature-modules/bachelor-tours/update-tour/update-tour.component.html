@@ -1,0 +1,128 @@
+<div class="tour-creation-container">
+  <form [formGroup]="tourForm" class="tour-form">
+    <div class="form-wrap">
+      <p class="label">Update tour</p>
+
+      <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" type="text" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          formControlName="description"
+          cdkAutosizeMaxRows="5"
+        ></textarea>
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field class="half-width">
+          <mat-label>Difficulty Level</mat-label>
+          <mat-select formControlName="difficultyLevel">
+            <mat-option *ngFor="let level of difficultyLevels" [value]="level">
+              {{ level }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price" type="number" />
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+  <div class="keypoints-wrap">
+    <div class="keypoints-header">
+      <h2>KeyPoints:</h2>
+      <div class="keypoints-bubbles">
+        <!-- Prikaz dodanih keypoints balončića -->
+        <span
+          *ngFor="let keyPoint of keyPoints; let i = index"
+          class="keypoint-bubble"
+        >
+          {{ keyPoint.name }}
+          <button class="remove-keypoint-button" (click)="removeKeyPoint(i)">
+            &times;
+          </button>
+        </span>
+      </div>
+    </div>
+
+    <div class="map-and-form">
+      <div class="map-container">
+        <app-map (mapClick)="onMapClick($event)"></app-map>
+      </div>
+
+      <div class="keypoint-form">
+        <form [formGroup]="keyPointForm">
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="keyPointName" type="text" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea
+              matInput
+              formControlName="keyPointDescription"
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"
+            ></textarea>
+          </mat-form-field>
+
+          <div class="file-input-container">
+            <input
+              class="custom-file-input"
+              type="file"
+              id="image"
+              (change)="chooseImage($event)"
+            />
+          </div>
+
+          <div class="image-preview" *ngIf="imagePreview">
+            <img
+              [src]="imagePreview"
+              alt="Selected Image"
+              class="fixed-image-size"
+            />
+          </div>
+
+          <mat-form-field>
+            <mat-label>Latitude</mat-label>
+            <input matInput [value]="getMarkerLat()" type="number" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Longitude</mat-label>
+            <input matInput [value]="getMarkerLng()" type="number" />
+          </mat-form-field>
+
+          <button
+            class="button"
+            mat-raised-button
+            color="primary"
+            (click)="addKeyPoint()"
+          >
+            Add KeyPoint
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="button create-tour-button"
+    mat-raised-button
+    color="primary"
+    (click)="updateTour()"
+  >
+    Update tour
+  </button>
+</div>

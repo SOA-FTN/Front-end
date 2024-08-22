@@ -52,13 +52,13 @@ export class AdministrationService {
 
   getAccounts(): Observable<Account[]> {
     return this.http.get<Account[]>(
-      environment.apiHost + 'administration/accounts'
+      `http://localhost:8000/api/stakeholders/getAccounts`
     );
   }
 
   changeAccountStatus(account: Account): Observable<Account> {
     return this.http.put<Account>(
-      environment.apiHost + 'administration/accounts/' + account.id,
+      `http://localhost:8000/api/stakeholders/changeStatus?ID=${account.id}`,
       account
     );
   }
@@ -74,12 +74,13 @@ export class AdministrationService {
 
   updateProfile(profile: Profile, id: number): Observable<Profile> {
     console.log(profile);
+    console.log(id);
     return this.http
-      .put<{ person: Profile }>(
-        'http://localhost:8000/api/stakeholders/updateProfile',
+      .put<Profile>(
+        `http://localhost:8000/api/stakeholders/updateProfile?ID=${id}`,
         profile
       )
-      .pipe(map((response) => response.person));
+      .pipe(map((response) => response));
   }
 
   // App ratings

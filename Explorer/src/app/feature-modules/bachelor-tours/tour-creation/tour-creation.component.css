@@ -1,0 +1,141 @@
+.tour-creation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Smanjena gornja margina */
+}
+
+.tour-form {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 1px; /* Smanjen razmak ispod gornje forme */
+}
+.form-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px; /* Smanjen razmak ispod gornje forme */
+}
+
+.label {
+  font-family: "Trip";
+  font-weight: bold;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 48%;
+}
+
+.keypoints-wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 5px; /* Podignut deo ispod forme bliže */
+}
+
+.keypoints-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Manji razmak između KeyPoints i mape */
+}
+
+.keypoints-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-left: 15px;
+}
+
+.keypoint-bubble {
+  background-color: #3498db; /* Svetlo plava boja */
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-keypoint-button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.remove-keypoint-button:hover {
+  color: #ff4d4d; /* Crvena boja pri hoveru */
+}
+
+.map-and-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px; /* Povećan razmak između mape i dugmeta "Create Tour" */
+}
+
+.map-container {
+  width: 60%;
+  height: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.keypoint-form {
+  width: 35%; /* Povećavamo širinu forme */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Dodajemo razmak između polja */
+}
+
+.keypoint-form mat-form-field,
+.keypoint-form .file-input-container,
+.keypoint-form button {
+  width: 100%; /* Svi elementi unutar forme su iste širine */
+}
+
+.create-tour-button {
+  margin-top: 70px; /* Povećan razmak između forme i dugmeta */
+  align-self: center;
+  width: 50%;
+}
+.image-preview {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.fixed-image-size {
+  max-width: 300px; /* Maksimalna širina slike */
+  max-height: 200px; /* Maksimalna visina slike */
+  width: auto; /* Automatska prilagodba širine */
+  height: auto; /* Automatska prilagodba visine */
+  object-fit: cover; /* Sadržaj slike će se prekriti i suzbiti proporcionalno */
+  border-radius: 8px;
+  border: 1px solid #ccc; /* Dodajemo lagani border oko slike */
+}

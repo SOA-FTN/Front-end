@@ -87,6 +87,16 @@ import { WinnerApplyComponent } from 'src/app/feature-modules/competition/winner
 import { ApplyFormComponent } from 'src/app/feature-modules/competition/apply-form/apply-form.component';
 import { FollowingProfileComponent } from 'src/app/feature-modules/administration/following-profile/following-profile.component';
 import { EncountersPreviewComponent } from 'src/app/feature-modules/bachelor-encounters/encounters-preview/encounters-preview.component';
+import { EncountersCreationComponent } from 'src/app/feature-modules/bachelor-encounters/encounters-creation/encounters-creation.component';
+import { SingleEncounterComponent } from 'src/app/feature-modules/bachelor-encounters/single-encounter/single-encounter.component';
+import { UpdateEncounterComponent } from 'src/app/feature-modules/bachelor-encounters/update-encounter/update-encounter.component';
+import { TourCreationComponent } from 'src/app/feature-modules/bachelor-tours/tour-creation/tour-creation.component';
+import { SingleTourViewComponent } from 'src/app/feature-modules/bachelor-tours/single-tour-view/single-tour-view.component';
+import { BachelorShoppingCartComponent } from 'src/app/feature-modules/bachelor-tours/bachelor-shopping-cart/bachelor-shopping-cart.component';
+import { TourPurchasedComponent } from 'src/app/feature-modules/bachelor-tours/tour-purchased/tour-purchased.component';
+import { ToursAuthorComponent } from 'src/app/feature-modules/bachelor-tours/tours-author/tours-author.component';
+import { SinglePurchasedTourComponent } from 'src/app/feature-modules/bachelor-tours/single-purchased-tour/single-purchased-tour.component';
+import { UpdateTourComponent } from 'src/app/feature-modules/bachelor-tours/update-tour/update-tour.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -97,6 +107,16 @@ const routes: Routes = [
   { path: 'reset', component: ResetComponent },
   { path: 'confirm', component: ConfirmationComponent },
   { path: 'encounters-preview', component: EncountersPreviewComponent },
+  { path: 'encounters-creation', component: EncountersCreationComponent },
+  { path: 'single-encounter/:id', component: SingleEncounterComponent },
+  { path: 'update-encounter', component: UpdateEncounterComponent },
+  { path: 'tour-creation', component: TourCreationComponent },
+  { path: 'single-tour-overview', component: SingleTourViewComponent },
+  { path: 'bahcelor-shopping-cart', component: BachelorShoppingCartComponent },
+  { path: 'bachelor-purchased-tour', component: TourPurchasedComponent },
+  { path: 'bachelor-author-tours', component: ToursAuthorComponent },
+  { path: 'single-purchased-tour', component: SinglePurchasedTourComponent },
+  { path: 'update-tour', component: UpdateTourComponent },
   //{path: 'equipment', component: EquipmentComponent, canActivate: [AuthGuard]}, khm, khm..
   {
     path: 'guideReview',

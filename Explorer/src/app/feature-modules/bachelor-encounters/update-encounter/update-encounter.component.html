@@ -1,0 +1,108 @@
+<div class="encounter-update-container">
+  <h1 class="encounter-update-title">Update encounter</h1>
+  <form [formGroup]="encountersForm" (ngSubmit)="onSubmit()">
+    <div class="encounter-update-form">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" type="text" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>XP Points</mat-label>
+        <input matInput formControlName="xp_points" type="number" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="DRAFT">Draft</mat-option>
+          <mat-option value="PUBLISHED">Published</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="LOCATION">Location</mat-option>
+          <mat-option value="EVENT">Event</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Select Tour</mat-label>
+        <mat-select formControlName="tourName">
+          <mat-option *ngFor="let tour of tours" [value]="tour.id">
+            {{ tour.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Latitude</mat-label>
+        <input matInput formControlName="latitude" type="text" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Longitude</mat-label>
+        <input matInput formControlName="longitude" type="text" />
+      </mat-form-field>
+
+      <div class="file-input-container">
+        <input
+          class="custom-file-input"
+          [disabled]="!isEditing"
+          type="file"
+          id="image"
+          (change)="onImageSelected($event)"
+        />
+      </div>
+      <div class="image-preview">
+        <img
+          *ngIf="selectedFilePreview"
+          [src]="selectedFilePreview"
+          alt="Selected Image"
+          class="fixed-image-size"
+        />
+        <img
+          *ngIf="!selectedFilePreview && encounter?.Image"
+          [src]="'data:image/png;base64,' + encounter?.Image"
+          alt="{{ encounter?.Name }}"
+          class="fixed-image-size"
+        />
+      </div>
+    </div>
+    <div *ngIf="isEditing" class="button-group">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!encountersForm.valid"
+      >
+        Save Changes
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="cancelEdit()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+
+  <button
+    class="edit-button"
+    *ngIf="!isEditing"
+    mat-raised-button
+    color="primary"
+    (click)="toggleEditMode()"
+  >
+    Edit
+  </button>
+</div>

@@ -14,7 +14,9 @@
           <a *ngIf="user && user.role === 'tourist'" href="marketplace"
             >Marketplace</a
           >
-          <a *ngIf="user && user.role === 'tourist'" href="shoppingcart"
+          <a
+            *ngIf="user && user.role === 'tourist'"
+            href="bahcelor-shopping-cart"
             >Shopping Cart</a
           >
         </div>
@@ -33,7 +35,9 @@
           My Tours <i class="fa fa-caret-down"></i>
         </button>
         <div class="ddc">
-          <a *ngIf="user && user.role === 'tourist'" href="purchasedTours"
+          <a
+            *ngIf="user && user.role === 'tourist'"
+            href="bachelor-purchased-tour"
             >Purchased Tours</a
           >
           <a *ngIf="user && user.role === 'tourist'" href="my-ended-tours"
@@ -79,7 +83,7 @@
         class="nbutton"
         *ngIf="user && user.role === 'author'"
         raised-button
-        [routerLink]="['tour']"
+        [routerLink]="['tour-creation']"
       >
         Add Tour
       </button>
@@ -88,17 +92,17 @@
         class="nbutton"
         *ngIf="user && user.role === 'author'"
         raised-button
-        [routerLink]="['problems']"
+        [routerLink]="['bachelor-author-tours']"
       >
-        Problem Chats
+        Your tours
       </button>
       <button
         class="nbutton"
         *ngIf="user && user.role === 'author'"
         raised-button
-        [routerLink]="['tourStatistics']"
+        [routerLink]="['encounters-preview']"
       >
-        Tour statistics
+        Manage Encounters
       </button>
 
       <!--      <div *ngIf="user && user.role === 'tourist'" class="dd">-->

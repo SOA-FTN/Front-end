@@ -1,0 +1,55 @@
+<div class="tour-container">
+  <!-- Carousel for Images -->
+  <div class="image-carousel">
+    <img
+      *ngFor="let point of tourPoints"
+      [src]="point.imageUrl"
+      alt="Tour Image"
+      class="carousel-image"
+    />
+    <div class="tour-info">
+      <h1 class="tour-title">{{ tour?.name }}</h1>
+      <div
+        class="difficulty-badge"
+        [ngClass]="tour?.difficultyLevel?.toLowerCase()"
+      >
+        {{ tour?.difficultyLevel }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <h2>Description:</h2>
+  <div class="description-container">
+    <p class="description">{{ tour?.description }}</p>
+  </div>
+
+  <!-- Tour Points -->
+  <h2>Tour Points:</h2>
+  <div class="tour-points-container">
+    <div class="tour-point" *ngFor="let point of tourPoints">
+      <img [src]="point.imageUrl" alt="Tour Point Image" class="point-image" />
+      <div class="point-info">
+        <h3>{{ point.name }}</h3>
+        <p class="point-type">{{ point.type }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- Map -->
+  <div id="map" class="map-container"></div>
+  <div *ngIf="userRole === 'author'" class="action-buttons">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-custom"
+      (click)="navigateToUpdateTour()"
+    >
+      Update Tour
+    </button>
+  </div>
+  <div *ngIf="userRole === 'tourist'" class="action-buttons">
+    <button mat-raised-button color="primary" class="btn-custom">
+      Start Tour Now!
+    </button>
+  </div>
+</div>

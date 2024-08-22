@@ -1,0 +1,73 @@
+.single-encounter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 60px auto;
+  max-width: 800px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.encounter-header {
+  position: relative;
+  width: 100%;
+}
+
+.encounter-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 400px; /* Adjust as needed */
+}
+
+.encounter-name {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-size: 3em;
+  color: #fff; /* Choose a color that contrasts well with your image */
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.encounter-details {
+  padding: 20px;
+  text-align: left;
+  width: 100%; /* Full width of the container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.encounter-description {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.encounter-type,
+.encounter-status,
+.encounter-xp,
+.encounter-location {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+button {
+  padding: 10px 20px;
+}
+
+@media (min-width: 768px) {
+  .single-encounter-container {
+    align-items: flex-start; /* Align items to the start for larger screens */
+  }
+}

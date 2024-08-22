@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TourService } from '../tour.service';
-import { Tour } from '../tour/model/tour.model';
+import { BachelorTour, Tour } from '../tour/model/tour.model';
 import { DifficultyLevel } from '../tour/model/tour.model';
 import { Status } from '../tour/model/tour.model';
 import { takeUntil } from 'rxjs';
@@ -45,11 +45,30 @@ export class TourFormComponent implements OnChanges {
     description: new FormControl('', [Validators.required]),
     status: new FormControl('', [Validators.required]),
     difficulytLevel: new FormControl('', [Validators.required]),
-    price: new FormControl(0, [Validators.required] )
+    price: new FormControl(0, [Validators.required]),
   });
 
   ngOnInit(): void {}
-
+  addTour(): void {
+    const tour: BachelorTour = {
+      name: this.tourForm.value.name || '',
+      tStatus: '0',
+      description: this.tourForm.value.description || '',
+      status: Status.Draft,
+      difficultyLevel: this.tourForm.value.difficulytLevel as DifficultyLevel,
+      userId: this.tokenStorage.getUserId(),
+      price: this.tourForm.value.price || 0,
+    };
+    this.service.addBachelorTour(tour).subscribe({
+      next: () => {
+        console.log(tour);
+        this.tourUpdated.emit();
+        this.addTourClicked.emit();
+        this.tourForm.reset();
+      },
+    });
+  }
+  /*
   addTour(): void {
     console.log(this.tourForm.value);
     const tour: Tour = {
@@ -75,7 +94,7 @@ export class TourFormComponent implements OnChanges {
       },
     });
   }
-
+  */
   // updateTour(): void {
   //   const tour: Tour = {
   //     name: this.tourForm.value.name || '',

@@ -39,6 +39,7 @@ import { ApplyFormComponent } from './feature-modules/competition/apply-form/app
 import { PublishedBundlesShowComponent } from './feature-modules/payment-record/published-bundles-show/published-bundles-show.component';
 import { VisualGalleryModule } from './feature-modules/visual-gallery/visual-gallery.module';
 import { BachelorEncountersModule } from './feature-modules/bachelor-encounters/bachelor-encounters.module';
+import { BachelorToursModule } from './feature-modules/bachelor-tours/bachelor-tours.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import { BachelorEncountersModule } from './feature-modules/bachelor-encounters/
     MarkdownModule.forRoot(),
     ClubModule,
     BachelorEncountersModule,
+    BachelorToursModule,
     ReactiveFormsModule,
     FormsModule,
     AdministrationModule,

@@ -1,74 +1,91 @@
 #accounts {
-    margin-top: 20px;
-    margin-left: 20px;
+  margin: 40px 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 40px;
+  margin-bottom: 20px; /* Spacing between the title and the table */
+  font-weight: bold;
+  color: #221853; /* Primary color */
 }
 
 #account-details {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-    align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 50px;
+  align-items: flex-start;
 }
 
 #username {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 table {
-    border-collapse: collapse;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 300px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-collapse: collapse;
+  margin-top: 50px;
+  width: 1200px;
+  font-size: 1em;
+  font-family: sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Raised appearance */
+  border-radius: 12px; /* Rounded corners */
+  overflow: hidden;
 }
 
 thead tr {
-    background-color: #3f51b5;
-    color: #ffffff;
-    text-align: left;
+  background-color: #221853;
+  color: #ffffff;
+  text-align: center;
 }
 
-th, td {
-    padding: 12px 15px;
+th,
+td {
+  padding: 12px 15px;
 }
 
 tbody tr {
-    border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
 }
 
 tbody tr:last-of-type {
-    border-bottom: 2px solid #3f51b5;
+  border-bottom: 2px solid #3f51b5;
 }
 
 tbody tr.active-row {
-    font-weight: bold;
-    color: #3f51b5;
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+button.block-btn,
+button.unblock-btn {
+  width: fit-content;
+  padding: 5px 15px;
+  font-size: 1em;
+  text-align: center;
+  border-radius: 20px;
+  transition: transform 0.2s;
+}
+
+button.block-btn:hover,
+button.unblock-btn:hover {
+  transform: scale(1.05);
 }
 
 button.block-btn {
-    width: fit-content;
-    padding: 0px 10px;
-    font-size: 1.3em;
-    text-align: center;
-    border-radius: 40px;
-    border: 1px solid pink;
+  border: 1px solid pink;
 }
 
 button.unblock-btn {
-    color: green;
-    width: fit-content;
-    padding: 0px 10px;
-    font-size: 1.3em;
-    text-align: center;
-    border-radius: 40px;
-    border: 1px solid lightgreen;
+  color: green;
+  border: 1px solid lightgreen;
 }
 
 td.button-collumn {
-    text-align: center;
-    vertical-align: middle;
+  text-align: center;
+  vertical-align: middle;
 }

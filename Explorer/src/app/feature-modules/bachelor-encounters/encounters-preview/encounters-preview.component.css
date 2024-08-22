@@ -1,0 +1,183 @@
+@font-face {
+  font-family: "Trip";
+  src: url(src\assets\Fonts\TripSans-Regular.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trip";
+  src: url(src\assets\Fonts\TripSans-Medium.ttf) format("truetype");
+  font-weight: medium;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trip";
+  src: url(src\assets\Fonts\TripSans-Bold.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Trip", sans-serif;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px; /* Reduced to move the title closer to the cards */
+  margin-top: 1px;
+}
+
+.container {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1px; /* Adjust padding to control spacing */
+}
+
+.card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 100px; /* Reduced to decrease space between cards in the same row */
+  padding: 0 50px; /* Reduced padding to better center the container */
+  justify-content: center;
+  max-width: 1200px; /* Set a max width to help center the content */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+.encounters-grid {
+  max-width: 100%;
+  width: 100%;
+  padding: 40px 0;
+}
+
+.image-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.encounter-card {
+  flex: 1;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: 0 2px 16px 3px #dddddd;
+  transition: box-shadow 0.3s ease;
+  max-width: 350px; /* Fiksirana širina kartice */
+  min-width: 350px; /* Fiksirana širina kartice */
+}
+
+.encounter-card:hover {
+  box-shadow: 0 4px 16px 3px #707070;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 18%;
+  width: 100%;
+  border-radius: 10px;
+  padding: 0 8px;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: medium;
+  color: #fff;
+  background-color: #e23a55;
+  border-radius: 15px;
+  padding: 3px 9px;
+}
+
+.card-image {
+  position: relative;
+  height: 200px; /* Fiksirana visina slike */
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+.card-image .img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container */
+  border-radius: 10px 10px 0 0;
+  transition: transform 0.3s ease;
+}
+
+.encounter-card:hover .card-image .img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+
+.name {
+  font-family: "Trip", "sans-serif";
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+  margin-top: 12px;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  font-size: 14px;
+  color: #707070;
+  margin: 0 8px 16px 8px;
+  text-align: left;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+
+.desc-container {
+  overflow: hidden;
+  height: 150px;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.encounter-xp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.encounter-status {
+}

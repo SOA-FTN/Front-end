@@ -1,0 +1,107 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.slider {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.slides {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.slider-image {
+  width: 100%;
+  height: auto;
+  max-height: 300px; /* Postavi maksimalnu visinu prema želji */
+  border-radius: 10px;
+}
+
+.tour-details {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.tour-name {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.difficulty {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 16px;
+  color: #555;
+}
+
+.tour-points {
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 30px;
+}
+
+.tour-points h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+}
+
+.card {
+  flex: 1;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px 3px #dddddd;
+  padding: 15px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px 3px #707070;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  margin-top: 30px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.add-to-cart-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.add-to-cart-button:hover {
+  background-color: #218838;
+}
